@@ -28,10 +28,9 @@
                 <asp:Label ID="Label3" runat="server" Text="Password: " Font-Bold="true" Font-Size="Larger"></asp:Label>
                 <asp:TextBox ID="TextBox2" runat="server" TextMode="Password" Width="100%" Height="35px"></asp:TextBox>
             </div>
-            <input class="checkbox" type="checkbox" onchange="document.getElementById('TextBox2').type=this.checked? 'text': 'password'" />
-            Keep me logged in
+            
             <div>
-                <asp:Button CssClass="btn-login" Font-Size="Large" ID="Button1" runat="server" Text="Login"
+                <asp:Button CssClass="btn-register" Font-Size="Large" ID="Button1" runat="server" Text="Register"
                     Height="40px" Width="90px" />
                 <%--<asp:Button CssClass="btn-cancel" ID="Button2" runat="server" Font-Size="Large" Text="Cancel" ForeColor="White" BackColor="Red" Height="40px" Width="90px" />--%>
             </div>
