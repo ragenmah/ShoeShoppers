@@ -14,7 +14,11 @@ namespace ShoeShoppers
             settings.AutoRedirectMode = RedirectMode.Permanent;
             routes.EnableFriendlyUrls(settings);
 
+
+            routes.MapPageRoute("Default", "", "~/Pages/Login.aspx");
             routes.MapPageRoute("RegistrationRoute", "registration", "~/Pages/Registration.aspx");
+            routes.MapPageRoute("AdminDashboard", "admin", "~/Pages/admin/Dashboard.aspx"
+       );
         }
     }
 }
