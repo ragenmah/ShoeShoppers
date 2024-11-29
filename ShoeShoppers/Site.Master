@@ -11,6 +11,7 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -26,17 +27,31 @@
             justify-content: center;
             text-align: center;
         }
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: bold;
+
+            .hero h1 {
+                font-size: 3rem;
+                font-weight: bold;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+                margin: 15px 0;
+            }
+
+            .hero .btn-primary {
+                padding: 10px 20px;
+                font-size: 1.1rem;
+            }
+
+        #cart-icon {
+            position: relative;
         }
-        .hero p {
-            font-size: 1.2rem;
-            margin: 15px 0;
-        }
-        .hero .btn-primary {
-            padding: 10px 20px;
-            font-size: 1.1rem;
+
+        #cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            font-size: 0.8rem;
         }
         /* Service Highlights */
         .card img {
@@ -49,10 +64,11 @@
             color: white;
             padding: 20px 0;
         }
-        footer a {
-            color: #ffc107;
-            text-decoration: none;
-        }
+
+            footer a {
+                color: #ffc107;
+                text-decoration: none;
+            }
     </style>
 </head>
 <body>
@@ -79,7 +95,9 @@
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="#"><img src="/assets/logo.png" alt="Logo" style="height: 50px;"> ShoeShoppers</a>
+                <a class="navbar-brand" href="/">
+                    <img src="/assets/logo.png" alt="Logo" style="height: 50px;">
+                    ShoeShoppers</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -100,16 +118,25 @@
                         <li class="nav-item">
                             <a class="btn btn-primary ms-2" href="/Login">Shop Now</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="badge bg-danger" id="cartCount">0</span>
+                                <!-- Cart count -->
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <div class="container-fluid body-content">
+        <div class="body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-          
+
             <footer>
-               <center> <p>&copy; <%: DateTime.Now.Year %> - Ragen Maharjan</p></center>
+                <center>
+                    <p>&copy; <%: DateTime.Now.Year %> - Ragen Maharjan</p>
+                </center>
             </footer>
         </div>
     </form>

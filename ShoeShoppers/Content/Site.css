@@ -1,12 +1,26 @@
-﻿/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
+﻿
+:root {
+    --primary-color: #33CC33;
+    --secondary-color: #FF5733;
+    --text-color: #9900CC;
+    --background-color: #f5f5f5;
+    --form-color: #ffffff;
+}
+
+
 * {
     margin-top: 0;
     padding-left: 0;
     padding-right: 0;
+    /*font-family: Papyrus, system-ui, -apple-system, sans-serif;*/
+    
 }
 
-/* Set widths on the form inputs since otherwise they're 100% wide */
+body {
+    background-color: var(--background-color);
+}
+
+
 input,
 select,
 textarea {

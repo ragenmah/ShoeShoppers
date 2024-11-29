@@ -14,6 +14,8 @@ namespace ShoeShoppers
             settings.AutoRedirectMode = RedirectMode.Permanent;
             routes.EnableFriendlyUrls(settings);
 
+            routes.Ignore("{resource}.axd/{*pathInfo}");
+
 
             routes.MapPageRoute("Login", "Login", "~/Pages/Login.aspx");
             routes.MapPageRoute("Registration", "registration", "~/Pages/Registration.aspx");
