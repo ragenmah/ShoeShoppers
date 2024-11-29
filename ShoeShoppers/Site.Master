@@ -12,9 +12,48 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
+    <style>
+        /* Hero Section Styling */
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: url('https://cdn.shopify.com/s/files/1/0283/3917/5496/files/the-article-parallax-image-desktop-origins-of-chelsea-boot-1.jpg') center/cover no-repeat;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin: 15px 0;
+        }
+        .hero .btn-primary {
+            padding: 10px 20px;
+            font-size: 1.1rem;
+        }
+        /* Service Highlights */
+        .card img {
+            height: 200px;
+            object-fit: cover;
+        }
+        /* Footer Styling */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+        }
+        footer a {
+            color: #ffc107;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
     <form runat="server">
@@ -37,28 +76,40 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
             <div class="container">
-                <a class="navbar-brand" runat="server" href="~/">Application name</a>
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="#"><img src="/assets/logo.png" alt="Logo" style="height: 50px;"> ShoeShoppers</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/About">About</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contact</a></li>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" runat="server" href="~/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#products">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" runat="server" href="~/About">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" runat="server" href="~/Contact">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-primary ms-2" href="/Login">Shop Now</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <div class="container body-content">
+        <div class="container-fluid body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-            <hr />
+          
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+               <center> <p>&copy; <%: DateTime.Now.Year %> - Ragen Maharjan</p></center>
             </footer>
         </div>
     </form>

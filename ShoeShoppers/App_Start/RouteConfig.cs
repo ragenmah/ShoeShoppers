@@ -15,10 +15,16 @@ namespace ShoeShoppers
             routes.EnableFriendlyUrls(settings);
 
 
-            routes.MapPageRoute("Default", "", "~/Pages/Login.aspx");
-            routes.MapPageRoute("RegistrationRoute", "registration", "~/Pages/Registration.aspx");
-            routes.MapPageRoute("AdminDashboard", "admin", "~/Pages/admin/Dashboard.aspx"
-       );
+            routes.MapPageRoute("Login", "Login", "~/Pages/Login.aspx");
+            routes.MapPageRoute("Registration", "registration", "~/Pages/Registration.aspx");
+
+
+            routes.MapPageRoute("AdminDashboard", "admin", "~/Pages/admin/Dashboard.aspx" );
+
+
+            routes.MapPageRoute("Default", "", "~/Default.aspx");
+
+
         }
     }
 }
