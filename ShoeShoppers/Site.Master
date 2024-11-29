@@ -15,6 +15,9 @@
 
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+       
+
+
     <style>
         /* Hero Section Styling */
         .hero {
@@ -69,7 +72,9 @@
                 color: #ffc107;
                 text-decoration: none;
             }
+
     </style>
+    <link rel="stylesheet" href="~/Content/css/main.css">
 </head>
 <body>
     <form runat="server">

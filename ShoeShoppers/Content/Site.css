@@ -1,10 +1,10 @@
 ﻿
 :root {
-    --primary-color: #33CC33;
+/*    --primary-color: #33CC33;
     --secondary-color: #FF5733;
     --text-color: #9900CC;
     --background-color: #f5f5f5;
-    --form-color: #ffffff;
+    --form-color: #ffffff;*/
 }
 
 
@@ -17,14 +17,14 @@
 }
 
 body {
-    background-color: var(--background-color);
+/*    background-color: var(--background-color);*/
 }
 
 
 input,
 select,
 textarea {
-    max-width: 280px;
+/*    max-width: 280px;*/
 }
 
 /* Responsive: Portrait tablets and up */
