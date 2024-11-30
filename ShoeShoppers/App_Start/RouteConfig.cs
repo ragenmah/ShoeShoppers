@@ -26,6 +26,8 @@ namespace ShoeShoppers
 
             routes.MapPageRoute("Default", "", "~/Default.aspx");
 
+            routes.MapPageRoute("ProductDetail", "product/{id}", "~/Pages/ProductDetail.aspx");
+
 
         }
     }

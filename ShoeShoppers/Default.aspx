@@ -5,7 +5,7 @@
         <div>
             <h1>Welcome to ShoeShoppers</h1>
             <p>Discover the best products tailored for you.</p>
-            <a href="#products" class="btn btn-primary">Explore Now</a>
+            <a href="#products" class="btn custom-btn">Explore Now</a>
         </div>
     </section>
 
@@ -70,7 +70,7 @@
                 </div>
                 <div class="col-md-3 col-sm-6 col-6">
                     <span>
-                        <a class="card product-card" href="/product/id">
+                        <a class="card product-card" href="/product/my">
                             <div class="card-img">
                                 <img src="https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/files/1.png" class="card-img-top" alt="Iconic – Ceiling Lamp">
                             </div>
