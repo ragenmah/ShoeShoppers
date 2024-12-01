@@ -41,12 +41,20 @@
 
             </div>
             <div>
-                <asp:Label ID="lblPassword" runat="server" Text="Email:" Font-Bold="true" Font-Size="Larger"></asp:Label>
-                <asp:TextBox ID="txtPassword" runat="server" TextMode="Email" Height="35px" Width="100%"></asp:TextBox>
+                <asp:Label ID="lblEmail" runat="server" Text="Email:" Font-Bold="true" Font-Size="Larger"></asp:Label>
+                <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" Height="35px" Width="100%"></asp:TextBox>
+                <asp:RequiredFieldValidator
+                    ID="rfvEmail"
+                    runat="server"
+                    ControlToValidate="txtEmail"
+                    ErrorMessage="Password is required."
+                    ForeColor="Red"
+                    Display="Dynamic">
+                </asp:RequiredFieldValidator>
             </div>
             <div>
-                <asp:Label ID="Label3" runat="server" Text="Password: " Font-Bold="true" Font-Size="Larger"></asp:Label>
-                <asp:TextBox ID="TextBox2" runat="server" TextMode="Password" Width="100%" Height="35px"></asp:TextBox>
+                <asp:Label ID="lblPassword" runat="server" Text="Password: " Font-Bold="true" Font-Size="Larger"></asp:Label>
+                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" Width="100%" Height="35px"></asp:TextBox>
                 <asp:RequiredFieldValidator
                     ID="rfvPassword"
                     runat="server"
@@ -54,7 +62,7 @@
                     ErrorMessage="Password is required."
                     ForeColor="Red"
                     Display="Dynamic">
-                 </asp:RequiredFieldValidator>
+                </asp:RequiredFieldValidator>
             </div>
 
             <div>
@@ -63,7 +71,6 @@
             </div>
 
             <%--<asp:Label ID="lblGender" runat="server" Text="Gender:" Font-Bold="true" Font-Size="Larger"></asp:Label>--%>
-
 
             <%-- <asp:DropDownList ID="ddlGender" runat="server" CssClass="styled-dropdown" Height="40px" Width="100%">
                 <asp:ListItem Text="Select Gender" Value="" />
@@ -75,10 +82,11 @@
                 <asp:Label ID="lblContactNumber" runat="server" Text="Contact Number:" Font-Bold="true" Font-Size="Larger"></asp:Label>
                 <asp:TextBox ID="txtContactNumber" runat="server" TextMode="Password" Width="100%" Height="35px"></asp:TextBox>
             </div>--%>
+                <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
 
             <div>
-                <asp:Button class="btn-common btn-register" Font-Size="Large" ID="Button1" runat="server" Text="Register"
-                    Height="40px" Width="90px" />
+                <asp:Button class="btn-common btn-register" Font-Size="Large" ID="RegisterBtn" runat="server" Text="Register"
+                    Height="40px" Width="90px" OnClick="RegisterBtn_Click" />
                 <%--<asp:Button CssClass="btn-cancel" ID="Button2" runat="server" Font-Size="Large" Text="Cancel" ForeColor="White" BackColor="Red" Height="40px" Width="90px" />--%>
             </div>
         </form>
