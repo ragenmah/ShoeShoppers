@@ -22,6 +22,7 @@
     height: 100vh;
     margin: 0;
     background-color: var(--background-color);
+    padding: 0 20px
 }
 
 .form {
@@ -29,8 +30,8 @@
     padding: 20px 30px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 400px;
+    width: 100%;
+    max-width: 500px;
 }
 
     .form div {
@@ -42,30 +43,7 @@ label {
     font-weight: bold;
 }
 
-.btn-common {
-    display: inline-block;
-    align-content: center;
-    text-align: center;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-    margin-top: 15px;
-}
 
-.btn-register {
-    color: white;
-    background-color: var(--secondary-color);
-}
-
-.btn-login {
-    color: white;
-    background-color: var(--primary-color);
-}
-
-.btn-common:hover {
-    background-color: darkgreen;
-}
 
 /*input[type="text"],
 input[type="password"] {
@@ -128,8 +106,9 @@ input[type="password"] {
 /* product card */
 .product-card {
     border-radius: 0px;
-/*    border-color: var(--product-border-color);*/
-/*    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+        border-color: var(--product-border-color);
+    /*    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-decoration: none;
     height: calc(100% - 1rem);
     margin-bottom: 1rem;
