@@ -10,22 +10,22 @@
            <p>Meet our team.</p>
             <div class="row text-center">
                 <div class="col-md-3 mb-4">
-                    <img src="Assets/Images/owners/business-owner.jpg" alt="Owner" class="img-fluid rounded-rectangle" style="width: 256px; height: 256px;">
+                    <img src="/Assets/Images/owners/business-owner.jpg" alt="Owner" class="img-fluid rounded-rectangle" style="width: 256px; height: 256px;">
                     <h4 class="mt-3">Mr. Jimmy</h4>
                     <p>Owner of ShoeShoppers</p>
                 </div>
 
                 <div class="col-md-3 mb-4">
-                    <img src="Assets/Images/owners/operator.jpg" alt="Owner" class="img-fluid rounded-rectangle" style="width: 256px; height: 256px;">
+                    <img src="/Assets/Images/owners/operator.jpg" alt="Owner" class="img-fluid rounded-rectangle" style="width: 256px; height: 256px;">
                     <h4 class="mt-3">David Simon</h4>
                     <p>Operations Manager</p>
                 </div>
 
                 <div class="col-md-3 mb-4">
-    <img src="Assets/Images/owners/designer.jpg" alt="Owner" class="img-fluid rounded-rectangle" style="width: 256px; height: 256px;">
-    <h4 class="mt-3">Emily Sam</h4>
-    <p>Lead Designer</p>
-</div>
+                    <img src="/Assets/Images/owners/designer.jpg" alt="Owner" class="img-fluid rounded-rectangle" style="width: 256px; height: 256px;">
+                    <h4 class="mt-3">Emily Sam</h4>
+                    <p>Lead Designer</p>
+                </div>
             </div>
         </section>
     </div>

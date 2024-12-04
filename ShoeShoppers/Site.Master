@@ -23,7 +23,7 @@
         .hero {
             position: relative;
             height: 100vh;
-            background: url('https://cdn.shopify.com/s/files/1/0283/3917/5496/files/the-article-parallax-image-desktop-origins-of-chelsea-boot-1.jpg') center/cover no-repeat;
+            background: url('/Assets/Images/leather-boot.jpg') center/cover no-repeat;
             color: white;
             display: flex;
             align-items: center;
@@ -98,7 +98,7 @@
         </asp:ScriptManager>
 
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="/">
                     <img src="/assets/logo.png" alt="Logo" style="height: 50px;">
@@ -125,7 +125,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                               <img  src="Assets/Icons/trolley.png" height="32" width="32"/> 
+                               <img  src="/Assets/Icons/trolley.png" height="32" width="32"/> 
                                 <%--<i class="fas fa-shopping-cart"></i>--%>
                                 <span class="badge bg-danger" id="cartCount">0</span>
                                
@@ -144,14 +144,12 @@
             <footer class="bg-dark text-white py-4">
     <div class="container">
         <div class="row">
-            <!-- Payment Info Section -->
             <div class="col-md-4 mb-3">
                 <h5>Payment Information</h5>
                 <p>We accept the following payment methods:</p>
-                <img src="Assets/Icons/payment-cards.png"/>
+                <img src="/Assets/Icons/payment-cards.png"/>
             </div>
 
-            <!-- Quick Links Section -->
             <div class="col-md-4 mb-3">
                 <h5>Quick Links</h5>
                 <ul class="list-unstyled">
@@ -159,11 +157,10 @@
                     <li><a href="/products" class="text-white">Products</a></li>
                     <li><a href="/contact" class="text-white">Contact</a></li>
                     <li><a href="/about" class="text-white">About Us</a></li>
-                    <li><a href="/faq" class="text-white">FAQ</a></li>
+                    <li><a href="/faqs" class="text-white">FAQ</a></li>
                 </ul>
             </div>
 
-            <!-- Short Info Section -->
             <div class="col-md-4 mb-3">
                 <h5>About Us</h5>
                 <p>Hand crafted leather shoes for men could be found in Simon Necktie. Unparalleled quality footwear with excellent craft are among their products. Our retail outlet is found in well known shopping malls, and we are going online for convenience.</p>

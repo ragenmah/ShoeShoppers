@@ -136,6 +136,7 @@
     <Content Include="Assets\Images\7.png" />
     <Content Include="Assets\Images\8.png" />
     <Content Include="Assets\Images\9.png" />
+    <Content Include="Assets\Images\leather-boot.jpg" />
     <Content Include="Assets\Images\owners\business-owner.jpg" />
     <Content Include="Assets\Images\owners\designer.jpg" />
     <Content Include="Assets\Images\owners\operator.jpg" />
@@ -161,6 +162,7 @@
     <Content Include="Content\css\main.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
+    <Content Include="Faqs.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Pages\Admin\Dashboard.aspx" />
@@ -236,6 +238,13 @@
   <ItemGroup>
     <Compile Include="Database\DatabaseConnection.cs" />
     <Compile Include="Database\Repository\ProductRepository.cs" />
+    <Compile Include="Faqs.aspx.cs">
+      <DependentUpon>Faqs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Faqs.aspx.designer.cs">
+      <DependentUpon>Faqs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Model\Product.cs" />
     <Compile Include="Pages\Admin\Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
