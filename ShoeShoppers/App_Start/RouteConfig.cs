@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.Routing;
 using Microsoft.AspNet.FriendlyUrls;
+using ShoeShoppers.Pages;
+using ShoeShoppers.Pages.Admin;
 
 namespace ShoeShoppers
 {
@@ -21,14 +23,22 @@ namespace ShoeShoppers
             routes.MapPageRoute("Registration", "registration", "~/Pages/Registration.aspx");
 
 
-            routes.MapPageRoute("AdminDashboard", "admin", "~/Pages/admin/Dashboard.aspx" );
+         
 
-
+            
             routes.MapPageRoute("Default", "", "~/Default.aspx");
 
             routes.MapPageRoute("Products", "products", "~/Pages/Products.aspx");
             routes.MapPageRoute("ProductDetail", "product/{id}", "~/Pages/ProductDetail.aspx");
 
+            //Admin Routes
+            routes.MapPageRoute("AdminDashboard", "admin", "~/Pages/admin/Dashboard.aspx");
+            routes.MapPageRoute("ProductLists", "product-list", "~/Pages/Admin/Products/ProductList.aspx");
+            routes.MapPageRoute("AddProduct", "add-product", "~/Pages/Admin/Products/AddProduct.aspx");
+
+
+            //Logout
+            routes.MapPageRoute("Logout", "logout", "~/Pages/Logout.aspx");
 
         }
     }

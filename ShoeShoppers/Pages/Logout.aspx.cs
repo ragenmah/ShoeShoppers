@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace ShoeShoppers.Pages.Admin
 {
-    public partial class Admin : MasterPage
+    public partial class Logout : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            Response.Redirect("/");
         }
     }
 }

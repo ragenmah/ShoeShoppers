@@ -3,31 +3,38 @@
 <!DOCTYPE html>
 
 <html>
-    <head runat="server">
-        <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
-        <link rel="stylesheet" href="~/Content/css/admin.css" />
-    </head>
-    <body>
-        <form id="form1" runat="server">
-            <div class="dashboard-container">
-                <div class="sidebar">
-                        <%--<asp:Label ID="lblWelcome" runat="server" Text="Welcome!"></asp:Label>--%>
+<head runat="server">
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
+    <link rel="stylesheet" href="~/Content/css/admin.css" />
 
-                    <asp:Label id="lblWelcome" runat="server" Text="">Welcome, <%Response.Write(Session["email"]); %></asp:Label>
-                    <h2>Admin Dashboard</h2>
-                    <ul class="nav-links">
-                        <li><a href="Dashboard.aspx">Home</a></li>
-                        <li><a href="ManageProducts.aspx">Manage Products</a></li>
-                        <li><a href="ViewOrders.aspx">View Orders</a></li>
-                        <li><a href="GenerateReports.aspx">Generate Reports</a></li>
-                        <li><a href="Settings.aspx">Settings</a></li>
-                        <li><a href="Logout.aspx">Logout</a></li>
-                    </ul>
-                </div>
-                <div class="main-content">
-                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
-                </div>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - ShoeShoppers</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="dashboard-container">
+            <div class="sidebar">
+
+
+                <ul class="nav-links">
+                    <h2><a href="/admin">ShoeShoppers</a></h2>
+                    <li><a href="/admin">Home</a></li>
+                    <li><a href="/product-list">Manage Products</a></li>
+                    <li><a href="ViewOrders.aspx">View Orders</a></li>
+                    <li><a href="GenerateReports.aspx">Generate Reports</a></li>
+                    <li><a href="Settings.aspx">Settings</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
             </div>
-        </form>
-    </body>
+            <div class="main-content">
+                <asp:ContentPlaceHolder ID="AdminDashboardContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </form>
+</body>
 </html>
