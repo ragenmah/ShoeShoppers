@@ -234,21 +234,56 @@ text-color {
         color: white !important;
     }
 
+/* image style */
+.rounded-rectangle {
+    border-radius: 15px; 
+    width: 100%; 
+    max-width: 300px; 
+    height: auto; 
+}
+
+/*  zoom effect*/
 .zoom-container {
     overflow: hidden;
     position: relative;
-    width: 100%; /* Makes sure it takes full width of the container */
+    width: 100%;
 }
 
 .zoomable-image {
-    width: 100%; /* Image takes full width of the container */
-    transition: transform 0.25s ease; /* Smooth transition for zooming */
+    width: 100%; 
+    transition: transform 0.25s ease; 
 }
 
-/* Add zoom effect */
+
 .zoom-container:hover .zoomable-image {
-    transform: scale(1.2); /* Scale the image to 120% on hover */
+    transform: scale(1.2); 
 }
+
+
+
+/* Custom Footer Styling */
+footer {
+    background-color: #343a40; /* Dark background */
+    color: #ffffff; /* White text */
+}
+
+    footer h5 {
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    footer a {
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+    footer .list-unstyled li {
+        margin-bottom: 10px;
+    }
 
 
 /* Small devices (landscape phones, less than 768px) */

@@ -3,7 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <section class="hero">
         <div>
-            <h1>Welcome to ShoeShoppers</h1>
+            <h1>Welcome to Simon Necktie.</h1>
             <p>Discover the best products tailored for you.</p>
             <a href="#products" class="btn custom-btn">Explore Now</a>
         </div>
@@ -98,9 +98,21 @@
             </div>
 
         </section>
-        <section id="about" class="mt-5">
-            <h2>About Us</h2>
-            <p></p>
+        <section id="about" class="container mt-5">
+            <h2 class=" mb-4">Team</h2>
+            <div class="row">
+                <div class=" col-md-3 col-sm-6 col-6">
+                    <img src="Assets/Images/owners/business-owner.jpg" alt="Owner" class="img-fluid rounded-rectangle" style="width: 250px; height: 250px;">
+                    <h4 class="mt-3">Mr. Jimmy</h4>
+                    <p>Owner of Simon Necktie.</p>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6">
+                    <img src="Assets/Images/owners/operator.jpg" alt="Owner" class="img-fluid rounded-rectangle" style="width: 250px; height: 250px;">
+                    <h4 class="mt-3">Simon Necktie</h4>
+                    <p>Business Operator</p>
+                </div>
+            </div>
         </section>
         <section id="contact" class="mt-5">
             <h2>Contact</h2>
