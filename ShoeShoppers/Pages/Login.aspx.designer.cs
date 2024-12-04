@@ -42,12 +42,14 @@ namespace ShoeShoppers
         protected global::System.Web.UI.WebControls.Label lblFullName;
 
         /// <summary>
-        /// txtFullName control.
+
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
+      protected global::System.Web.UI.WebControls.TextBox TextBoxEmail;
+
         protected global::System.Web.UI.WebControls.TextBox txtFullName;
 
         /// <summary>
@@ -85,6 +87,7 @@ namespace ShoeShoppers
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmail;
+
 
         /// <summary>
         /// lblPassword control.
@@ -132,21 +135,31 @@ namespace ShoeShoppers
         protected global::System.Web.UI.WebControls.TextBox TextBox1;
 
         /// <summary>
-        /// lblMessage control.
+
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
+
+        protected global::System.Web.UI.WebControls.TextBox textBoxPassword;
+
+        /// <summary>
+        /// LoginBtn control.
         protected global::System.Web.UI.WebControls.Label lblMessage;
 
         /// <summary>
         /// RegisterBtn control.
+
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
+
+        protected global::System.Web.UI.WebControls.Button LoginBtn;
+
         protected global::System.Web.UI.WebControls.Button RegisterBtn;
+
     }
 }

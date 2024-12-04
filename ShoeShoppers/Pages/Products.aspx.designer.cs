@@ -11,7 +11,7 @@ namespace ShoeShoppers
 {
 
 
-    public partial class Contact
+    public partial class _Default
     {
     }
 }

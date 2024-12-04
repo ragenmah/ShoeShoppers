@@ -19,6 +19,21 @@ namespace ShoeShoppers
 
         }
 
+
+        protected void LoginBtn_Click(object sender, EventArgs e)
+        {
+            Session["email"] =this. TextBoxEmail.Text;
+
+            HttpCookie userCookie = new HttpCookie("email");
+            userCookie.Value = this.TextBoxEmail.Text; ;
+            userCookie.Expires = DateTime.Now.AddDays(1); 
+
+            // Add the cookie to the Response
+            Response.Cookies.Add(userCookie);
+
+
+            Response.Redirect("/admin");
+
         protected void RegisterBtn_Click(object sender, EventArgs e)
         {
             string fullName = txtFullName.Text.Trim();
@@ -55,6 +70,7 @@ namespace ShoeShoppers
                 lblMessage.Text = $"Error: {ex.Message}";
 
             }
+
 
         }
     }
