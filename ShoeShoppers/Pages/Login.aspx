@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Login" Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="ShoeShoppers.Login" %>
+﻿<%@ Page Title="Login" Language="C#" AutoEventWireup="true"  CodeBehind="Login.aspx.cs" Inherits="ShoeShoppers.Pages.Login" %>
 
 <!DOCTYPE html>
 

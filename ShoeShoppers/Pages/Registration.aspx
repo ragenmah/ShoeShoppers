@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Membership Registration" Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="ShoeShoppers.Login" %>
+﻿<%@ Page Title="Membership Registration" Language="C#" AutoEventWireup="true" CodeBehind="Registration.aspx.cs" Inherits="ShoeShoppers.Pages.Registration" %>
 
 <!DOCTYPE html>
 

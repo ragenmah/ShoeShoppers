@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShoeShoppers
+namespace ShoeShoppers.Pages
 {
 
 
