@@ -83,6 +83,8 @@
                         Height="40px" Width="90px" OnClick="RegisterBtn_Click" />
                     <%--<asp:Button CssClass="btn-cancel" ID="Button2" runat="server" Font-Size="Large" Text="Cancel" ForeColor="White" BackColor="Red" Height="40px" Width="90px" />--%>
                 </div>
+
+                https://shoezero.com/collections/all
             </form>
         </div>
     </div>

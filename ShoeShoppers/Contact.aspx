@@ -34,8 +34,11 @@
                             </div>
                             <asp:TextBox ID="TextBox2" runat="server" TextMode="Password" Width="100%" Height="35px"></asp:TextBox>
                         </div>
-                        <input class="checkbox" type="checkbox" />
-                        Keep me logged in
+                        <asp:label ID="Label4" style="display: flex; align-items: center;">
+                            <input class="checkbox" type="checkbox" />
+                            <span style="margin-left: 5px;">Keep me logged in</span>
+
+                        </asp:label>
         <div>
             <asp:Button class="btn custom-btn" Font-Size="Large" ID="Button1" runat="server" Text="Send Message"
                 Height="40px" />
