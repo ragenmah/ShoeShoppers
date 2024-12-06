@@ -161,6 +161,7 @@
     <Content Include="Content\css\admin.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="App_Data\NeckTie.sql" />
     <Content Include="Default.aspx" />
     <Content Include="Faqs.aspx" />
     <Content Include="favicon.ico" />
@@ -361,7 +362,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
-    <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

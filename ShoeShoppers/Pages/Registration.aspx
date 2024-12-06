@@ -14,21 +14,32 @@
                     Already have an account? <a href="/login">Login</a>
                 </div>
 
-                <%--<div>
-                <asp:Label ID="Label2" runat="server" Text="Username:" Font-Bold="true" Font-Size="Larger"></asp:Label>
-                <asp:TextBox ID="TextBox1" runat="server" Height="35px" Width="100%"></asp:TextBox>
-            </div>--%>
-
                 <div>
-                    <asp:Label ID="lblFullName" runat="server" Text="Full Name:" Font-Bold="true" Font-Size="Larger"></asp:Label>
+                    <asp:Label ID="lblFirstName" runat="server" Text="First Name:" Font-Bold="true" Font-Size="Larger"></asp:Label>
 
-                    <asp:TextBox ID="txtFullName" runat="server" TextMode="Password" Width="100%" Height="35px"></asp:TextBox>
+                    <asp:TextBox ID="txtFirstName" runat="server" Width="100%" Height="35px"></asp:TextBox>
 
                     <asp:RequiredFieldValidator
-                        ID="rfvFullName"
+                        ID="rfvFirstName"
                         runat="server"
-                        ControlToValidate="txtFullName"
-                        ErrorMessage="Fullname is required."
+                        ControlToValidate="txtFirstName"
+                        ErrorMessage="First name is required."
+                        ForeColor="Red"
+                        Display="Dynamic">
+                    </asp:RequiredFieldValidator>
+
+                </div>
+
+                <div>
+                    <asp:Label ID="lblLastName" runat="server" Text="Last Name:" Font-Bold="true" Font-Size="Larger"></asp:Label>
+
+                    <asp:TextBox ID="txtLastName" runat="server" Width="100%" Height="35px"></asp:TextBox>
+
+                    <asp:RequiredFieldValidator
+                        ID="RequiredFieldValidator1"
+                        runat="server"
+                        ControlToValidate="txtLastName"
+                        ErrorMessage="Last name is required."
                         ForeColor="Red"
                         Display="Dynamic">
                     </asp:RequiredFieldValidator>
@@ -36,12 +47,12 @@
                 </div>
                 <div>
                     <asp:Label ID="lblEmail" runat="server" Text="Email:" Font-Bold="true" Font-Size="Larger"></asp:Label>
-                    <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" Height="35px" Width="100%"></asp:TextBox>
+                    <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" Height="35px" Width="100%" ></asp:TextBox>
                     <asp:RequiredFieldValidator
                         ID="rfvEmail"
                         runat="server"
                         ControlToValidate="txtEmail"
-                        ErrorMessage="Password is required."
+                        ErrorMessage="Email is required."
                         ForeColor="Red"
                         Display="Dynamic">
                     </asp:RequiredFieldValidator>
@@ -60,8 +71,8 @@
                 </div>
 
                 <div>
-                    <asp:Label ID="Label2" runat="server" Text="Re-enter Password: " Font-Bold="true" Font-Size="Larger"></asp:Label>
-                    <asp:TextBox ID="TextBox1" runat="server" TextMode="Password" Width="100%" Height="35px"></asp:TextBox>
+                    <asp:Label ID="lblReEnteredPassword" runat="server" Text="Re-enter Password: " Font-Bold="true" Font-Size="Larger"></asp:Label>
+                    <asp:TextBox ID="txtReEnteredPassword" runat="server" TextMode="Password" Width="100%" Height="35px"></asp:TextBox>
                 </div>
 
                 <%--<asp:Label ID="lblGender" runat="server" Text="Gender:" Font-Bold="true" Font-Size="Larger"></asp:Label>--%>
