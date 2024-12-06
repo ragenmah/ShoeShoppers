@@ -14,34 +14,88 @@ namespace ShoeShoppers.Pages
 {
     public partial class Login : System.Web.UI.Page
     {
+        string userRole = string.Empty;
+       
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
+        private bool IsValidUser(string email, string password)
+        {
 
+            string query = "SELECT Id, Password, RoleId FROM Users WHERE Email = @Email";
+
+            using (SqlConnection connection = DatabaseConnection.Instance.GetConnection())
+            {
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@Email", email);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string storedPassword = reader["Password"].ToString();
+                        int roleId = Convert.ToInt32(reader["RoleId"]);
+
+                        // Check password (hash comparison should be used here)
+                        if (BCrypt.Net.BCrypt.Verify(password, storedPassword))
+                        {
+                            userRole = GetUserRole(roleId); // Get the role based on roleId
+                            return true;  // Valid user
+                        }
+                    }
+                }
+            }
+
+            return false;  // Invalid user
+        }
         protected void LoginBtn_Click(object sender, EventArgs e)
         {
 
-            String email = txtEmail.Text;
+            string email = txtEmail.Text.Trim();
+            string password = txtPassword.Text.Trim();
+            if (IsValidUser(email, password))
+            {
+                HttpCookie loginCookie = new HttpCookie("UserLogin");
 
-            Session["email"] = email;
+                if (chkRememberMe.Checked)
+                {
+                    loginCookie["Email"] = email;
+                    loginCookie["Role"] = userRole;
+                    loginCookie.Expires = DateTime.Now.AddDays(30);  // Cookie expires in 30 days.
+                    Response.Cookies.Add(loginCookie);
+                }
 
-            HttpCookie userCookie = new HttpCookie("email");
-            userCookie.Value = email;
-            userCookie.Expires = DateTime.Now.AddDays(1); 
+                else
+                {
+                    loginCookie.Expires = DateTime.Now.AddDays(1);  // Expire the cookie
+                    Response.Cookies.Add(loginCookie);
+                }
 
-            // Add the cookie to the Response
-            Response.Cookies.Add(userCookie);
+                Session["UserEmail"] = email;
 
-
-            Response.Redirect("/admin");
-
-          
-
-
+                Response.Redirect("/admin");
+            }
+            else
+            {
+                lblMessage.Text = "Invalid email or password.";
+            }
         }
 
-       
+        private string GetUserRole(int roleId)
+        {
+            switch (roleId)
+            {
+                case 1:
+                    return "Admin";
+                case 2:
+                    return "User";
+                default:
+                    return "Guest";
+            }
+        }
     }
 }

@@ -56,7 +56,7 @@ CREATE TABLE Roles
 );
 
 INSERT INTO Roles (RoleName)
-VALUES('Admin'),('Member');
+    VALUES('Admin'),('Member');
 
 
 CREATE TABLE Users (
@@ -76,6 +76,9 @@ CREATE TABLE Users (
     CreatedAt DATETIME DEFAULT GETDATE(),
 	UpdatedAt DATETIME DEFAULT GETDATE()
 );
+
+INSERT INTO Users (FirstName, LastName, Email, Password, RoleId)
+        VALUES ('Admin', 'USER','admin@admin.com', 'admin', 1)
 
 CREATE TABLE ProductReviews
 (
