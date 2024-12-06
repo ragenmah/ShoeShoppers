@@ -15,7 +15,7 @@ namespace ShoeShoppers.Pages
     public partial class Login : System.Web.UI.Page
     {
         string userRole = string.Empty;
-       
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -24,39 +24,50 @@ namespace ShoeShoppers.Pages
         private bool IsValidUser(string email, string password)
         {
 
-            string query = "SELECT Id, Password, RoleId FROM Users WHERE Email = @Email";
-
-            using (SqlConnection connection = DatabaseConnection.Instance.GetConnection())
+            string query = "SELECT UserId, Password, RoleId FROM Users WHERE Email = @Email";
+            try
             {
-                SqlCommand cmd = new SqlCommand(query, connection);
-                cmd.Parameters.AddWithValue("@Email", email);
-
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                if (reader.HasRows)
+                SqlConnection connection = DatabaseConnection.Instance.GetConnection();
+                using (connection)
                 {
-                    while (reader.Read())
-                    {
-                        string storedPassword = reader["Password"].ToString();
-                        int roleId = Convert.ToInt32(reader["RoleId"]);
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    cmd.Parameters.AddWithValue("@Email", email);
 
-                        // Check password (hash comparison should be used here)
-                        if (BCrypt.Net.BCrypt.Verify(password, storedPassword))
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
                         {
-                            userRole = GetUserRole(roleId); // Get the role based on roleId
-                            return true;  // Valid user
+                            string storedPassword = reader["Password"].ToString();
+                            int roleId = Convert.ToInt32(reader["RoleId"]);
+
+                            if (BCrypt.Net.BCrypt.Verify(password, storedPassword))
+                            {
+                                userRole = GetUserRole(roleId); 
+                                return true; 
+                            }
                         }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                lblMessage.Text = $"Error: {ex.Message}";
+            }
+            finally
+            {
+                DatabaseConnection.Instance.CloseConnection();
+            }
 
-            return false;  // Invalid user
+            return false;  
         }
         protected void LoginBtn_Click(object sender, EventArgs e)
         {
 
             string email = txtEmail.Text.Trim();
             string password = txtPassword.Text.Trim();
+
             if (IsValidUser(email, password))
             {
                 HttpCookie loginCookie = new HttpCookie("UserLogin");
@@ -77,12 +88,21 @@ namespace ShoeShoppers.Pages
 
                 Session["UserEmail"] = email;
 
-                Response.Redirect("/admin");
+                if (userRole == "Admin")
+                {
+
+                    Response.Redirect("/admin");
+                }
+                else
+                {
+                    Response.Redirect("/");
+                }
             }
             else
             {
                 lblMessage.Text = "Invalid email or password.";
             }
+
         }
 
         private string GetUserRole(int roleId)
