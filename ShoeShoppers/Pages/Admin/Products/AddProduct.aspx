@@ -70,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-
+                 <a href="/add-product-images/1">Add Product Images</a>
                 <!-- Buttons -->
 
             </form>

@@ -34,8 +34,10 @@ namespace ShoeShoppers
 
             //Admin Routes
             routes.MapPageRoute("AdminDashboard", "admin", "~/Pages/admin/Dashboard.aspx");
-            routes.MapPageRoute("ProductLists", "product-list", "~/Pages/Admin/Products/ProductList.aspx");
+            routes.MapPageRoute("ProductList", "product-list", "~/Pages/Admin/Products/ProductList.aspx");
             routes.MapPageRoute("AddProduct", "add-product", "~/Pages/Admin/Products/AddProduct.aspx");
+
+            routes.MapPageRoute("ProductImageList", "add-product-images/{ProductId}", "~/Pages/Admin/Products/ProductImageList.aspx");
 
             // Manage Categories
             routes.MapPageRoute("CategoryList", "category-list", "~/Pages/Admin/Categories/CategoryList.aspx");
