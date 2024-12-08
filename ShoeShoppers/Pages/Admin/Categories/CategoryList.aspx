@@ -37,31 +37,51 @@
 
         <!-- Categories Grid -->
         <div class="mt-5">
-          <asp:GridView ID="gvCategories" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
-    OnRowEditing="gvCategories_RowEditing" OnRowUpdating="gvCategories_RowUpdating" 
-    OnRowCancelingEdit="gvCategories_RowCancelingEdit" OnRowDeleting="gvCategories_RowDeleting"
-    DataKeyNames="CategoryId">
-    <Columns>
-        
-        <asp:BoundField DataField="CategoryId" HeaderText="ID" ReadOnly="True" />
+            <asp:GridView ID="gvCategories" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
+                OnRowEditing="gvCategories_RowEditing" OnRowUpdating="gvCategories_RowUpdating"
+                OnRowCancelingEdit="gvCategories_RowCancelingEdit" OnRowDeleting="gvCategories_RowDeleting"
+                DataKeyNames="CategoryId">
+                <Columns>
 
-        
-        <asp:BoundField DataField="CategoryName" HeaderText="Name" />
+                    <asp:BoundField DataField="CategoryId" HeaderText="ID" ReadOnly="True" />
 
-       
-        <asp:TemplateField HeaderText="Image Preview">
-            <ItemTemplate>
-                <asp:Image ID="imgCategory" runat="server" ImageUrl='<%# Eval("CategoryImageUrl") %>'
-                    Width="100px" Height="100px" AlternateText="No Image Available" />
-            </ItemTemplate>
-        </asp:TemplateField>
 
-        <asp:CheckBoxField DataField="IsActive" HeaderText="Active" />
+                    <asp:TemplateField HeaderText="Category Name">
+                        <ItemTemplate>
+                            <%# Eval("CategoryName") %>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txtCategoryName" runat="server" Text='<%# Bind("CategoryName") %>' />
+                        </EditItemTemplate>
+                    </asp:TemplateField>
 
-      
-        <asp:CommandField HeaderText="Action" ShowEditButton="true" ShowDeleteButton="true" />
-    </Columns>
-</asp:GridView>
+
+                    <asp:TemplateField HeaderText="Image Preview">
+                        <ItemTemplate>
+                            <asp:Image ID="imgCategory" runat="server" ImageUrl='<%# Eval("CategoryImageUrl") %>'
+                                Width="100px" Height="100px" AlternateText="No Image Available" />
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:FileUpload ID="fuCategoryImage" runat="server" />
+                            <asp:HiddenField ID="hfCategoryImageUrl" runat="server" Value='<%# Bind("CategoryImageUrl") %>' />
+                            <asp:Image ID="imgCategoryEdit" runat="server" ImageUrl='<%# Bind("CategoryImageUrl") %>'
+                                Width="100px" Height="100px" AlternateText="No Image Available" />
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="Is Active">
+                        <ItemTemplate>
+
+                            <asp:CheckBox ID="chkIsActive" runat="server" Enabled="false" Checked=' <%# Eval("IsActive") %>' />
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:CheckBox ID="chkIsActive" runat="server" Checked='<%# Bind("IsActive") %>' />
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:CommandField HeaderText="Action" ShowEditButton="true" ShowDeleteButton="true" />
+                </Columns>
+            </asp:GridView>
         </div>
     </div>
 </asp:Content>

@@ -1,8 +1,10 @@
-﻿using ShoeShoppers.Database.Repository;
+﻿using ShoeShoppers.Database;
+using ShoeShoppers.Database.Repository;
 using ShoeShoppers.Model;
 using ShoeShoppers.Services;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -117,24 +119,79 @@ namespace ShoeShoppers.Pages.Admin.Categories
 
         protected void gvCategories_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            // Retrieve the row being edited
-            GridViewRow row = gvCategories.Rows[e.RowIndex];
-            int categoryId = Convert.ToInt32(gvCategories.DataKeys[e.RowIndex].Value);
-
-            string categoryName = ((TextBox)row.Cells[1].Controls[0]).Text;
-            bool isActive = ((CheckBox)row.Cells[3].Controls[0]).Checked;
-
-            // Update logic
-            var category = new Category
+            try
             {
-                CategoryId = categoryId,
-                CategoryName = categoryName,
-                IsActive = isActive
-            };
-            _categoryBLL.UpdateCategory(category); // Example method
+                // Retrieve the primary key
+                int categoryId = Convert.ToInt32(gvCategories.DataKeys[e.RowIndex]?.Value);
 
-            gvCategories.EditIndex = -1;
-            LoadCategories();
+                // Retrieve controls from the GridView row
+                GridViewRow row = gvCategories.Rows[e.RowIndex];
+                TextBox txtCategoryName = row.FindControl("txtCategoryName") as TextBox;
+                FileUpload fuCategoryImage = row.FindControl("fuCategoryImage") as FileUpload;
+                HiddenField hfCategoryImageUrl = row.FindControl("hfCategoryImageUrl") as HiddenField;
+                CheckBox chkIsActive = row.FindControl("chkIsActive") as CheckBox;
+
+                // Ensure controls are found
+                if (txtCategoryName == null || fuCategoryImage == null || hfCategoryImageUrl == null || chkIsActive == null)
+                {
+                    lblMessage.Text = "Error: Could not find controls.";
+                    lblMessage.ForeColor = System.Drawing.Color.Red;
+                    return;
+                }
+
+                // Determine the image URL
+                string imageUrl = hfCategoryImageUrl.Value; // Default to existing URL
+                if (fuCategoryImage.HasFile)
+                {
+                    // Save the new file
+                    string folderPath = Server.MapPath("~/Uploads/Images/");
+                    if (!System.IO.Directory.Exists(folderPath))
+                    {
+                        System.IO.Directory.CreateDirectory(folderPath);
+                    }
+
+                    string fileName = Guid.NewGuid().ToString() + "_" + fuCategoryImage.FileName;
+                    string filePath = folderPath + fileName;
+                    fuCategoryImage.SaveAs(filePath);
+
+                    // Update the image URL
+                    imageUrl = "~/Uploads/Images/" + fileName;
+                }
+
+                // Prepare the update query
+                string updateQuery = @"
+            UPDATE Categories
+            SET 
+                CategoryName = @CategoryName,
+                CategoryImageUrl = @CategoryImageUrl,
+                IsActive = @IsActive
+            WHERE CategoryId = @CategoryId";
+
+                // Execute the update
+                using (SqlConnection conn = DatabaseConnection.Instance.GetConnection())
+                {
+                    using (SqlCommand cmd = new SqlCommand(updateQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@CategoryName", txtCategoryName.Text.Trim());
+                        cmd.Parameters.AddWithValue("@CategoryImageUrl", imageUrl);
+                        cmd.Parameters.AddWithValue("@IsActive", chkIsActive.Checked);
+                        cmd.Parameters.AddWithValue("@CategoryId", categoryId);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                // Exit edit mode and reload the data
+                gvCategories.EditIndex = -1;
+                LoadCategories();
+                lblMessage.Text = "Category updated successfully.";
+                lblMessage.ForeColor = System.Drawing.Color.Green;
+            }
+            catch (Exception ex)
+            {
+                lblMessage.Text = "Error: " + ex.Message;
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+            }
         }
 
         protected void gvCategories_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
