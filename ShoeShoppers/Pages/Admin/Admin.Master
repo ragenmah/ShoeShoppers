@@ -1,40 +1,42 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="ShoeShoppers.Pages.Admin.Admin" %>
 
 <!DOCTYPE html>
-
 <html>
 <head runat="server">
-    <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
-    <link rel="stylesheet" href="~/Content/css/admin.css" />
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin - ShoeShoppers</title>
+    <title>Admin - Simon Necktie</title>
 
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/bundles/modernizr") %>
-    </asp:PlaceHolder>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/css/admin.css" />
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="dashboard-container">
+            <!-- Sidebar -->
             <div class="sidebar">
-
-
                 <ul class="nav-links">
-                    <h2><a href="/admin">ShoeShoppers</a></h2>
+                    <h2><a href="/admin">Simon Necktie</a></h2>
                     <li><a href="/admin">Home</a></li>
+                    <li><a href="/category-list">Categories</a></li>
                     <li><a href="/product-list">Manage Products</a></li>
                     <li><a href="ViewOrders.aspx">View Orders</a></li>
                     <li><a href="GenerateReports.aspx">Generate Reports</a></li>
-                    <li><a href="Settings.aspx">Settings</a></li>
                     <li><a href="/logout">Logout</a></li>
                 </ul>
             </div>
+
+            <!-- Main Content -->
             <div class="main-content">
                 <asp:ContentPlaceHolder ID="AdminDashboardContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
             </div>
         </div>
     </form>
+
+    <!-- Bootstrap JS -->
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
 </body>
 </html>
