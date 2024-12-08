@@ -6,12 +6,14 @@
 
     <div class="form-container">
         <a href="/add-product">Add New Product</a>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand">
+        <asp:GridView ID="gvProducts" runat="server" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand" CssClass="table table-bordered table-striped  table-hover">
             <Columns>
-                <asp:BoundField DataField="ProductId" HeaderText="ID" />
-                <asp:BoundField DataField="Name" HeaderText="Name" />
+                <asp:BoundField DataField="ProductId" HeaderText="ID" ReadOnly="True" />
+                <asp:BoundField DataField="ProductName" HeaderText="Name" />
+                <asp:BoundField DataField="CategoryName" HeaderText="Category" />
+
                 <asp:BoundField DataField="Price" HeaderText="Price" />
-                <asp:BoundField DataField="Stock" HeaderText="Stock" />
+                <asp:BoundField DataField="DiscountedPrice" HeaderText="Discounted Price" />
 
                 <asp:CommandField HeaderText="Action" ShowEditButton="true" ShowDeleteButton="true" />
             </Columns>

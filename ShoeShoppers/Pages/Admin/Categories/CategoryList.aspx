@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Pages/Admin/Admin.Master" CodeBehind="CategoryList.aspx.cs" Inherits="ShoeShoppers.Pages.Admin.Categories.CategoryList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminDashboardContentPlaceHolder" runat="server">
-    <div class="container mt-5">
+    <div class="container-fluid ">
         <h1 class=" mb-4">Your Categories</h1>
         <div class="card p-4 shadow-sm">
             <form id="categoryForm">
@@ -19,8 +19,9 @@
 
                 <!-- Is Active -->
                 <div class="mb-3 form-check">
-                    <asp:CheckBox ID="chkIsActive" runat="server" CssClass=" " />
-                    <label class="form-check-label" for="chkIsActive">Active</label>
+
+                    <label class="form-check-label" for="chkIsActive">Is Active</label>
+                                        <asp:CheckBox ID="chkIsActive" runat="server" CssClass=" " />
                 </div>
 
                 <!-- Message -->
@@ -29,9 +30,11 @@
                 </div>
 
                 <!-- Save Button -->
-                <div class="text-center">
-                    <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-primary w-100" OnClick="SaveCategory" />
-                </div>
+                
+                 <div class="text-center mt-4">
+     <asp:Button ID="btnSubmit" CssClass="btn btn-warning me-2" runat="server" Text="Add Category" OnClick="SaveCategory" />
+     <asp:Button ID="btnCancel" CssClass="btn btn-secondary" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
+ </div>
             </form>
         </div>
 

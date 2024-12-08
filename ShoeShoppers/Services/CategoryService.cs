@@ -16,6 +16,7 @@ namespace ShoeShoppers.Services
             _categoryDAL = categoryDAL;
         }
 
+
         public void AddCategory(Category category)
         {
             _categoryDAL.AddCategory(category);

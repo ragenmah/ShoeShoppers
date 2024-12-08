@@ -18,8 +18,7 @@ namespace ShoeShoppers.Pages.Admin.Categories
         string imagePath;
         public CategoryList()
         {
-            var connection = Database.DatabaseConnection.Instance.GetConnection();
-            _categoryBLL = new CategoryService(new CategoryRepository(connection));
+            _categoryBLL = new CategoryService(new CategoryRepository());
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -233,5 +232,12 @@ namespace ShoeShoppers.Pages.Admin.Categories
             lblMessage.Text = "Category deleted successfully.";
             LoadCategories();
         }
+
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            ClearForm();
+        }
+
     }
 }

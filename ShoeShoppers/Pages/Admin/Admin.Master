@@ -22,7 +22,7 @@
                     <h2><a href="/admin">Simon Necktie</a></h2>
                     <li><a href="/admin">Dashboard</a></li>
                     <li><a href="/category-list">Categories</a></li>
-                    <li><a href="/product-list">Manage Products</a></li>
+                    <li><a href="/product-list">Products</a></li>
                     <li><a href="ViewOrders.aspx">View Orders</a></li>
                     <li><a href="GenerateReports.aspx">Generate Reports</a></li>
                     <li><a href="/logout">Logout</a></li>

@@ -25,7 +25,7 @@ CREATE TABLE Products (
     Size NVARCHAR(30) NOT NULL,                -- Sizes available (e.g., 7, 8, 9)
     Color NVARCHAR(50) NOT NULL,               -- Color of the shoeStockQuantity INT NOT NULL DEFAULT 0,      -- Number of items in stock
     CategoryId INT NOT NULL,              -- Category of the product (e.g., Men's Shoes, Casual Shoes)
-    ImageUrl NVARCHAR(255),                    -- Path to the product image
+    ImageUrl NVARCHAR(255),                    -- Path to the product image as MainImageUrl
     CreatedAt DATETIME DEFAULT GETDATE(),      -- Timestamp when the product was added
     UpdatedAt DATETIME DEFAULT GETDATE(),      -- Timestamp when the product was last updated
     IsActive BIT DEFAULT 1                     -- Status of the product (1 for active, 0 for inactive)

@@ -11,9 +11,9 @@ namespace ShoeShoppers.Database.Repository
     {
         private readonly SqlConnection _connection;
 
-        public CategoryRepository(SqlConnection connection)
+        public CategoryRepository()
         {
-            _connection = connection;
+            _connection = DatabaseConnection.Instance.GetConnection();
         }
 
         public void AddCategory(Category category)
