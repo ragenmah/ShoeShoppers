@@ -60,6 +60,15 @@ namespace ShoeShoppers.Pages.Admin.Categories
         protected global::System.Web.UI.WebControls.Button btnSave;
 
         /// <summary>
+        /// lblNoCategories control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNoCategories;
+
+        /// <summary>
         /// gvCategories control.
         /// </summary>
         /// <remarks>

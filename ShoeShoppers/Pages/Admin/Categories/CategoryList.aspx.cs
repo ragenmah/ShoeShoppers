@@ -32,8 +32,22 @@ namespace ShoeShoppers.Pages.Admin.Categories
 
         private void LoadCategories()
         {
-            gvCategories.DataSource = _categoryBLL.GetAllCategories();
-            gvCategories.DataBind();
+
+            var categories = _categoryBLL.GetAllCategories();
+
+            if (categories != null && categories.Count > 0)
+            {
+                gvCategories.DataSource = categories;
+                gvCategories.DataBind();
+                gvCategories.Visible = true;
+                lblNoCategories.Visible = false; // Hide the "No categories" message
+            }
+            else
+            {
+                gvCategories.Visible = false;
+                lblNoCategories.Visible = true; // Show the "No categories" message
+            }
+           
         }
         private void ClearForm()
         {
@@ -184,8 +198,9 @@ namespace ShoeShoppers.Pages.Admin.Categories
                 // Exit edit mode and reload the data
                 gvCategories.EditIndex = -1;
                 LoadCategories();
-                lblMessage.Text = "Category updated successfully.";
                 lblMessage.ForeColor = System.Drawing.Color.Green;
+                lblMessage.Text = "Category updated successfully.";
+
             }
             catch (Exception ex)
             {
@@ -200,10 +215,22 @@ namespace ShoeShoppers.Pages.Admin.Categories
             LoadCategories();
         }
 
+        protected void gvCategories_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            // Set the new page index
+            gvCategories.PageIndex = e.NewPageIndex;
+
+            // Rebind the data to reflect the new page
+            LoadCategories();
+        }
+
         protected void gvCategories_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int categoryId = Convert.ToInt32(gvCategories.DataKeys[e.RowIndex].Value);
-            _categoryBLL.DeleteCategory(categoryId); // Example method
+            _categoryBLL.DeleteCategory(categoryId);
+            lblMessage.ForeColor = System.Drawing.Color.White;
+            lblMessage.BackColor = System.Drawing.Color.DarkRed;
+            lblMessage.Text = "Category deleted successfully.";
             LoadCategories();
         }
     }

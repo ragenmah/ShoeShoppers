@@ -25,7 +25,7 @@
 
                 <!-- Message -->
                 <div class="mb-3">
-                    <asp:Label ID="lblMessage" runat="server" CssClass="text-danger"></asp:Label>
+                    <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
                 </div>
 
                 <!-- Save Button -->
@@ -35,12 +35,15 @@
             </form>
         </div>
 
+        <asp:Label ID="lblNoCategories" runat="server" Text="No categories available. Please add some categories." Visible="false" ForeColor="Red"></asp:Label>
+
         <!-- Categories Grid -->
         <div class="mt-5">
             <asp:GridView ID="gvCategories" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
                 OnRowEditing="gvCategories_RowEditing" OnRowUpdating="gvCategories_RowUpdating"
                 OnRowCancelingEdit="gvCategories_RowCancelingEdit" OnRowDeleting="gvCategories_RowDeleting"
-                DataKeyNames="CategoryId">
+                DataKeyNames="CategoryId" AllowPaging="True" PageSize="3"
+                OnPageIndexChanging="gvCategories_PageIndexChanging">
                 <Columns>
 
                     <asp:BoundField DataField="CategoryId" HeaderText="ID" ReadOnly="True" />
