@@ -47,7 +47,7 @@
                 </div>
                 <div>
                     <asp:Label ID="lblEmail" runat="server" Text="Email:" Font-Bold="true" Font-Size="Larger"></asp:Label>
-                    <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" Height="35px" Width="100%" ></asp:TextBox>
+                    <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" Height="35px" Width="100%"></asp:TextBox>
                     <asp:RequiredFieldValidator
                         ID="rfvEmail"
                         runat="server"
@@ -73,6 +73,14 @@
                 <div>
                     <asp:Label ID="lblReEnteredPassword" runat="server" Text="Re-enter Password: " Font-Bold="true" Font-Size="Larger"></asp:Label>
                     <asp:TextBox ID="txtReEnteredPassword" runat="server" TextMode="Password" Width="100%" Height="35px"></asp:TextBox>
+                    <asp:RequiredFieldValidator
+                        ID="rfvReEnterPassword"
+                        runat="server"
+                        ControlToValidate="txtReEnteredPassword"
+                        ErrorMessage="Re-enter your Password"
+                        ForeColor="Red"
+                        Display="Dynamic">
+                    </asp:RequiredFieldValidator>
                 </div>
 
                 <%--<asp:Label ID="lblGender" runat="server" Text="Gender:" Font-Bold="true" Font-Size="Larger"></asp:Label>--%>

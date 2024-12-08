@@ -48,6 +48,22 @@ namespace ShoeShoppers.Pages
 
         protected void RegisterBtn_Click(object sender, EventArgs e)
         {
+
+            string connectionString = "data source=DESKTOP-AV3JEH2;initial catalog=SimonNectieDB;trusted_connection=False; Integrated Security=True";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    Console.WriteLine("Connection successful!");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Connection failed: {ex.Message}");
+                }
+            }
+
             string firstName = txtFirstName.Text.Trim();
             string lastName = txtLastName.Text.Trim();
             string email = txtEmail.Text.Trim();

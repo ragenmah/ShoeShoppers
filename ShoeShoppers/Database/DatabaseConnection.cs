@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
 
 namespace ShoeShoppers.Database
 {
@@ -31,11 +32,23 @@ namespace ShoeShoppers.Database
 
         public SqlConnection GetConnection()
         {
-            if (_connection.State == System.Data.ConnectionState.Closed)
+            try
             {
-                _connection.Open();
+                if (_connection.State == System.Data.ConnectionState.Closed)
+                {
+                    _connection.Open();
+                }
+
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+                SqlConnection connection = new SqlConnection(connectionString);
+                connection.Open();
+                return connection;
+                //return _connection;
             }
-            return _connection;
+            catch (SqlException ex)
+            {
+                throw new InvalidOperationException("Cannot open database connection.", ex);
+            };
         }
 
         public void CloseConnection()

@@ -150,6 +150,15 @@ namespace ShoeShoppers.Pages
         protected global::System.Web.UI.WebControls.TextBox txtReEnteredPassword;
 
         /// <summary>
+        /// rfvReEnterPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvReEnterPassword;
+
+        /// <summary>
         /// lblMessage control.
         /// </summary>
         /// <remarks>

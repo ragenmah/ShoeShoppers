@@ -55,10 +55,7 @@ namespace ShoeShoppers.Pages
             {
                 lblMessage.Text = $"Error: {ex.Message}";
             }
-            finally
-            {
-                DatabaseConnection.Instance.CloseConnection();
-            }
+            
 
             return false;  
         }
@@ -76,17 +73,16 @@ namespace ShoeShoppers.Pages
                 {
                     loginCookie["Email"] = email;
                     loginCookie["Role"] = userRole;
-                    loginCookie.Expires = DateTime.Now.AddDays(30);  // Cookie expires in 30 days.
+                    loginCookie.Expires = DateTime.Now.AddDays(30);  
                     Response.Cookies.Add(loginCookie);
                 }
 
                 else
-                {
-                    loginCookie.Expires = DateTime.Now.AddDays(1);  // Expire the cookie
+                {  loginCookie["Email"] = email; 
+                    loginCookie.Expires = DateTime.Now.AddDays(1);
                     Response.Cookies.Add(loginCookie);
                 }
 
-                Session["UserEmail"] = email;
 
                 if (userRole == "Admin")
                 {
