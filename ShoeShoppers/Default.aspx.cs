@@ -14,23 +14,29 @@ namespace ShoeShoppers
     public partial class _Default : Page
     {
 
-        private ProductService _service;
-        public _Default()
-        {
-            _service = new ProductService(new ProductRepository());
-        }
+        private ProductService _productService = new ProductService(new ProductRepository());
+        private readonly CategoryService _categoryService = new CategoryService(new CategoryRepository());
+
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                LoadCategories();
                 LoadProducts();
             }
         }
 
         private void LoadProducts()
         {
-            rptProducts.DataSource = _service.GetAllProducts();
+            rptProducts.DataSource = _productService.GetAllProducts();
             rptProducts.DataBind();
+        }
+
+        private void LoadCategories()
+        {
+            rptCategories.DataSource = _categoryService.GetAllCategories();
+            rptCategories.DataBind();
         }
     }
 }

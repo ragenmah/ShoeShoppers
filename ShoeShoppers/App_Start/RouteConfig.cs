@@ -30,7 +30,7 @@ namespace ShoeShoppers
             routes.MapPageRoute("Faqs", "faqs", "~/Faqs.aspx");
 
             routes.MapPageRoute("Products", "products", "~/Pages/Products.aspx");
-            routes.MapPageRoute("ProductDetail", "product/{id}", "~/Pages/ProductDetail.aspx");
+            routes.MapPageRoute("ProductDetail", "product/{ProductId}", "~/Pages/ProductDetail.aspx");
 
             //Admin Routes
             routes.MapPageRoute("AdminDashboard", "admin", "~/Pages/admin/Dashboard.aspx");

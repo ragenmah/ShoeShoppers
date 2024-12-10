@@ -30,7 +30,7 @@ namespace ShoeShoppers.Pages.Admin.Products
                     // Handle the case where the ProductId is missing from the URL
                     Response.Redirect("~/Admin/Products/ProductList.aspx");
                 }
-                LoadProducts();
+                LoadProductImages();
             }
 
         }
@@ -41,7 +41,7 @@ namespace ShoeShoppers.Pages.Admin.Products
             _productImageService.DeleteProductImage(imageId);
             //BindProductImages(); // Refresh the images grid
         }
-        private void LoadProducts()
+        private void LoadProductImages()
         {
             gvProductImages.DataSource = _productImageService.GetProductImages(productId);
             gvProductImages.DataBind();
@@ -79,9 +79,9 @@ namespace ShoeShoppers.Pages.Admin.Products
                     _productImageService.AddProductImage(productImage);
                     productId = txtProductId.Text;
 
-                    // Redirect to another page or show success message
-                    //Response.Redirect("~/Admin/Products/ProductImages.aspx");
-                    LoadProducts();
+         
+    
+                    LoadProductImages();
                 }
                 catch (Exception ex)
                 {

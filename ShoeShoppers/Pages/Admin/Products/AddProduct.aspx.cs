@@ -40,7 +40,6 @@ namespace ShoeShoppers.Pages.Admin.Products
 
         private void LoadProductDetails(int productId)
         {
-            // Replace with your data retrieval logic
             Product product = _service.GetProductById(productId);
 
             if (product != null)

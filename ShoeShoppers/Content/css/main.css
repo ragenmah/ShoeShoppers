@@ -273,50 +273,68 @@ footer {
 
 
 
-/* Grid Layout */
-.category-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1px;
+.categories-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between cards */
+    justify-content: space-between; /* Spread cards evenly in the row */
+    padding: 20px 0;
 }
 
-/* category card */
 .category-card {
-    background-color: var(--white-color);
-/*    box-shadow: 5px 5px var(--secondary-color),5px 5px var(--secondary-color);*/
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.15);
-    border-radius: 0px;
-    overflow: hidden;
+    flex: 1 1 calc(25% - 20px); /* Each card takes 25% of the row width minus gap */
+    max-width: 200px; /* Ensures the cards don't become too wide */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    border: 2px solid #ddd;
+    border-radius: 10px;
     padding: 15px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: #fff;
 }
-
-    .category-card img {
-        max-width: 100%;
-        height: auto;
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 15px;
-        margin-bottom: 15px;
-    }
-
-    .category-card h3 {
-        font-size: 1.25rem;
-        color: #555;
-        margin-bottom: 10px;
-    }
-
-    .category-card p {
-        font-size: 1rem;
-        color: #666;
-        line-height: 1.5;
-    }
 
     .category-card:hover {
-        cursor: pointer;
-/*        transform: translateY(-2px);*/
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+/*        transform: scale(1.05);*/
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
+
+.category-image {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.category-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .category-card {
+        flex: 1 1 calc(33.333% - 20px); /* 3 cards per row on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .category-card {
+        flex: 1 1 calc(50% - 20px); /* 2 cards per row on small screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .category-card {
+        flex: 1 1 100%; /* Full-width cards on extra small screens */
+    }
+}
 
 /*accordion-button style*/
 
@@ -350,6 +368,14 @@ footer {
 
 .accordion-body {
     border-top: none;
+}
+
+.custom-carousel-icon {
+    background-color: black; /* Change the background color to black */
+    background-size: 100%, 100%;
+    border-radius: 50%; /* Optional: add a circular shape */
+    width: 30px;
+    height: 30px;
 }
 
 /* Small devices (landscape phones, less than 768px) */
