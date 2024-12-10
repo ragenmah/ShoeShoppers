@@ -276,14 +276,13 @@ footer {
 .categories-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Space between cards */
-    justify-content: space-between; /* Spread cards evenly in the row */
+    gap: 20px;
+    justify-content: space-between; 
     padding: 20px 0;
 }
 
 .category-card {
-    flex: 1 1 calc(25% - 20px); /* Each card takes 25% of the row width minus gap */
-    max-width: 200px; /* Ensures the cards don't become too wide */
+    flex: 1 1 calc(25% - 20px); 
     display: flex;
     flex-direction: column;
     align-items: center;

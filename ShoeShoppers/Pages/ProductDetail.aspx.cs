@@ -63,5 +63,9 @@ namespace ShoeShoppers.Pages
             rptProductImages.DataBind();
         }
 
+        protected void btnAddToCart_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/my-cart");
+        }
     }
 }

@@ -44,9 +44,10 @@
                         </div>
                         <div class="buttons d-flex my-5">
                             <div class="block">
-                                <button type="button" class="shadow btn custom-btn" style="max-width: 100px;">Buy Now</button>
+                                <button type="button" class="shadow btn custom-btn" style="max-width: 100px;" >Buy Now</button>
                             </div>
-                            <button class="shadow btn custom-btn">Add to cart</button>
+                                <asp:Button class="shadow btn custom-btn" Font-Size="Large" ID="btnAddToCart" runat="server" Text="Add to cart"
+        Height="40px" OnClick="btnAddToCart_Click" />
                             <div class="block quantity">
                                 <input type="number" class="form-control" id="cart_quantity" min="0" placeholder="Enter Quantity"
                                     name="cart_quantity" value="1">

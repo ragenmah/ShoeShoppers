@@ -45,7 +45,7 @@ namespace ShoeShoppers
 
 
             //Manage Cart
-            routes.MapPageRoute("Cart", "cart/{ProductId}", "~/Pages/Admin/Products/ProductImageList.aspx");
+            routes.MapPageRoute("Cart", "my-cart", "~/Pages/Cart.aspx");
 
             //Logout
             routes.MapPageRoute("Logout", "logout", "~/Pages/Logout.aspx");

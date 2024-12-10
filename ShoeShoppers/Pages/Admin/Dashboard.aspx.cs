@@ -13,10 +13,10 @@ namespace ShoeShoppers.Pages.Admin
         {
             if (Request.Cookies["UserLogin"] != null)
             {
-                // Retrieve the cookie value
-                string email = Request.Cookies["UserLogin"].Value;
+              
+                string email = Request.Cookies["UserLogin"]["Email"];
 
-                // Display the username in a label or another control
+               
                 lblWelcome.Text = "You are logged as " + email;
             }
             else

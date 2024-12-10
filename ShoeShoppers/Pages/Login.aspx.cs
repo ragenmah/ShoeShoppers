@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 
 
 using ShoeShoppers.Database;
+using System.Drawing.Printing;
 
 namespace ShoeShoppers.Pages
 {
@@ -19,7 +20,43 @@ namespace ShoeShoppers.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
 
+                if (Request.QueryString["message"] == "sessionExpired")
+                {
+                    lblMessage.Text = "Your session has expired. Please log in again.";
+                    lblMessage.ForeColor = System.Drawing.Color.Red;
+                    return;
+                }
+
+                HttpCookie loginCookie = Request.Cookies["UserLogin"];
+
+                if (loginCookie != null)
+                {
+                    if (loginCookie.Expires > DateTime.Now)
+                    {
+                        string role = loginCookie["Role"];
+
+
+                        if (role == "Admin")
+                        {
+                            Response.Redirect("/admin");
+                        }
+                        else
+                        {
+                            Response.Redirect("/");
+                        }
+                    }
+                    else
+                    {
+                        lblMessage.Text = "Your session has expired. Please log in again.";
+                        lblMessage.ForeColor = System.Drawing.Color.Red;
+
+                    }
+                }
+
+            }
         }
 
         private bool IsValidUser(string email, string password)
@@ -79,24 +116,28 @@ namespace ShoeShoppers.Pages
 
                 loginCookie["Email"] = email;
                 loginCookie["Role"] = userRole;
-                loginCookie["userId"] = userId;
+                loginCookie["UserId"] = userId;
 
                 if (chkRememberMe.Checked)
                 {
 
                     loginCookie.Expires = DateTime.Now.AddDays(30);
-                    Response.Cookies.Add(loginCookie);
+
                 }
 
                 else
                 {
                     loginCookie.Expires = DateTime.Now.AddDays(1);
-                    Response.Cookies.Add(loginCookie);
+
                 }
 
+                
+
+                Response.Cookies.Add(loginCookie);
 
                 if (userRole == "Admin")
-                {  Response.Redirect("/admin");
+                {
+                    Response.Redirect("/admin");
                 }
                 else
                 {
@@ -109,6 +150,7 @@ namespace ShoeShoppers.Pages
             }
 
         }
+
 
         private string GetUserRole(int roleId)
         {
