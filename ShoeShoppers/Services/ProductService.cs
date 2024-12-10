@@ -1,5 +1,6 @@
 ﻿using ShoeShoppers.Database.Repository;
 using ShoeShoppers.Model;
+using ShoeShoppers.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,11 +37,12 @@ namespace ShoeShoppers.Services
         }
 
         // Update an existing product
-        public void UpdateProduct(Product product)
+        public int UpdateProduct(Product product)
         {
             if (product.ProductId <= 0) throw new ArgumentException("Invalid Product ID", nameof(product.ProductId));
             ValidateProduct(product);
             _repository.UpdateProduct(product);
+            return product.ProductId;
         }
 
         // Delete a product by ID

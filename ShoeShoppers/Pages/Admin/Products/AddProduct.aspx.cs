@@ -115,8 +115,17 @@ namespace ShoeShoppers.Pages.Admin.Products
                     IsActive = chkIsActive.Checked
                 };
 
-                productId = _service.AddProduct(product);
-                lblMessage.Text = $"Product added successfully! Product ID: {productId}";
+                if (RouteData.Values["ProductId"] != null) 
+                {
+                    product.ProductId = int.Parse((string)RouteData.Values["ProductId"]);
+                    productId = _service.UpdateProduct(product);
+                    lblMessage.Text = $"Product updated successfully! Product ID: {productId}";
+                }
+                else {
+                    productId = _service.AddProduct(product);
+                    lblMessage.Text = $"Product added successfully! Product ID: {productId}";
+                }
+               
                 lblMessage.ForeColor = System.Drawing.Color.Green;
 
                 btnAddProductImages.Visible = true;
