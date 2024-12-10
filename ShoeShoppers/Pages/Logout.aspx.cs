@@ -11,7 +11,14 @@ namespace ShoeShoppers.Pages.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Redirect("/");
+            if (!IsPostBack)
+            {
+                HttpCookie loginCookie = new HttpCookie("UserLogin");
+                loginCookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(loginCookie);
+
+                Response.Redirect("/");
+            }
         }
     }
 }

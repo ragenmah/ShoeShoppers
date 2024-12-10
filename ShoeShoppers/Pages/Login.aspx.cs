@@ -15,6 +15,7 @@ namespace ShoeShoppers.Pages
     public partial class Login : System.Web.UI.Page
     {
         string userRole = string.Empty;
+        string userId;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -42,14 +43,17 @@ namespace ShoeShoppers.Pages
                             string storedPassword = reader["Password"].ToString();
                             int roleId = Convert.ToInt32(reader["RoleId"]);
                             userRole = GetUserRole(roleId);
+                            userId = reader["UserId"].ToString();
 
-                            if (roleId == 1) {
+                            if (roleId == 1)
+                            {
                                 return true;
-                            }else
+                            }
+                            else
                             if (BCrypt.Net.BCrypt.Verify(password, storedPassword))
                             {
-                               
-                                return true; 
+
+                                return true;
                             }
                         }
                     }
@@ -59,9 +63,9 @@ namespace ShoeShoppers.Pages
             {
                 lblMessage.Text = $"Error: {ex.Message}";
             }
-            
 
-            return false;  
+
+            return false;
         }
         protected void LoginBtn_Click(object sender, EventArgs e)
         {
@@ -73,25 +77,26 @@ namespace ShoeShoppers.Pages
             {
                 HttpCookie loginCookie = new HttpCookie("UserLogin");
 
+                loginCookie["Email"] = email;
+                loginCookie["Role"] = userRole;
+                loginCookie["userId"] = userId;
+
                 if (chkRememberMe.Checked)
                 {
-                    loginCookie["Email"] = email;
-                    loginCookie["Role"] = userRole;
-                    loginCookie.Expires = DateTime.Now.AddDays(30);  
+
+                    loginCookie.Expires = DateTime.Now.AddDays(30);
                     Response.Cookies.Add(loginCookie);
                 }
 
                 else
-                {  loginCookie["Email"] = email; 
+                {
                     loginCookie.Expires = DateTime.Now.AddDays(1);
                     Response.Cookies.Add(loginCookie);
                 }
 
 
                 if (userRole == "Admin")
-                {
-
-                    Response.Redirect("/admin");
+                {  Response.Redirect("/admin");
                 }
                 else
                 {

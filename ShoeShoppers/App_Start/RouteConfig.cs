@@ -43,6 +43,10 @@ namespace ShoeShoppers
             // Manage Categories
             routes.MapPageRoute("CategoryList", "category-list", "~/Pages/Admin/Categories/CategoryList.aspx");
 
+
+            //Manage Cart
+            routes.MapPageRoute("Cart", "cart/{ProductId}", "~/Pages/Admin/Products/ProductImageList.aspx");
+
             //Logout
             routes.MapPageRoute("Logout", "logout", "~/Pages/Logout.aspx");
 
