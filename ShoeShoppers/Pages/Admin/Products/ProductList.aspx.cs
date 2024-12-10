@@ -75,7 +75,7 @@ namespace ShoeShoppers.Pages.Admin.Products
                     else if (e.CommandName == "Delete")
                     {
                         _service.DeleteProduct(productId);
-                        LoadProducts(); 
+                        //LoadProducts(); 
                     }
                 }
             }
@@ -84,5 +84,12 @@ namespace ShoeShoppers.Pages.Admin.Products
                 Response.Write("Error: " + ex.Message);
             }
         }
+
+        protected void gvProducts_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            Response.Write("Product deleted successfully.");
+            LoadProducts();
+        }
+
     }
 }

@@ -6,7 +6,7 @@
 
     <div class="form-container">
         <a href="/add-product">Add New Product</a>
-        <asp:GridView ID="gvProducts" runat="server" AutoGenerateColumns="False" DataKeyNames="ProductId" OnRowCommand="GridView1_RowCommand" CssClass="table table-bordered table-striped  table-hover">
+        <asp:GridView ID="gvProducts" runat="server" AutoGenerateColumns="False" DataKeyNames="ProductId" OnRowCommand="GridView1_RowCommand" OnRowDeleting="gvProducts_RowDeleting" CssClass="table table-bordered table-striped  table-hover">
             <Columns>
                 <asp:BoundField DataField="ProductId" HeaderText="ID" ReadOnly="True" />
                 <asp:TemplateField HeaderText="Image">
