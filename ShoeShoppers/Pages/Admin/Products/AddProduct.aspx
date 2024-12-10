@@ -56,6 +56,9 @@
                             <asp:TextBox ID="txtColor" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                         <div class="mb-3">
+                            <asp:Image ID="imgPreview" runat="server" CssClass="img-thumbnail" Width="150px" Height="150px" AlternateText="No Image Available" />
+                        </div>
+                        <div class="mb-3">
                             <label for="fileUpload" class="form-label">Upload Image:</label>
                             <asp:FileUpload ID="fileUpload" CssClass="form-control" runat="server" />
                         </div>
@@ -64,11 +67,11 @@
                             <label for="chkIsActive" class="form-check-label">Is Active</label>
                             <asp:CheckBox ID="chkIsActive" runat="server" />
                         </div>
-                        <div class="text-center mt-4">
+                        <div class=" mt-4">
                             <asp:Button ID="btnSubmit" CssClass="btn btn-warning me-2" runat="server" Text="Add Product" OnClick="btnSubmit_Click" />
+                            <asp:Button ID="btnAddProductImages" CssClass="btn btn-info me-2 " runat="server" Text="Add Product Images" OnClick="btnAddProductImages_Click" />
                             <asp:Button ID="btnCancel" CssClass="btn btn-secondary" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
                         </div>
-                        <asp:Button ID="btnAddProductImages" CssClass="btn btn-warning me-2" runat="server" Text="Add Product Images" OnClick="btnAddProductImages_Click" />
 
                     </div>
                 </div>

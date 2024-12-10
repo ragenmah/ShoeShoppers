@@ -6,13 +6,14 @@
 
     <div class="form-container">
         <a href="/add-product">Add New Product</a>
-        <asp:GridView ID="gvProducts" runat="server" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand" CssClass="table table-bordered table-striped  table-hover">
+        <asp:GridView ID="gvProducts" runat="server" AutoGenerateColumns="False" DataKeyNames="ProductId" OnRowCommand="GridView1_RowCommand" CssClass="table table-bordered table-striped  table-hover">
             <Columns>
                 <asp:BoundField DataField="ProductId" HeaderText="ID" ReadOnly="True" />
                 <asp:TemplateField HeaderText="Image">
                     <ItemTemplate>
                         <asp:Image ID="imgCategory" runat="server" ImageUrl='<%# Eval("ImageUrl") %>'
                             Width="32px" Height="32px" AlternateText="No Image Available" />
+
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField DataField="ProductName" HeaderText="Name" />
@@ -24,7 +25,19 @@
                     </ItemTemplate>
                 </asp:TemplateField>
 
-                <asp:CommandField HeaderText="Action" ShowEditButton="true" ShowDeleteButton="true" />
+                <asp:TemplateField HeaderText="Action">
+                    <ItemTemplate>
+                        <asp:Button ID="btnEdit" runat="server" CommandName="Edit" CommandArgument="<%# Container.DataItemIndex %>" Text="Edit" />
+                        <asp:Button ID="btnDelete" runat="server" CommandName="Delete" CommandArgument="<%# Container.DataItemIndex %>" Text="Delete" />
+                                                <asp:Button ID="btnImage" runat="server" CommandName="ImageClick" CommandArgument="<%# Container.DataItemIndex %>"  Text="Images" />
+
+                        <%--<asp:ImageButton ID="btnImage" runat="server"
+                            ImageUrl='~/Assets/Icons/add-product.png'
+                            Width="32px" Height="32px" AlternateText="Product Images"
+                            CommandName="ImageClick" CommandArgument='<%# Container.DataItemIndex %>' />--%>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <%--                <asp:CommandField HeaderText="Action" ShowEditButton="true" ShowDeleteButton="true" />--%>
             </Columns>
         </asp:GridView>
     </div>

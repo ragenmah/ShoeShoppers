@@ -49,16 +49,39 @@ namespace ShoeShoppers.Pages.Admin.Products
 
         protected void GridView1_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Edit")
+            try
             {
-                int productId = Convert.ToInt32(gvProducts.DataKeys[Convert.ToInt32(e.CommandArgument)].Value);
-                Response.Redirect($"EditProduct.aspx?ProductId={productId}");
+                if (e.CommandName == "ImageClick")
+                {
+                   
+                    int rowIndex = Convert.ToInt32(e.CommandArgument);
+ 
+                    int productId = Convert.ToInt32(gvProducts.DataKeys[rowIndex].Value);
+                     
+                    Response.Redirect($"/add-product-images/{productId}");
+                }
+                else
+                if (e.CommandName == "Edit" || e.CommandName == "Delete")
+                {
+                  
+                    int rowIndex = Convert.ToInt32(e.CommandArgument); 
+                   
+                    int productId = Convert.ToInt32(gvProducts.DataKeys[rowIndex].Value);
+
+                    if (e.CommandName == "Edit")
+                    {
+                        Response.Redirect($"/edit-product/{productId}");
+                    }
+                    else if (e.CommandName == "Delete")
+                    {
+                        _service.DeleteProduct(productId);
+                        LoadProducts(); 
+                    }
+                }
             }
-            else if (e.CommandName == "Delete")
+            catch (Exception ex)
             {
-                int productId = Convert.ToInt32(gvProducts.DataKeys[Convert.ToInt32(e.CommandArgument)].Value);
-                _service.DeleteProduct(productId);
-                LoadProducts();
+                Response.Write("Error: " + ex.Message);
             }
         }
     }

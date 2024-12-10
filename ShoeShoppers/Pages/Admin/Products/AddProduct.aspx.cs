@@ -20,7 +20,54 @@ namespace ShoeShoppers.Pages.Admin.Products
         {
             if (!IsPostBack)
             {
-                LoadCategories(); btnAddProductImages.Visible = false;
+               
+                if (RouteData.Values["ProductId"] != null)
+                {
+                    productId = int.Parse((string)RouteData.Values["ProductId"]);
+                    LoadProductDetails(productId); 
+                    btnSubmit.Text = "Update Product"; 
+                    btnAddProductImages.Visible = true; 
+                }
+                else
+                {
+                    btnSubmit.Text = "Add Product"; 
+                    btnAddProductImages.Visible = false; 
+                }
+
+                LoadCategories();
+            }
+        }
+
+        private void LoadProductDetails(int productId)
+        {
+            // Replace with your data retrieval logic
+            Product product = _service.GetProductById(productId);
+
+            if (product != null)
+            {
+                txtProductName.Text = product.ProductName;
+                txtDescription.Text = product.ProductDescription;
+                txtPrice.Text = product.Price.ToString();
+                txtDiscount.Text = product.DiscountPercentage.ToString();
+                txtStock.Text = product.StockQuantity.ToString();
+                txtSize.Text = product.Size;
+                txtColor.Text = product.Color;
+                ddlCategory.SelectedValue = product.CategoryId.ToString();
+                chkIsActive.Checked = product.IsActive;
+
+                if (!string.IsNullOrEmpty(product.ImageUrl))
+                {
+                    imgPreview.ImageUrl = product.ImageUrl;
+                }
+                else
+                {
+                    imgPreview.ImageUrl = "~/Assets/Icons/add-product.png"; 
+                }
+            }
+            else
+            {
+                lblMessage.Text = "Product not found!";
+                lblMessage.ForeColor = System.Drawing.Color.Red;
             }
         }
 
@@ -90,6 +137,8 @@ namespace ShoeShoppers.Pages.Admin.Products
         
         protected void btnAddProductImages_Click(object sender, EventArgs e)
         {
+            productId = RouteData.Values["ProductId"]!=null? int.Parse((string)RouteData.Values["ProductId"]):productId;
+
             Response.Redirect($"/add-product-images/{productId}"); 
         }
 

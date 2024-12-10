@@ -36,6 +36,7 @@ namespace ShoeShoppers
             routes.MapPageRoute("AdminDashboard", "admin", "~/Pages/admin/Dashboard.aspx");
             routes.MapPageRoute("ProductList", "product-list", "~/Pages/Admin/Products/ProductList.aspx");
             routes.MapPageRoute("AddProduct", "add-product", "~/Pages/Admin/Products/AddProduct.aspx");
+            routes.MapPageRoute("EditProduct", "edit-product/{ProductId}", "~/Pages/Admin/Products/AddProduct.aspx");
 
             routes.MapPageRoute("ProductImageList", "add-product-images/{ProductId}", "~/Pages/Admin/Products/ProductImageList.aspx");
 
