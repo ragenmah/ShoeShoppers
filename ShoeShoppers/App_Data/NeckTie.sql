@@ -34,6 +34,13 @@ CREATE TABLE Products (
 	CONSTRAINT FK_Category FOREIGN KEY (CategoryId) REFERENCES Categories(CategoryId) ON DELETE CASCADE
 );
 
+ALTER TABLE Products
+DROP CONSTRAINT FK_Category;
+
+-- Add the new foreign key constraint with ON DELETE SET NULL
+ALTER TABLE Products
+ADD CONSTRAINT FK_Category FOREIGN KEY (CategoryId) REFERENCES Categories(CategoryId) ON DELETE SET NULL;
+
 CREATE TABLE ProductImages
 ( 
 	ImageId INT IDENTITY(1,1) PRIMARY KEY,

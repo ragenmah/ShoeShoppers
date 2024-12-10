@@ -67,6 +67,8 @@
                             <label for="chkIsActive" class="form-check-label">Is Active</label>
                             <asp:CheckBox ID="chkIsActive" runat="server" />
                         </div>
+                        <asp:HiddenField ID="hfProductId" runat="server" />
+
                         <div class=" mt-4">
                             <asp:Button ID="btnSubmit" CssClass="btn btn-warning me-2" runat="server" Text="Add Product" OnClick="btnSubmit_Click" />
                             <asp:Button ID="btnAddProductImages" CssClass="btn btn-info me-2 " runat="server" Text="Add Product Images" OnClick="btnAddProductImages_Click" />

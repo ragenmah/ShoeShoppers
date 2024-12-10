@@ -115,9 +115,9 @@ namespace ShoeShoppers.Pages.Admin.Products
                     IsActive = chkIsActive.Checked
                 };
 
-                if (RouteData.Values["ProductId"] != null) 
+                if (productId > 0) 
                 {
-                    product.ProductId = int.Parse((string)RouteData.Values["ProductId"]);
+                    product.ProductId = productId;
                     productId = _service.UpdateProduct(product);
                     lblMessage.Text = $"Product updated successfully! Product ID: {productId}";
                 }
@@ -129,7 +129,8 @@ namespace ShoeShoppers.Pages.Admin.Products
                 lblMessage.ForeColor = System.Drawing.Color.Green;
 
                 btnAddProductImages.Visible = true;
-
+                hfProductId.Value = productId.ToString();
+              
                 ClearForm();
             }
             catch (Exception ex)
@@ -146,9 +147,23 @@ namespace ShoeShoppers.Pages.Admin.Products
         
         protected void btnAddProductImages_Click(object sender, EventArgs e)
         {
-            productId = RouteData.Values["ProductId"]!=null? int.Parse((string)RouteData.Values["ProductId"]):productId;
+            if (RouteData.Values["ProductId"] != null)
+            {
+                productId = int.Parse((string)RouteData.Values["ProductId"]);
+            }
+            else {
+                productId = int.Parse(hfProductId.Value);
+            }
 
-            Response.Redirect($"/add-product-images/{productId}"); 
+            if (productId > 0)  
+            {
+                Response.Redirect($"/add-product-images/{productId}");
+            }
+            else
+            {
+                lblMessage.Text = "Invalid product ID!";
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+            }
         }
 
         private void ClearForm()
