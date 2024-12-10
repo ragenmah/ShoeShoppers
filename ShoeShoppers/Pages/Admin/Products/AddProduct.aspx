@@ -68,9 +68,12 @@
                             <asp:Button ID="btnSubmit" CssClass="btn btn-warning me-2" runat="server" Text="Add Product" OnClick="btnSubmit_Click" />
                             <asp:Button ID="btnCancel" CssClass="btn btn-secondary" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
                         </div>
+                        <asp:Button ID="btnAddProductImages" CssClass="btn btn-warning me-2" runat="server" Text="Add Product Images" OnClick="btnAddProductImages_Click" />
+
                     </div>
                 </div>
-                 <a href="/add-product-images/1">Add Product Images</a>
+
+
                 <!-- Buttons -->
 
             </form>

@@ -28,10 +28,11 @@ namespace ShoeShoppers.Services
         }
 
         // Add a new product
-        public void AddProduct(Product product)
+        public int AddProduct(Product product)
         {
             ValidateProduct(product);
-            _repository.AddProduct(product);
+            int productId = _repository.AddProduct(product);
+            return productId;
         }
 
         // Update an existing product

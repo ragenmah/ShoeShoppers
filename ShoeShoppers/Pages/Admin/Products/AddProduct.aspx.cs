@@ -15,12 +15,12 @@ namespace ShoeShoppers.Pages.Admin.Products
     {
         private readonly ProductService _service = new ProductService(new ProductRepository());
         private readonly CategoryService _categoryBLL = new CategoryService(new CategoryRepository());
-
+        private int productId;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                LoadCategories();
+                LoadCategories(); btnAddProductImages.Visible = false;
             }
         }
 
@@ -42,14 +42,14 @@ namespace ShoeShoppers.Pages.Admin.Products
                 string imagePath = null;
                 if (fileUpload.HasFile)
                 {
-                    string folderPath = Server.MapPath("~/Images/Products/");
+                    string folderPath = Server.MapPath("~/Uploads/Products/");
                     if (!Directory.Exists(folderPath))
                     {
                         Directory.CreateDirectory(folderPath);
                     }
 
                     string fileName = Path.GetFileName(fileUpload.FileName);
-                    imagePath = "~/Images/Products/" + fileName;
+                    imagePath = "~/Uploads/Products/" + fileName;
                     fileUpload.SaveAs(folderPath + fileName);
                 }
 
@@ -68,9 +68,11 @@ namespace ShoeShoppers.Pages.Admin.Products
                     IsActive = chkIsActive.Checked
                 };
 
-                _service.AddProduct(product);
-                lblMessage.Text = "Product added successfully!";
+                productId = _service.AddProduct(product);
+                lblMessage.Text = $"Product added successfully! Product ID: {productId}";
                 lblMessage.ForeColor = System.Drawing.Color.Green;
+
+                btnAddProductImages.Visible = true;
 
                 ClearForm();
             }
@@ -84,6 +86,11 @@ namespace ShoeShoppers.Pages.Admin.Products
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("/product-list"); 
+        }
+        
+        protected void btnAddProductImages_Click(object sender, EventArgs e)
+        {
+            Response.Redirect($"/add-product-images/{productId}"); 
         }
 
         private void ClearForm()

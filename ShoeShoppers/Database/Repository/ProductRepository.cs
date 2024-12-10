@@ -54,10 +54,11 @@ namespace ShoeShoppers.Database.Repository
             return products;
         }
 
-        public void AddProduct(Product product)
+        public int AddProduct(Product product)
         {
             string query = "INSERT INTO Products (ProductName, ProductDescription, Price, DiscountPercentage, StockQuantity, Size, Color, CategoryId, ImageUrl, IsActive) " +
-                           "VALUES (@ProductName, @ProductDescription, @Price, @DiscountPercentage, @StockQuantity, @Size, @Color, @CategoryId, @ImageUrl, @IsActive)";
+                           "VALUES (@ProductName, @ProductDescription, @Price, @DiscountPercentage, @StockQuantity, @Size, @Color, @CategoryId, @ImageUrl, @IsActive);" +
+                           "SELECT CAST(SCOPE_IDENTITY() AS INT);";
 
             using (SqlCommand cmd = new SqlCommand(query, _connection))
             {
@@ -72,7 +73,11 @@ namespace ShoeShoppers.Database.Repository
                 cmd.Parameters.AddWithValue("@ImageUrl", product.ImageUrl ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@IsActive", product.IsActive);
 
-                cmd.ExecuteNonQuery();
+                int productId = Convert.ToInt32(cmd.ExecuteScalar());
+                if (productId == 0)
+                    throw new Exception("Failed to retrieve the ProductId. Check database and query.");
+
+                return productId;
             }
         }
 

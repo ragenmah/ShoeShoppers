@@ -34,10 +34,10 @@ namespace ShoeShoppers.Database
         {
             try
             {
-                if (_connection.State == System.Data.ConnectionState.Closed)
-                {
-                    _connection.Open();
-                }
+                //if (_connection.State == System.Data.ConnectionState.Closed)
+                //{
+                //    _connection.Open();
+                //}
 
                 string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
                 SqlConnection connection = new SqlConnection(connectionString);

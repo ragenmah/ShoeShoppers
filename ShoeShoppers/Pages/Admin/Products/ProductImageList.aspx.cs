@@ -2,6 +2,7 @@
 using ShoeShoppers.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Services.Description;
@@ -55,9 +56,15 @@ namespace ShoeShoppers.Pages.Admin.Products
                 string fileName = fileUpload.FileName;
                 string imageUrl = "~/Uploads/Products/" + fileName;
                 string savePath = Server.MapPath(imageUrl);
+                string folderPath = Server.MapPath("~/Uploads/Products/");
 
                 try
                 {
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+
                     // Save the file to the server
                     fileUpload.SaveAs(savePath);
 
@@ -86,6 +93,11 @@ namespace ShoeShoppers.Pages.Admin.Products
             {
                 Response.Write("No file selected.");
             }
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/product-list");
         }
     }
 }
