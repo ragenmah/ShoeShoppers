@@ -1,4 +1,5 @@
-﻿using ShoeShoppers.Database.Repository;
+﻿using ShoeShoppers.Database.Helpers;
+using ShoeShoppers.Database.Repository;
 using ShoeShoppers.Model;
 using ShoeShoppers.Services;
 using System;
@@ -12,7 +13,19 @@ namespace ShoeShoppers.Pages
 {
     public partial class MyCart : System.Web.UI.Page
     {
-        private readonly CartService _cartService = new CartService(new CartRepository());
+        private readonly CartService _cartService;
+
+        private readonly int userId;
+
+        public MyCart()
+        {
+           
+            _cartService = new CartService(new CartRepository());
+
+            userId = UserHelper.GetUserIdFromCookie();
+        }
+
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,7 +37,7 @@ namespace ShoeShoppers.Pages
 
         private void BindCartData()
         {
-            List<Cart> cartItems = _cartService.GetAllCarts();
+            List<Cart> cartItems = _cartService.GetAllCartItemsByUser(userId);
             if (cartItems.Count > 0) {
                 emptyCartDiv.Visible = false;
             }
@@ -33,39 +46,9 @@ namespace ShoeShoppers.Pages
             GridViewCart.DataBind();
         }
 
-        protected void BtnAddToCart_Click(object sender, EventArgs e)
-        {
-            
-          var cart = new Cart
-          {
-              ProductId = int.Parse(TxtProductId.Text),
-              Quantity = int.Parse(TxtQuantity.Text),
-              UserId = int.Parse(TxtUserId.Text)
-          };
-            _cartService.AddCart(cart);
-            BindCartData();
-            BindCartData();
-        }
+       
 
-        protected void BtnUpdateCart_Click(object sender, EventArgs e)
-        {
-            var cart = new Cart
-            {
-                CartId = int.Parse(TxtCartId.Text),
-                ProductId = int.Parse(TxtProductId.Text),
-                Quantity = int.Parse(TxtQuantity.Text),
-                UserId = int.Parse(TxtUserId.Text)
-            };
-            _cartService.UpdateCart(cart);
-            BindCartData();
-        }
-
-        protected void BtnDeleteCart_Click(object sender, EventArgs e)
-        {
-            int cartId = int.Parse(TxtCartId.Text);
-            _cartService.DeleteCart(cartId);
-            BindCartData();
-        }
+      
 
         protected void GridViewCart_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -73,10 +56,10 @@ namespace ShoeShoppers.Pages
             {
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = GridViewCart.Rows[index];
-                TxtCartId.Text = row.Cells[0].Text;
-                TxtProductId.Text = row.Cells[1].Text;
-                TxtQuantity.Text = row.Cells[2].Text;
-                TxtUserId.Text = row.Cells[3].Text;
+                //TxtCartId.Text = row.Cells[0].Text;
+                //TxtProductId.Text = row.Cells[1].Text;
+                //TxtQuantity.Text = row.Cells[2].Text;
+                //TxtUserId.Text = row.Cells[3].Text;
             }
             else if (e.CommandName == "DeleteRow")
             {

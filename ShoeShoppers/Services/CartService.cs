@@ -27,9 +27,9 @@ namespace ShoeShoppers.Services
         }
 
 
-        public List<Cart> GetAllCarts()
+        public List<Cart> GetAllCartItemsByUser(int userId)
         {
-            return _cartRepository.GetAllCarts();
+            return _cartRepository.GetCartItemsByUser(userId);
         }
 
         public void UpdateCart(Cart cart)
