@@ -30,9 +30,9 @@
                                     Width="32px" Height="32px" AlternateText="No Image" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                                                <asp:BoundField DataField="ProductId" HeaderText="Product ID" Visible="False" />
+                        <asp:BoundField DataField="ProductId" HeaderText="Product ID" Visible="False" />
 
-                      
+
                         <asp:TemplateField HeaderText="Name">
                             <ItemTemplate>
                                 <a href='<%# "/product/" + Eval("ProductId") %>'><%#  $"{Eval( "ProductName")}" %></a>
@@ -40,9 +40,9 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Quantity">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtQuantity" runat="server" Text='<%# Eval("Quantity") %>'   TextMode="Number" OnTextChanged="QuantityChanged" AutoPostBack="True" CssClass="form-control" />
-                           
-                                </ItemTemplate>
+                                <asp:TextBox ID="txtQuantity" runat="server" Text='<%# Eval("Quantity") %>' TextMode="Number" OnTextChanged="QuantityChanged" AutoPostBack="True" CssClass="form-control" />
+
+                            </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Original Price">
                             <ItemTemplate>
@@ -60,8 +60,18 @@
                                 $ <%#  $"{Eval( "TotalPrice"):N2}" %>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:ButtonField CommandName="EditRow" Text="Edit" />
-                        <asp:ButtonField CommandName="DeleteRow" Text="Delete" />
+
+
+                        <asp:TemplateField HeaderText="Action">
+                            <ItemTemplate>
+                                <asp:Button
+                                    ID="btnDelete"
+                                    runat="server"
+                                    CommandName="DeleteRow"
+                                    Text="Remove" CommandArgument="<%# Container.DataItemIndex %>"
+                                    CssClass="btn btn-danger" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
 
 

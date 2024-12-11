@@ -97,24 +97,7 @@ namespace ShoeShoppers.Pages
                     txtQuantity.Attributes["min"] = "1";
                     txtQuantity.Attributes["max"] = "100";
                 }
-            }
-            //if (e.Row.RowType == DataControlRowType.DataRow)
-            //{
-            //    // Find the quantity TextBox in the row
-            //    TextBox txtQuantity = (TextBox)e.Row.FindControl("txtQuantity");
-
-            //    // Calculate the TotalPrice for the row if necessary
-            //    if (txtQuantity != null)
-            //    {
-            //        int quantity = Convert.ToInt32(txtQuantity.Text);
-            //        decimal price = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Price"));
-            //        decimal discountedPrice = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "DiscountedPrice"));
-            //        decimal totalPrice = discountedPrice * quantity;
-
-            //        // Update the TotalPrice field in the GridView
-            //        e.Row.Cells[6].Text = totalPrice.ToString("C2"); // Assuming TotalPrice is in the 7th column
-            //    }
-            //}
+            } 
         }
 
         protected void QuantityChanged(object sender, EventArgs e)
@@ -133,9 +116,7 @@ namespace ShoeShoppers.Pages
                 txtQuantity.Text = "1"; 
                 quantity = 1;
             }
-
-
-
+             
             UpdateCartItem(cartId, productId, quantity);
 
         }
