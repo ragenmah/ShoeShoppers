@@ -88,52 +88,68 @@ namespace ShoeShoppers.Pages
 
         protected void GridViewCart_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                // Find the quantity TextBox in the row
                 TextBox txtQuantity = (TextBox)e.Row.FindControl("txtQuantity");
-
-                // Calculate the TotalPrice for the row if necessary
                 if (txtQuantity != null)
                 {
-                    int quantity = Convert.ToInt32(txtQuantity.Text);
-                    decimal price = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Price"));
-                    decimal discountedPrice = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "DiscountedPrice"));
-                    decimal totalPrice = discountedPrice * quantity;
-
-                    // Update the TotalPrice field in the GridView
-                    e.Row.Cells[6].Text = totalPrice.ToString("C2"); // Assuming TotalPrice is in the 7th column
+                    txtQuantity.Attributes["min"] = "1";
+                    txtQuantity.Attributes["max"] = "100";
                 }
             }
+            //if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
+            //    // Find the quantity TextBox in the row
+            //    TextBox txtQuantity = (TextBox)e.Row.FindControl("txtQuantity");
+
+            //    // Calculate the TotalPrice for the row if necessary
+            //    if (txtQuantity != null)
+            //    {
+            //        int quantity = Convert.ToInt32(txtQuantity.Text);
+            //        decimal price = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Price"));
+            //        decimal discountedPrice = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "DiscountedPrice"));
+            //        decimal totalPrice = discountedPrice * quantity;
+
+            //        // Update the TotalPrice field in the GridView
+            //        e.Row.Cells[6].Text = totalPrice.ToString("C2"); // Assuming TotalPrice is in the 7th column
+            //    }
+            //}
         }
 
         protected void QuantityChanged(object sender, EventArgs e)
         {
-            // Get the row that was updated
-            GridViewRow row = (sender as TextBox).NamingContainer as GridViewRow;
+            TextBox txtQuantity = (TextBox)sender;
 
-            // Find the controls in the row
-            TextBox txtQuantity = (TextBox)row.FindControl("txtQuantity");
-            Label lblTotalPrice = (Label)row.FindControl("lblTotalPrice");  // Assuming a Label for TotalPrice in the row
+            GridViewRow row = (GridViewRow)txtQuantity.NamingContainer;
 
-            if (txtQuantity != null && lblTotalPrice != null)
+
+            int cartId = Convert.ToInt32(GridViewCart.DataKeys[row.RowIndex].Values["CartId"]);
+            int productId = Convert.ToInt32(GridViewCart.DataKeys[row.RowIndex].Values["ProductId"]);
+            
+            int quantity;
+            if (!int.TryParse(txtQuantity.Text, out quantity) || quantity < 1)
             {
-                // Get the new quantity value
-                int quantity = Convert.ToInt32(txtQuantity.Text);
-
-                // Get the current price and discounted price
-                decimal price = Convert.ToDecimal(DataBinder.Eval(row.DataItem, "Price"));
-                decimal discountedPrice = Convert.ToDecimal(DataBinder.Eval(row.DataItem, "DiscountedPrice"));
-
-                // Calculate the new TotalPrice
-                decimal totalPrice = discountedPrice * quantity;
-
-                // Update the TotalPrice label
-                lblTotalPrice.Text = totalPrice.ToString("C2");
-
-                // Optionally, save this updated total back to your data source
-                // Update the database or session with the new TotalPrice for this row
+                txtQuantity.Text = "1"; 
+                quantity = 1;
             }
+
+
+
+            UpdateCartItem(cartId, productId, quantity);
+
+        }
+
+        private void UpdateCartItem(int cartId, int productId, int quantity  )
+        {
+            var cart = new Cart
+            {ProductId= productId,
+                CartId = cartId,
+                Quantity = quantity,
+                UserId = userId
+            };
+            _cartService.UpdateCart(cart);
+            BindCartData();
         }
 
     }

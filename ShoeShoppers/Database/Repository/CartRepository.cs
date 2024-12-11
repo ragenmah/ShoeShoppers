@@ -130,6 +130,8 @@ namespace ShoeShoppers.Database.Repository
             }
         }
 
+  
+
         public void AddOrUpdateCart(Cart cart)
         {
             if (IsProductInCart(cart.ProductId, cart.UserId))

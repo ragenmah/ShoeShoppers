@@ -15,7 +15,7 @@
                 <a href="/products" class="btn custom-btn">Explore more</a>
             </div>
             <div>
-                <asp:GridView ID="GridViewCart" runat="server"  DataKeyNames="CartId"
+                <asp:GridView ID="GridViewCart" runat="server" DataKeyNames="CartId,ProductId"
                     AutoGenerateColumns="False"
                     OnRowDataBound="GridViewCart_RowDataBound"
                     OnRowCommand="GridViewCart_RowCommand"
@@ -30,16 +30,20 @@
                                     Width="32px" Height="32px" AlternateText="No Image" />
                             </ItemTemplate>
                         </asp:TemplateField>
+                                                <asp:BoundField DataField="ProductId" HeaderText="Product ID" Visible="False" />
+
+                      
                         <asp:TemplateField HeaderText="Name">
                             <ItemTemplate>
                                 <a href='<%# "/product/" + Eval("ProductId") %>'><%#  $"{Eval( "ProductName")}" %></a>
                             </ItemTemplate>
                         </asp:TemplateField>
- <asp:TemplateField HeaderText="Quantity">
-            <ItemTemplate>
-                <asp:TextBox ID="txtQuantity" runat="server" Text='<%# Eval("Quantity") %>' TextMode="Number" OnTextChanged="QuantityChanged" AutoPostBack="True" CssClass="form-control" />
-            </ItemTemplate>
-        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Quantity">
+                            <ItemTemplate>
+                                <asp:TextBox ID="txtQuantity" runat="server" Text='<%# Eval("Quantity") %>'   TextMode="Number" OnTextChanged="QuantityChanged" AutoPostBack="True" CssClass="form-control" />
+                           
+                                </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="Original Price">
                             <ItemTemplate>
                                 $ <%#  $"{Eval( "Price"):N2}" %>
@@ -66,7 +70,7 @@
                 <div class="my-5">
                     <div class="d-flex">
                         <div class="ms-auto">
-                            <asp:Label ID="lblTotalAmount" runat="server" CssClass="text-bold" Text="Total (After Discount): $ 0.00" /> 
+                            <asp:Label ID="lblTotalAmount" runat="server" CssClass="text-bold" Text="Total (After Discount): $ 0.00" />
                             <p><a class="btn custom-btn mt-3" href="/my/cart/checkout">Checkout</a></p>
                         </div>
                     </div>

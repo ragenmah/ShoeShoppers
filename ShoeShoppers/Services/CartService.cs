@@ -35,7 +35,8 @@ namespace ShoeShoppers.Services
         public void UpdateCart(Cart cart)
         {
             _cartRepository.UpdateCart(cart);
-        }
+        } 
+        
 
         public void DeleteCart(int cartId)
         {
