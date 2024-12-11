@@ -15,7 +15,7 @@
                 <a href="/products" class="btn custom-btn">Explore more</a>
             </div>
             <div>
-                <asp:GridView ID="GridViewCart" runat="server"
+                <asp:GridView ID="GridViewCart" runat="server"  DataKeyNames="CartId"
                     AutoGenerateColumns="False"
                     OnRowDataBound="GridViewCart_RowDataBound"
                     OnRowCommand="GridViewCart_RowCommand"
@@ -35,8 +35,11 @@
                                 <a href='<%# "/product/" + Eval("ProductId") %>'><%#  $"{Eval( "ProductName")}" %></a>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
-
+ <asp:TemplateField HeaderText="Quantity">
+            <ItemTemplate>
+                <asp:TextBox ID="txtQuantity" runat="server" Text='<%# Eval("Quantity") %>' TextMode="Number" OnTextChanged="QuantityChanged" AutoPostBack="True" CssClass="form-control" />
+            </ItemTemplate>
+        </asp:TemplateField>
                         <asp:TemplateField HeaderText="Original Price">
                             <ItemTemplate>
                                 $ <%#  $"{Eval( "Price"):N2}" %>
@@ -60,7 +63,7 @@
 
                 </asp:GridView>
 
-                <div class="mt-3">
+                <div class="my-5">
                     <div class="d-flex">
                         <div class="ms-auto">
                             <asp:Label ID="lblTotalAmount" runat="server" CssClass="text-bold" Text="Total (After Discount): $ 0.00" /> 
