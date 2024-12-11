@@ -17,6 +17,10 @@ namespace ShoeShoppers.Pages
 
         private readonly int userId;
 
+        decimal totalCartAmount = 0;
+
+        
+
         public MyCart()
         {
            
@@ -37,15 +41,25 @@ namespace ShoeShoppers.Pages
 
         private void BindCartData()
         {
-            List<Cart> cartItems = _cartService.GetAllCartItemsByUser(userId);
+            List<Cart> cartItems= _cartService.GetAllCartItemsByUser(userId);
             if (cartItems.Count > 0) {
                 emptyCartDiv.Visible = false;
+                CalculateTotalPrice(cartItems);
+
             }
 
             GridViewCart.DataSource = cartItems;
             GridViewCart.DataBind();
         }
 
+        private void CalculateTotalPrice(List<Cart> cartItems) {
+            foreach (var item in cartItems)
+            {
+                totalCartAmount += item. TotalPrice;
+            }
+
+            lblTotalAmount.Text = $"Total (After Discount): ${totalCartAmount:N2}";
+        }
        
 
       
@@ -68,5 +82,10 @@ namespace ShoeShoppers.Pages
                 BindCartData();
             }
         }
+
+        protected void GridViewCart_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+        }
+
     }
 }

@@ -15,7 +15,13 @@
                 <a href="/products" class="btn custom-btn">Explore more</a>
             </div>
             <div>
-                <asp:GridView ID="GridViewCart" runat="server" AutoGenerateColumns="False" OnRowCommand="GridViewCart_RowCommand" CssClass="table table-bordered table-striped  table-hover">
+                <asp:GridView ID="GridViewCart" runat="server"
+                    AutoGenerateColumns="False"
+                    OnRowDataBound="GridViewCart_RowDataBound"
+                    OnRowCommand="GridViewCart_RowCommand"
+                    CssClass="table table-bordered table-striped table-hover">
+
+
                     <Columns>
                         <asp:BoundField DataField="CartId" HeaderText="Cart ID" />
                         <asp:TemplateField HeaderText="Image">
@@ -24,7 +30,11 @@
                                     Width="32px" Height="32px" AlternateText="No Image" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="ProductName" HeaderText="Name" />
+                        <asp:TemplateField HeaderText="Name">
+                            <ItemTemplate>
+                                <a href='<%# "/product/" + Eval("ProductId") %>'><%#  $"{Eval( "ProductName")}" %></a>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
 
                         <asp:TemplateField HeaderText="Original Price">
@@ -46,9 +56,18 @@
                         <asp:ButtonField CommandName="EditRow" Text="Edit" />
                         <asp:ButtonField CommandName="DeleteRow" Text="Delete" />
                     </Columns>
+
+
                 </asp:GridView>
 
-
+                <div class="mt-3">
+                    <div class="d-flex">
+                        <div class="ms-auto">
+                            <asp:Label ID="lblTotalAmount" runat="server" CssClass="text-bold" Text="Total (After Discount): $ 0.00" /> 
+                            <p><a class="btn custom-btn mt-3" href="/my/cart/checkout">Checkout</a></p>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
