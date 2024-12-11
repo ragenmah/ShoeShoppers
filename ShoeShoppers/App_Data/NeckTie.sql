@@ -134,6 +134,14 @@ CREATE TABLE ContactUs
     RepliedBy NVARCHAR(100) NULL  -- Who replied to the review (admin/agent)
 );
 
+CREATE TABLE PaymentMethods
+(
+    MethodId INT IDENTITY(1,1) PRIMARY KEY,
+    MethodName VARCHAR(50) NOT NULL
+);
+
+INSERT INTO PaymentMethods (MethodName)
+VALUES ('Credit Card'), ('PayPal'), ('Bank Transfer'), ('Cash on Delivery');
 
 CREATE TABLE Payment
 (
@@ -145,6 +153,8 @@ CREATE TABLE Payment
 	BillingAddress VARCHAR(MAX) NULL,
 	PaymentMethod VARCHAR(50) NULL -- E.g., 'Credit Card', 'PayPal', etc.
 );
+ALTER TABLE Payment
+ADD PaymentMethodId INT FOREIGN KEY REFERENCES PaymentMethods(MethodId);
 
 CREATE TABLE Orders
 (

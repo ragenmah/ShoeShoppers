@@ -56,6 +56,7 @@
                         ForeColor="Red"
                         Display="Dynamic">
                     </asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" ErrorMessage="Enter correct email address" ForeColor="Red" SetFocusOnError="True" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                 </div>
                 <div>
                     <asp:Label ID="lblPassword" runat="server" Text="Password: " Font-Bold="true" Font-Size="Larger"></asp:Label>

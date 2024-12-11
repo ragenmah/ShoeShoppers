@@ -81,7 +81,7 @@
                     <div class="d-flex">
                         <div class="ms-auto">
                             <asp:Label ID="lblTotalAmount" runat="server" CssClass="text-bold" Text="Total (After Discount): $ 0.00" />
-                            <p><a class="btn custom-btn mt-3" href="/my/cart/checkout">Checkout</a></p>
+                            <p><a class="btn custom-btn mt-3" href="my-cart/checkout">Checkout</a></p>
                         </div>
                     </div>
                 </div>
