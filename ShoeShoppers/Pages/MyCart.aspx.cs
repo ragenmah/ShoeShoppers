@@ -42,11 +42,15 @@ namespace ShoeShoppers.Pages
         private void BindCartData()
         {
             List<Cart> cartItems= _cartService.GetAllCartItemsByUser(userId);
-            if (cartItems.Count > 0) {
+            if (cartItems.Count > 0)
+            {
                 emptyCartDiv.Visible = false;
+                totalAmountDiv.Visible = true;
+
                 CalculateTotalPrice(cartItems);
 
             }
+           
 
             GridViewCart.DataSource = cartItems;
             GridViewCart.DataBind();

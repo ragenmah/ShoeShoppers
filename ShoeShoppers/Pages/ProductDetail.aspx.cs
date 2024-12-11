@@ -101,6 +101,8 @@ namespace ShoeShoppers.Pages
             lblSuccessMessage.Visible = false;
 
             timerHideMessage.Enabled = false;
+
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

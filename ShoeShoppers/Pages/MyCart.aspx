@@ -77,7 +77,7 @@
 
                 </asp:GridView>
 
-                <div class="my-5">
+                <div class="my-5" id="totalAmountDiv" runat="server" visible="false">
                     <div class="d-flex">
                         <div class="ms-auto">
                             <asp:Label ID="lblTotalAmount" runat="server" CssClass="text-bold" Text="Total (After Discount): $ 0.00" />
