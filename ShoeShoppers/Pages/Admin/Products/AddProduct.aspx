@@ -45,7 +45,7 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="txtStock" class="form-label">Stock Quantity:</label>
-                            <asp:TextBox ID="txtStock" CssClass="form-control" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtStock" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox>
                         </div>
                         <div class="mb-3">
                             <label for="txtSize" class="form-label">Size:</label>
