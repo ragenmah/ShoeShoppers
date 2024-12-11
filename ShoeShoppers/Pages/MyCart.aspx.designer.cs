@@ -11,79 +11,88 @@ namespace ShoeShoppers.Pages
 {
 
 
-    public partial class ProductDetail
+    public partial class MyCart
     {
 
         /// <summary>
-        /// rptProductImages control.
+        /// emptyCartDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProductImages;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl emptyCartDiv;
 
         /// <summary>
-        /// lblProductName control.
+        /// GridViewCart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProductName;
+        protected global::System.Web.UI.WebControls.GridView GridViewCart;
 
         /// <summary>
-        /// lblPrice control.
+        /// TxtCartId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrice;
+        protected global::System.Web.UI.WebControls.TextBox TxtCartId;
 
         /// <summary>
-        /// btnAddToCart control.
+        /// TxtProductId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddToCart;
+        protected global::System.Web.UI.WebControls.TextBox TxtProductId;
 
         /// <summary>
-        /// TxtCartQuantity control.
+        /// TxtQuantity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtCartQuantity;
+        protected global::System.Web.UI.WebControls.TextBox TxtQuantity;
 
         /// <summary>
-        /// lblSuccessMessage control.
+        /// TxtUserId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSuccessMessage;
+        protected global::System.Web.UI.WebControls.TextBox TxtUserId;
 
         /// <summary>
-        /// timerHideMessage control.
+        /// BtnAddToCart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.Timer timerHideMessage;
+        protected global::System.Web.UI.WebControls.Button BtnAddToCart;
 
         /// <summary>
-        /// lblDescription control.
+        /// BtnUpdateCart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDescription;
+        protected global::System.Web.UI.WebControls.Button BtnUpdateCart;
+
+        /// <summary>
+        /// BtnDeleteCart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnDeleteCart;
     }
 }

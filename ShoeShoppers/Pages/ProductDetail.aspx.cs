@@ -1,4 +1,5 @@
-﻿using ShoeShoppers.Database.Repository;
+﻿using ShoeShoppers.Database.Helpers;
+using ShoeShoppers.Database.Repository;
 using ShoeShoppers.Model;
 using ShoeShoppers.Services;
 using System;
@@ -9,13 +10,27 @@ using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace ShoeShoppers.Pages
 {
     public partial class ProductDetail : System.Web.UI.Page
     {
-        private readonly ProductService _productService = new ProductService(new ProductRepository());
-        private ProductImageService _productImageService = new ProductImageService();
+        private readonly ProductService _productService;
+        private ProductImageService _productImageService;
+        private readonly CartService _cartService ;
+
+        private readonly int userId;
+
         Product product;
+        public ProductDetail()
+        {
+            _productService = new ProductService(new ProductRepository());
+            _productImageService = new ProductImageService();
+            _cartService = new CartService(new CartRepository());
+
+            userId = UserHelper.GetUserIdFromCookie();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (RouteData.Values["ProductId"] != null) { 
@@ -65,7 +80,27 @@ namespace ShoeShoppers.Pages
 
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/my-cart");
+            var cart = new Cart
+            {
+                ProductId = product.ProductId,
+                Quantity = int.Parse(TxtCartQuantity.Text),
+                UserId = userId
+            };
+            _cartService.AddOrUpdateCart(cart);
+           
+            lblSuccessMessage.Text = "Item added to cart successfully!";
+            lblSuccessMessage.Visible = true;
+            //Response.Redirect("/my-cart");
+         
+            timerHideMessage.Enabled = true;
+        }
+
+        protected void timerHideMessage_Tick(object sender, EventArgs e)
+        {
+           
+            lblSuccessMessage.Visible = false;
+
+            timerHideMessage.Enabled = false;
         }
     }
 }

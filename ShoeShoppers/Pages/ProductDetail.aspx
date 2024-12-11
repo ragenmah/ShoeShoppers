@@ -49,10 +49,13 @@
                                 <asp:Button class="shadow btn custom-btn" Font-Size="Large" ID="btnAddToCart" runat="server" Text="Add to cart"
         Height="40px" OnClick="btnAddToCart_Click" />
                             <div class="block quantity">
-                                <input type="number" class="form-control" id="cart_quantity" min="0" placeholder="Enter Quantity"
-                                    name="cart_quantity" value="1">
+                                
+<asp:TextBox ID="TxtCartQuantity" runat="server" CssClass="form-control" TextMode="Number" MinLength="0" Placeholder="Enter Quantity" Text="1"></asp:TextBox>
                             </div>
                         </div>
+                        <asp:Label ID="lblSuccessMessage" runat="server" ForeColor="Green" Visible="false"></asp:Label>
+<asp:Timer ID="timerHideMessage" runat="server" Interval="2000" OnTick="timerHideMessage_Tick" Enabled="false" />
+
                     </div>
                     <div class="product-details my-4">
                         <p class="details-title text-color mb-1">Product Details</p>
