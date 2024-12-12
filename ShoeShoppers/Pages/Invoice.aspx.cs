@@ -18,6 +18,7 @@ namespace ShoeShoppers.Pages
 
         private readonly int userId;
 
+        decimal totalOrderAmount = 0;
 
 
         public Invoice()
@@ -40,6 +41,13 @@ namespace ShoeShoppers.Pages
 
         private void LoadOrderDetails(int orderId)
         {
+            List<OrderItem> orderItems = _orderItemService.GetOrderItems(orderId);
+            if (orderItems.Count > 0)
+            {
+                CalculateTotalPrice(orderItems);
+            }
+            rptOrderItems.DataSource = orderItems;
+            rptOrderItems.DataBind();
             //product = _productService.GetProductById(productId);
 
             //if (product != null)
@@ -54,6 +62,18 @@ namespace ShoeShoppers.Pages
             //    lblPrice.Text = "";
             //    lblDescription.Text = "";
             //}
+        }
+
+        private void CalculateTotalPrice(List<OrderItem> orderItems)
+        {
+            foreach (var item in orderItems)
+            {
+                totalOrderAmount += item.UnitPrice;
+            }
+
+            lblSubTotalAmount.Text = $"${totalOrderAmount:N2}";
+            lblTotalAmount.Text = $"${totalOrderAmount:N2}";
+
         }
     }
 }

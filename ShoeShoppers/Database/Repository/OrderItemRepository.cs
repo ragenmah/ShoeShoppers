@@ -37,9 +37,12 @@ namespace ShoeShoppers.Database.Repository
             List<OrderItem> orderItems = new List<OrderItem>();
 
             using (SqlCommand cmd = new SqlCommand(query, _connection))
-            using (SqlDataReader reader = cmd.ExecuteReader())
             {
                 cmd.Parameters.AddWithValue("@OrderId", orderId);
+
+            
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
 
                 while (reader.Read())
                 {
@@ -52,6 +55,7 @@ namespace ShoeShoppers.Database.Repository
                         UnitPrice = (decimal)reader["UnitPrice"]
                     });
                 }
+            }
             }
 
             return orderItems;

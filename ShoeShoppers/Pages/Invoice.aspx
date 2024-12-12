@@ -42,45 +42,42 @@
                         </tr>
                     </thead>
                     <tbody>
+                          <asp:Repeater ID="rptOrderItems" runat="server" >
+      <ItemTemplate>
                         <tr>
                             <td>Iconic – Ceiling Lamp</td>
                             <td>UGX 55000.00</td>
                             <td>0.00%</td>
-                            <td>1</td>
-                            <td>UGX 55000.00</td>
-                        </tr>
+                            <td><%# Eval("Quantity") %></td>
+                            <td> $<%# Eval("UnitPrice", "{0:N2}") %></td>
+                        </tr>    </ItemTemplate>
+</asp:Repeater>
                     </tbody>
                     <tfoot>
-                        <tr>
-                            <th></th>
-                            <th colspan="3">Coupon Code:</th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th></th>
-                            <th colspan="3">Coupon Discount:</th>
-                            <th>%</th>
-                        </tr>
+                       
                         <tr>
                             <th></th>
                             <th colspan="3">Sub Total: </th>
-                            <th><strong>UGX 55000.00</strong></th>
+                            <th><asp:Label ID="lblSubTotalAmount" runat="server" Text="$ 0" CssClass="strong"></asp:Label></th>
+
                         </tr>
                         <tr>
                             <th></th>
                             <th colspan="3">Shipping Charge: </th>
-                            <th><strong>UGX 200</strong></th>
+<th><asp:Label ID="lblShippingCharge" runat="server" Text="$ 0" CssClass="strong"></asp:Label></th>
                         </tr>
                         <tr>
                             <th></th>
                             <th colspan="3">Total: </th>
-                            <th><strong>UGX 55200.00</strong></th>
+                            <th><asp:Label ID="lblTotalAmount" runat="server" Text="$ 0" CssClass="strong"></asp:Label></th>
                         </tr>
                     </tfoot>
                 </table>
             </div>
         </div>
     </div>
+
+
     <script>
     function printInvoice() {
         // Hide all content except the print content
