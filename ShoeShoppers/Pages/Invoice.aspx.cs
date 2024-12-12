@@ -48,7 +48,12 @@ namespace ShoeShoppers.Pages
             }
             rptOrderItems.DataSource = orderItems;
             rptOrderItems.DataBind();
-           
+
+            List<Order> orders = new List<Order>();
+            orders.Add(_orderService.GetOrderDetailsById(orderId, userId));
+
+            rptOrderDetails.DataSource = orders;
+            rptOrderDetails.DataBind();
         }
 
         private void CalculateTotalPrice(List<OrderItem> orderItems)
