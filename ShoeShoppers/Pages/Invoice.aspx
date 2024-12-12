@@ -16,18 +16,18 @@
                 <h3 class="text-bold">Customer Details</h3>
                 <hr>
                 <div class="row">
-                    <div class="col-md-6">
-                        <p>First Name: </p>
-                        <p>Last Name: test</p>
-                        <p>Email: test@231.com</p>
-                        <p>Payment Status: unpaid</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p>Address: test</p>
-                        <p>City: test</p>
-                        <p>ZIP Code: 40202</p>
-                        <p>Payment Method: cod</p>
-                    </div>
+                   <div class="col-md-6">
+        <p>First Name: <%# Eval("FirstName") %></p>
+        <p>Last Name: <%# Eval("LastName") %></p>
+        <p>Email: <%# Eval("Email") %></p>
+        <p>Payment Status: <%# Eval("PaymentStatus") %></p>
+    </div>
+    <div class="col-md-6">
+        <p>Address: <%# Eval("Address") %></p>
+        <p>City: <%# Eval("City") %></p>
+        <p>ZIP Code: <%# Eval("PostalCode") %></p>
+        <p>Payment Method: <%# Eval("PaymentMethod") %></p>
+    </div>
                 </div>
                 <h3 class="text-bold">Order Details</h3>
                 <hr>
@@ -35,8 +35,10 @@
                     <thead>
                         <tr>
                             <th>Product Name</th>
-                            <th>Original Price</th>
+                            <th>Unit Price</th>
                             <th>Discount</th>
+                                                       
+
                             <th>Quantity</th>
                             <th>Subtotal</th>
                         </tr>
@@ -45,11 +47,11 @@
                           <asp:Repeater ID="rptOrderItems" runat="server" >
       <ItemTemplate>
                         <tr>
-                            <td>Iconic – Ceiling Lamp</td>
-                            <td>UGX 55000.00</td>
-                            <td>0.00%</td>
+                            <td><%# Eval("Product.ProductName") %></td>
+                            <td>$ <%#$"{Eval( "UnitPrice"):N2}"%></td>
+                            <td><%# Eval("Product.DiscountPercentage") %>%</td>
                             <td><%# Eval("Quantity") %></td>
-                            <td> $<%# Eval("UnitPrice", "{0:N2}") %></td>
+<td>$<%# String.Format("{0:N2}", Convert.ToDecimal(Eval("Quantity")) * Convert.ToDecimal(Eval("UnitPrice"))) %></td>
                         </tr>    </ItemTemplate>
 </asp:Repeater>
                     </tbody>

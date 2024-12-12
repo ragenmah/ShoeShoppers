@@ -33,7 +33,9 @@ namespace ShoeShoppers.Database.Repository
         public List<OrderItem> GetOrderItems(int orderId)
 
         {
-            var query = "SELECT * FROM OrderItems WHERE OrderId = @OrderId";
+            var query = "SELECT oi.OrderItemId, oi.OrderId, oi.Quantity, oi.UnitPrice, p.ProductId, p.ProductName, p.Price, p.DiscountPercentage, p.DiscountedPrice, p.StockQuantity, p.Size," +
+                " p.Color, p.ImageUrl FROM OrderItems oi JOIN Products p ON oi.ProductId = p.ProductId WHERE oi.OrderId = @OrderId;";
+         
             List<OrderItem> orderItems = new List<OrderItem>();
 
             using (SqlCommand cmd = new SqlCommand(query, _connection))
@@ -52,7 +54,15 @@ namespace ShoeShoppers.Database.Repository
                         OrderId = (int)reader["OrderId"],
                         ProductId = (int)reader["ProductId"],
                         Quantity = (int)reader["Quantity"],
-                        UnitPrice = (decimal)reader["UnitPrice"]
+                        UnitPrice = (decimal)reader["UnitPrice"],
+                        Product= new Product {
+                            ProductId = Convert.ToInt32(reader["ProductId"]),
+                            ProductName = reader["ProductName"].ToString(),
+                            Price = Convert.ToDecimal(reader["Price"]),
+                            DiscountPercentage = Convert.ToDecimal(reader["DiscountPercentage"]),
+                            DiscountedPrice = Convert.ToDecimal(reader["DiscountedPrice"]),
+                            StockQuantity = Convert.ToInt32(reader["StockQuantity"]),
+                        } 
                     });
                 }
             }

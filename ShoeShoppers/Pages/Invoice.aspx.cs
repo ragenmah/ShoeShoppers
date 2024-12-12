@@ -48,20 +48,7 @@ namespace ShoeShoppers.Pages
             }
             rptOrderItems.DataSource = orderItems;
             rptOrderItems.DataBind();
-            //product = _productService.GetProductById(productId);
-
-            //if (product != null)
-            //{
-            //    lblProductName.Text = product.ProductName;
-            //    lblPrice.Text = $"${product.Price:N2}";
-            //    lblDescription.Text = product.ProductDescription ?? "No description available.";
-            //}
-            //else
-            //{
-            //    lblProductName.Text = "Product not found!";
-            //    lblPrice.Text = "";
-            //    lblDescription.Text = "";
-            //}
+           
         }
 
         private void CalculateTotalPrice(List<OrderItem> orderItems)
