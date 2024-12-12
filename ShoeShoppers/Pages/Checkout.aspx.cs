@@ -162,7 +162,7 @@ namespace ShoeShoppers.Pages
 
                     }
                     _cartService.DeleteCartByUserId(userId);
-                    Response.Redirect("/my/invoice");
+                    Response.Redirect($"/my/invoice/{orderId}");
 
                 }
             }

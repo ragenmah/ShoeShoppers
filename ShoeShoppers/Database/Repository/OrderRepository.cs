@@ -63,33 +63,57 @@ namespace ShoeShoppers.Database.Repository
             return orders;
         }
 
-        public Payment GetOrderById(string orderId)
+        public Order GetOrderDetailsById(int orderId, int userId)
         {
-            string query = "SELECT * FROM ProductImages WHERE ProductId = @ProductId";
-            Payment payment = null;
+            string query = "SELECT O.OrderId, O.OrderNumber, O.Status AS OrderStatus, O.OrderDate, O.IsCancelled, U.UserId, U.FirstName, U.LastName, U.Email, U.MobileNumber, U.Address AS UserAddress, U.City AS UserCity, U.PostalCode AS UserPostalCode, U.Country AS UserCountry, P.PaymentId, P.OwnerName AS PaymentOwner, P.CardNo AS PaymentCardNumber, P.ExpiryDate AS PaymentExpiryDate, P.CvvNo AS PaymentCvv, P.BillingAddress AS PaymentBillingAddress, P.PaymentMethod " +
+                "FROM Orders O JOIN Users U ON O.UserId = U.UserId JOIN Payment P ON O.PaymentId = P.PaymentId " +
+                "WHERE O.UserId = @UserId AND O.OrderId = @OrderId ";
+
+            Order order = null;
 
             using (SqlCommand cmd = new SqlCommand(query, _connection))
             {
+                cmd.Parameters.AddWithValue("@UserId", userId);
+                cmd.Parameters.AddWithValue("@OrderId", orderId);
 
-                cmd.Parameters.AddWithValue("@PaymentId", orderId);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    payment = new Payment
+                     order = new Order
                     {
-                        PaymentId = (int)reader["PaymentId"],
-                        OwnerName = reader["OwnerName"].ToString(),
-                        CardNo = reader["CardNo"]?.ToString(),
-                        ExpiryDate = reader["ExpiryDate"]?.ToString(),
-                        CvvNo = reader["CvvNo"] as int?,
-                        BillingAddress = reader["BillingAddress"]?.ToString(),
-                        PaymentMethod = reader["PaymentMethod"].ToString()
+                        OrderId = reader.GetInt32(reader.GetOrdinal("OrderId")),
+                        OrderNumber = reader.GetString(reader.GetOrdinal("OrderNumber")),
+                        Status = reader.GetString(reader.GetOrdinal("OrderStatus")),
+                        OrderDate = reader.GetDateTime(reader.GetOrdinal("OrderDate")),
+                        IsCancelled = reader.GetBoolean(reader.GetOrdinal("IsCancelled")),
+                        User = new User
+                        {
+                            UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
+                            FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                            LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                            Email = reader.GetString(reader.GetOrdinal("Email")),
+                            MobileNumber = reader.GetString(reader.GetOrdinal("MobileNumber")),
+                            Address = reader.GetString(reader.GetOrdinal("UserAddress")),
+                            City = reader.GetString(reader.GetOrdinal("UserCity")),
+                            PostalCode = reader.GetString(reader.GetOrdinal("UserPostalCode")),
+                            Country = reader.GetString(reader.GetOrdinal("UserCountry"))
+                        },
+                        Payment = new Payment
+                        {
+                            PaymentId = reader.GetInt32(reader.GetOrdinal("PaymentId")),
+                            OwnerName = reader.GetString(reader.GetOrdinal("PaymentOwner")),
+                            CardNo = reader.GetString(reader.GetOrdinal("PaymentCardNumber")),
+                            ExpiryDate = reader.GetString(reader.GetOrdinal("PaymentExpiryDate")),
+                            CvvNo = reader.GetInt32(reader.GetOrdinal("PaymentCvv")),
+                            BillingAddress = reader.GetString(reader.GetOrdinal("PaymentBillingAddress")),
+                            PaymentMethod = reader.GetString(reader.GetOrdinal("PaymentMethod"))
+                        }
                     };
                 }
             }
 
-            return payment;
+            return order;
         }
 
         public void UpdateOrders(Payment payment)

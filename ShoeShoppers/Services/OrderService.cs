@@ -29,6 +29,11 @@ namespace ShoeShoppers.Services
             return _repository.GetAllOrders();
         }
 
+           public Order GetOrderDetailsById(int orderId, int userId)
+        {
+            return _repository.GetOrderDetailsById( orderId,  userId);
+        }
+
 
        
         public void DeleteOrder(int orderId)
