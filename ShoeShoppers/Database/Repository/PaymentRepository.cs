@@ -16,9 +16,10 @@ namespace ShoeShoppers.Database.Repository
             _connection = DatabaseConnection.Instance.GetConnection();
         }
 
-        public void AddPayment(Payment payment)
+        public int AddPayment(Payment payment)
         {
-            var query = "INSERT INTO Payment (OwnerName, CardNo, ExpiryDate, CvvNo, BillingAddress, PaymentMethod) VALUES (@OwnerName, @CardNo, @ExpiryDate, @CvvNo, @BillingAddress, @PaymentMethod)";
+            var query = "INSERT INTO Payment (OwnerName, CardNo, ExpiryDate, CvvNo, BillingAddress, PaymentMethod) VALUES (@OwnerName, @CardNo, @ExpiryDate, @CvvNo, @BillingAddress, @PaymentMethod);" +
+                "SELECT CAST(SCOPE_IDENTITY() AS INT);";
 
             using (SqlCommand cmd = new SqlCommand(query, _connection))
             {
@@ -29,8 +30,14 @@ namespace ShoeShoppers.Database.Repository
                 cmd.Parameters.AddWithValue("@BillingAddress", payment.BillingAddress);
                 cmd.Parameters.AddWithValue("@PaymentMethod", payment.PaymentMethod);
 
-                cmd.ExecuteNonQuery();
+                int paymentId = Convert.ToInt32(cmd.ExecuteScalar());
+                if (paymentId == 0)
+                    throw new Exception("Failed to retrieve the paymentId. Check database and query.");
+
+                return paymentId;
             }
+
+            
         }
 
         public List<Payment> GetAllPayments()

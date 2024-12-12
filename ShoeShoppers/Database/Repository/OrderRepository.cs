@@ -16,9 +16,10 @@ namespace ShoeShoppers.Database.Repository
             _connection = DatabaseConnection.Instance.GetConnection();
         }
 
-        public void AddOrder(Order order)
+        public int AddOrder(Order order)
         {
-            var query = "INSERT INTO Orders (OrderNumber, UserId, Status, CvvNo, PaymentId, OrderDate) VALUES (@OwnerName, @CardNo, @ExpiryDate, @CvvNo, @BillingAddress, @PaymentMethod)";
+            var query = "INSERT INTO Orders (OrderNumber, UserId, Status, CvvNo, PaymentId, OrderDate) VALUES (@OwnerName, @CardNo, @ExpiryDate, @CvvNo, @BillingAddress, @PaymentMethod);" +
+                "SELECT CAST(SCOPE_IDENTITY() AS INT);";
 
             using (SqlCommand cmd = new SqlCommand(query, _connection))
             {
@@ -27,7 +28,11 @@ namespace ShoeShoppers.Database.Repository
                 cmd.Parameters.AddWithValue("@Status", order.Status);
                 cmd.Parameters.AddWithValue("@PaymentId", order.PaymentId);
 
-                cmd.ExecuteNonQuery();
+                int orderId = Convert.ToInt32(cmd.ExecuteScalar());
+                if (orderId == 0)
+                    throw new Exception("Failed to retrieve the orderId. Check database and query.");
+
+                return orderId;
             }
         }
 

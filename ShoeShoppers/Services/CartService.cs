@@ -42,5 +42,10 @@ namespace ShoeShoppers.Services
         {
             _cartRepository.DeleteCart(cartId);
         }
+
+        public void DeleteCartByUserId(int userId)
+        {
+            _cartRepository.DeleteCartByUserId(userId);
+        }
     }
 }

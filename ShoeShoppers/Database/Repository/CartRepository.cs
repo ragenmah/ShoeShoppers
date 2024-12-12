@@ -155,6 +155,16 @@ namespace ShoeShoppers.Database.Repository
                 cmd.Parameters.AddWithValue("@CartId", cartId);
                 cmd.ExecuteNonQuery();
             }
+        }     
+        public void DeleteCartByUserId(int userId)
+        {
+            string query = "DELETE FROM Cart WHERE UserId = @UserId";
+
+            using (SqlCommand cmd = new SqlCommand(query, _connection))
+            {
+                cmd.Parameters.AddWithValue("@UserId", userId);
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }

@@ -15,6 +15,11 @@ namespace ShoeShoppers.Pages
     {
         private readonly int userId;
         private readonly CartService _cartService;
+        private readonly UserService _userService;
+
+        private readonly PaymentService _paymentService;
+        private readonly OrderService _orderService;
+        private readonly OrderItemsService _orderItemsService;
 
         decimal totalCartAmount = 0;
 
@@ -22,6 +27,10 @@ namespace ShoeShoppers.Pages
         {
 
             _cartService = new CartService(new CartRepository());
+            _userService = new UserService(new UserRepository());
+            _paymentService = new PaymentService(new PaymentRepository());
+            _orderService = new OrderService(new OrderRepository());
+            _orderItemsService = new OrderItemsService(new OrderItemRepository());
 
             userId = UserHelper.GetUserIdFromCookie();
         }
@@ -34,12 +43,12 @@ namespace ShoeShoppers.Pages
             }
         }
 
-        private void BindCartData()
+        private List<Cart> BindCartData()
         {
             List<Cart> cartItems = _cartService.GetAllCartItemsByUser(userId);
             if (cartItems.Count > 0)
             {
-               
+
 
                 CalculateTotalPrice(cartItems);
 
@@ -47,6 +56,8 @@ namespace ShoeShoppers.Pages
 
             rptCart.DataSource = cartItems;
             rptCart.DataBind();
+
+            return cartItems;
         }
 
         private void CalculateTotalPrice(List<Cart> cartItems)
@@ -80,30 +91,81 @@ namespace ShoeShoppers.Pages
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            // Retrieve user input
-            string ownerName = txtOwnerName.Text.Trim();
-            string cardNo = txtCardNo.Text.Trim();
-            string expiryDate = txtExpiryDate.Text.Trim();
-            int.TryParse(txtCvvNo.Text.Trim(), out int cvvNo);
-            string billingAddress = txtBillingAddress.Text.Trim();
-            string paymentMethod = ddlPaymentMethod.SelectedValue;
-
-            // Validate inputs
-            if (string.IsNullOrEmpty(ownerName) || string.IsNullOrEmpty(paymentMethod))
-            {
-                // Display error message (e.g., using a Label)
-                //lblErrorMessage.Text = "Owner Name and Payment Method are required.";
-                return;
-            }
-
-            // Save to database
-            //SavePayment(ownerName, cardNo, expiryDate, cvvNo, billingAddress, paymentMethod);
-
-            // Provide success feedback
-            //lblSuccessMessage.Text = "Payment submitted successfully!";
-            //ClearForm();
+            int paymentId = savePayment();
+            updateUser();
+            saveOrders(paymentId);
         }
 
+        private void updateUser()
+        {
+
+
+            User user = new User
+            {
+                UserId = userId,
+                FirstName = txtFirstName.Text.Trim(),
+                LastName = txtLastName.Text.Trim(),
+                Address = txtShippingAddress.Text.Trim(),
+                Country = txtCountry.Text.Trim(),
+                City = txtCity.Text.Trim(),
+                PostalCode = txtPostalCode.Text.Trim(),
+                MobileNumber = txtPhoneNumber.Text.Trim(),
+            };
+
+            _userService.UpdateUser(user);
+
+        }
+
+        private int savePayment()
+        {
+            Payment payment = new Payment
+            {
+                PaymentMethod = ddlPaymentMethod.SelectedValue,
+                OwnerName = txtOwnerName.Text.Trim(),
+                CardNo = txtCardNo.Text.Trim(),
+                ExpiryDate = txtExpiryDate.Text.Trim(),
+                CvvNo = int.Parse(txtCvvNo.Text.Trim()),
+                BillingAddress = txtBillingAddress.Text.Trim(),
+            };
+
+            return _paymentService.AddPayment(payment);
+        }
+
+        private void saveOrders(int paymentId)
+        {
+            if (paymentId > 0)
+            {
+                Order order = new Order
+                {
+                    OrderNumber = $"SN-ON-{userId}",
+                    UserId = userId,
+                    Status = "Pending",
+                    PaymentId = paymentId,
+                    IsCancelled = false
+                };
+
+                int orderId = _orderService.AddOrder(order);
+
+                if (orderId > 0)
+                {
+                    foreach (var item in BindCartData())
+                    {
+                        OrderItem orderItem = new OrderItem {
+                        OrderId=orderId,
+                        ProductId=item.ProductId,
+                        Quantity=item.Quantity,
+                        UnitPrice=item.DiscountedPrice
+                        };
+
+                        _orderItemsService.AddOrderItems(orderItem);
+
+                    }
+                    _cartService.DeleteCartByUserId(userId);
+
+                }
+            }
+
+        }
         protected void ddlPaymentMethod_SelectedIndexChanged(object sender, EventArgs e)
         {
             PaymentFormPanel.Visible = true;

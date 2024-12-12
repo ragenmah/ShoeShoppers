@@ -17,9 +17,10 @@ namespace ShoeShoppers.Services
         }
 
 
-        public void AddPayment(Payment payment)
+        public int AddPayment(Payment payment)
         {
-            _repository.AddPayment(payment);
+            int paymentId = _repository.AddPayment(payment);
+            return paymentId;
         }
 
         public List<Payment> GetAllPayments()

@@ -15,4 +15,6 @@ namespace ShoeShoppers.Model
         public DateTime OrderDate { get; set; }
         public bool IsCancelled { get; set; }
     }
+
+    
 }

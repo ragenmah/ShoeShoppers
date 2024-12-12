@@ -17,9 +17,11 @@ namespace ShoeShoppers.Services
         }
 
 
-        public void AddOrder(Order order)
+        public int AddOrder(Order order)
         {
-            _repository.AddOrder(order);
+            
+            int orderId = _repository.AddOrder(order);
+            return orderId;
         }
 
         public List<Order> GetAllOrders()

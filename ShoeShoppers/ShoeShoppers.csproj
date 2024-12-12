@@ -267,6 +267,7 @@
     <Compile Include="Database\Repository\PaymentRepository.cs" />
     <Compile Include="Database\Repository\ProductImageRepository.cs" />
     <Compile Include="Database\Repository\ProductRepository.cs" />
+    <Compile Include="Database\Repository\UserRepository.cs" />
     <Compile Include="Faqs.aspx.cs">
       <DependentUpon>Faqs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -281,6 +282,7 @@
     <Compile Include="Model\Payment.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\ProductImage.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Pages\Admin\Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -406,6 +408,7 @@
     <Compile Include="Services\PaymentService.cs" />
     <Compile Include="Services\ProductImageService.cs" />
     <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\UserService.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

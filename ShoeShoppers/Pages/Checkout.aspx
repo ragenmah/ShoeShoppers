@@ -44,7 +44,7 @@
                                 </asp:RequiredFieldValidator>
                             </div>
 
-                            <div class="mb-3">
+                            <%--<div class="mb-3">
                                 <asp:Label ID="lblEmail" runat="server" Text="Email:" Font-Bold="true" Font-Size="Medium"></asp:Label>
                                 <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" Height="35px" Width="100%" CssClass="form-control"></asp:TextBox>
                                 <asp:RequiredFieldValidator
@@ -56,7 +56,7 @@
                                     Display="Dynamic">
                                 </asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" ErrorMessage="Enter correct email address" ForeColor="Red" SetFocusOnError="True" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
-                            </div>
+                            </div>--%>
                             <div class="mb-3">
 
                                 <asp:Label ID="lblShippingAddress" runat="server" Text="Shipping address:" Font-Bold="true" Font-Size="Medium"></asp:Label>
@@ -79,7 +79,10 @@
                                 <asp:Label ID="lblPostalCode" runat="server" Text="Postal code:" Font-Bold="true" Font-Size="Medium"></asp:Label>
                                 <asp:TextBox ID="txtPostalCode" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
-
+                            <div class="mb-3">
+                                <asp:Label ID="lblPhoneNumber" runat="server" Text="Phone number:" Font-Bold="true" Font-Size="Medium"></asp:Label>
+                                <asp:TextBox ID="txtPhoneNumber" CssClass="form-control" runat="server"></asp:TextBox>
+                            </div>
                             <div class="payment">
                                 <h5 class="mb-3 ">Payment Details<span><hr />
                                 </span></h5>
