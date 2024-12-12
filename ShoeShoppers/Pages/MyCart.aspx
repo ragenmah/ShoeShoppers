@@ -40,7 +40,13 @@
                         <asp:TemplateField HeaderText="Quantity">
                             <ItemTemplate>
                                 <asp:TextBox ID="txtQuantity" runat="server" Text='<%# Eval("Quantity") %>' TextMode="Number" OnTextChanged="QuantityChanged" AutoPostBack="True" CssClass="form-control" />
-
+                                <asp:RangeValidator ID="rvQuantity" runat="server" 
+                    ControlToValidate="txtQuantity" 
+                    MinimumValue="1" 
+                    MaximumValue=<%# Eval("StockQuantity") %> 
+                    Type="Integer" 
+                    ErrorMessage="Product unavailable" 
+                    ForeColor="Red" />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Original Price">

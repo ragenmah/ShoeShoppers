@@ -24,7 +24,6 @@ namespace ShoeShoppers.Database.Repository
             }
         }
 
-        // READ
         public List<ProductImage> GetImagesByProductId(string productId)
         {
             string query = "SELECT * FROM ProductImages WHERE ProductId = @ProductId";
