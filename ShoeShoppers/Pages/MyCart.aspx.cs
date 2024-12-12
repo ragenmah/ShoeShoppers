@@ -86,7 +86,11 @@ namespace ShoeShoppers.Pages
             else if (e.CommandName == "DeleteRow")
             {
                _cartService.DeleteCart(cartId);
+             
+
                 BindCartData();
+
+                Response.Redirect(Request.RawUrl);
             }
         }
 
