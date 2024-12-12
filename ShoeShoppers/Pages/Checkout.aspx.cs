@@ -1,4 +1,8 @@
-﻿using System;
+﻿using ShoeShoppers.Database.Helpers;
+using ShoeShoppers.Database.Repository;
+using ShoeShoppers.Model;
+using ShoeShoppers.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,33 +13,70 @@ namespace ShoeShoppers.Pages
 {
     public partial class Checkout : System.Web.UI.Page
     {
+        private readonly int userId;
+        private readonly CartService _cartService;
+
+        decimal totalCartAmount = 0;
+
+        public Checkout()
+        {
+
+            _cartService = new CartService(new CartRepository());
+
+            userId = UserHelper.GetUserIdFromCookie();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                PopulatePaymentMethods();
+                BindCartData();
             }
         }
 
-        private void PopulatePaymentMethods()
+        private void BindCartData()
         {
-            // Define the payment methods
-            var paymentMethods = new List<string>
-    {
-        "Credit Card",
-        "PayPal",
-        "Bank Transfer",
-        "Cash on Delivery"
-    };
+            List<Cart> cartItems = _cartService.GetAllCartItemsByUser(userId);
+            if (cartItems.Count > 0)
+            {
+               
 
-            // Bind the payment methods to the dropdown
-            ddlPaymentMethod.DataSource = paymentMethods;
-            ddlPaymentMethod.DataBind();
+                CalculateTotalPrice(cartItems);
 
-            // Optionally, add a default "Select" item
-            ddlPaymentMethod.Items.Insert(0, new ListItem("-- Select Payment Method --", ""));
+            }
+
+            rptCart.DataSource = cartItems;
+            rptCart.DataBind();
         }
 
+        private void CalculateTotalPrice(List<Cart> cartItems)
+        {
+            foreach (var item in cartItems)
+            {
+                totalCartAmount += item.TotalPrice;
+            }
+
+            lblTotalAmount.Text = $"Total (After Discount): ${totalCartAmount:N2}";
+        }
+
+        protected void RepeaterCart_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            int cartId = Convert.ToInt32(e.CommandArgument);
+
+            if (e.CommandName == "Update")
+            {
+                TextBox txtQuantity = (TextBox)e.Item.FindControl("txtQuantity");
+                int newQuantity = int.Parse(txtQuantity.Text);
+
+            }
+            else if (e.CommandName == "Remove")
+            {
+                _cartService.DeleteCart(cartId);
+            }
+
+
+            BindCartData();
+        }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -61,6 +102,11 @@ namespace ShoeShoppers.Pages
             // Provide success feedback
             //lblSuccessMessage.Text = "Payment submitted successfully!";
             //ClearForm();
+        }
+
+        protected void ddlPaymentMethod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PaymentFormPanel.Visible = true;
         }
     }
 }

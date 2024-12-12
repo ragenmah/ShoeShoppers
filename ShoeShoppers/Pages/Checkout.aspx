@@ -10,13 +10,15 @@
 
             <div class="card p-4 shadow-sm">
 
-                <form id="form1" enctype="multipart/form-data">
-                    <div class="row">
 
-                        <div class="col-md-6">
-                            <h5 class="mb-3">Delivery Details<span><hr /></span></h5>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <form id="form1" enctype="multipart/form-data">
+                            <h5 class="mb-3">Delivery Details<span><hr />
+                            </span></h5>
                             <div class="mb-3">
-                                <asp:Label ID="lblFirstName" runat="server" Text="First Name:" Font-Bold="true" Font-Size="Larger"></asp:Label>
+                                <asp:Label ID="lblFirstName" runat="server" Text="First Name:" Font-Bold="true" Font-Size="Medium"></asp:Label>
                                 <asp:TextBox ID="txtFirstName" runat="server" Width="100%" Height="35px" CssClass="form-control"></asp:TextBox>
                                 <asp:RequiredFieldValidator
                                     ID="rfvFirstName"
@@ -29,7 +31,7 @@
 
                             </div>
                             <div class="mb-3">
-                                <asp:Label ID="lblLastName" runat="server" Text="Last Name:" Font-Bold="true" Font-Size="Larger"></asp:Label>
+                                <asp:Label ID="lblLastName" runat="server" Text="Last Name:" Font-Bold="true" Font-Size="Medium"></asp:Label>
                                 <asp:TextBox ID="txtLastName" runat="server" Width="100%" Height="35px" CssClass="form-control"></asp:TextBox>
 
                                 <asp:RequiredFieldValidator
@@ -43,7 +45,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <asp:Label ID="lblEmail" runat="server" Text="Email:" Font-Bold="true" Font-Size="Larger"></asp:Label>
+                                <asp:Label ID="lblEmail" runat="server" Text="Email:" Font-Bold="true" Font-Size="Medium"></asp:Label>
                                 <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" Height="35px" Width="100%" CssClass="form-control"></asp:TextBox>
                                 <asp:RequiredFieldValidator
                                     ID="rfvEmail"
@@ -57,85 +59,130 @@
                             </div>
                             <div class="mb-3">
 
-                                <asp:Label ID="lblShippingAddress" runat="server" Text="Shipping address:" Font-Bold="true" Font-Size="Larger"></asp:Label>
+                                <asp:Label ID="lblShippingAddress" runat="server" Text="Shipping address:" Font-Bold="true" Font-Size="Medium"></asp:Label>
 
                                 <asp:TextBox ID="txtShippingAddress" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
                             <div class="mb-3">
 
-                                <asp:Label ID="lblCountry" runat="server" Text="Country:" Font-Bold="true" Font-Size="Larger"></asp:Label>
+                                <asp:Label ID="lblCountry" runat="server" Text="Country:" Font-Bold="true" Font-Size="Medium"></asp:Label>
 
                                 <asp:TextBox ID="txtCountry" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
 
                             <div class="mb-3">
-                                <asp:Label ID="lblCity" runat="server" Text="City:" Font-Bold="true" Font-Size="Larger"></asp:Label>
+                                <asp:Label ID="lblCity" runat="server" Text="City:" Font-Bold="true" Font-Size="Medium"></asp:Label>
                                 <asp:TextBox ID="txtCity" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
 
                             <div class="mb-3">
-                                <asp:Label ID="lblPostalCode" runat="server" Text="Postal code:" Font-Bold="true" Font-Size="Larger"></asp:Label>
+                                <asp:Label ID="lblPostalCode" runat="server" Text="Postal code:" Font-Bold="true" Font-Size="Medium"></asp:Label>
                                 <asp:TextBox ID="txtPostalCode" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
 
-                            <h5 class="mb-3">Payment Details<span><hr /></span></h5>
-                            <div class="mb-3">
-                                <asp:DropDownList
-                                    ID="ddlPaymentMethod"
-                                    runat="server"
-                                    CssClass="form-control">
-                                </asp:DropDownList>
+                            <div class="payment">
+                                <h5 class="mb-3 ">Payment Details<span><hr />
+                                </span></h5>
+                                <div class="mb-3">
+                                    <asp:Label ID="lblPaymentMethod" runat="server" Text="Payment Method:" Font-Bold="true" Font-Size="Medium"></asp:Label>
+
+                                    <asp:DropDownList ID="ddlPaymentMethod" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPaymentMethod_SelectedIndexChanged">
+                                        <asp:ListItem Text="-- Select Payment Method --" Value="" />
+                                        <asp:ListItem Text="Credit Card" Value="Credit Card" />
+                                        <asp:ListItem Text="PayPal" Value="PayPal" />
+                                        <asp:ListItem Text="Bank Transfer" Value="Bank Transfer" />
+                                        <asp:ListItem Text="Cash on Delivery" Value="Cash on Delivery" />
+                                    </asp:DropDownList>
+                                </div>
+
+                                <asp:Panel ID="PaymentFormPanel" runat="server" CssClass="payment-form" Visible="false">
+                                    <div class="form-group mb-3">
+                                        <asp:Label ID="Label2" runat="server" Text="Owner Name:" Font-Bold="true" Font-Size="Medium"></asp:Label>
+                                        <asp:TextBox ID="txtOwnerName" runat="server" CssClass="form-control" MaxLength="50" />
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <asp:Label ID="Label3" runat="server" Text="Card Number:" Font-Bold="true" Font-Size="Medium"></asp:Label>
+
+                                        <asp:TextBox ID="txtCardNo" runat="server" CssClass="form-control" MaxLength="50" />
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <asp:Label ID="Label4" runat="server" Text="Expiry Date:" Font-Bold="true" Font-Size="Medium"></asp:Label>
+
+                                        <asp:TextBox ID="txtExpiryDate" runat="server" CssClass="form-control" Placeholder="MM/YY" MaxLength="5" />
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <asp:Label ID="Label5" runat="server" Text="CVV:" Font-Bold="true" Font-Size="Medium"></asp:Label>
+
+                                        <asp:TextBox ID="txtCvvNo" runat="server" CssClass="form-control" MaxLength="3" TextMode="Number" />
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <asp:Label ID="Label6" runat="server" Text="Billing Address:" Font-Bold="true" Font-Size="Medium"></asp:Label>
+
+                                        <asp:TextBox ID="txtBillingAddress" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" />
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                    </div>
+                                    <div class=" mt-4">
+                                        <div class="d-flex">
+                                            <div class="ms-auto">
+                                                <asp:Button ID="btnSubmit" runat="server" CssClass="btn custom-btn" Text="Place Order" OnClick="btnSubmit_Click" />
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </asp:Panel>
                             </div>
+                        </form>
+                    </div>
 
-                            <asp:Panel ID="PaymentFormPanel" runat="server" CssClass="payment-form">
-    <div class="form-group">
-        <label for="txtOwnerName">Owner Name:</label>
-        <asp:TextBox ID="txtOwnerName" runat="server" CssClass="form-control" MaxLength="50" />
-    </div>
-    <div class="form-group">
-        <label for="txtCardNo">Card Number:</label>
-        <asp:TextBox ID="txtCardNo" runat="server" CssClass="form-control" MaxLength="50" />
-    </div>
-    <div class="form-group">
-        <label for="txtExpiryDate">Expiry Date:</label>
-        <asp:TextBox ID="txtExpiryDate" runat="server" CssClass="form-control" Placeholder="MM/YY" MaxLength="5" />
-    </div>
-    <div class="form-group">
-        <label for="txtCvvNo">CVV:</label>
-        <asp:TextBox ID="txtCvvNo" runat="server" CssClass="form-control" MaxLength="3" TextMode="Number" />
-    </div>
-    <div class="form-group">
-        <label for="txtBillingAddress">Billing Address:</label>
-        <asp:TextBox ID="txtBillingAddress" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" />
-    </div>
-   
-    <div class="form-group">
-        <asp:Button ID="btnSubmit" runat="server" CssClass="btn btn-primary" Text="Submit Payment" OnClick="btnSubmit_Click" />
-    </div>
-</asp:Panel>
-                        </div>
+                    <!-- Right Column -->
+                    <div class="col-md-6">
+                        <h5 class="mb-3">Cart Summary<span><hr />
+                        </span></h5>
+                        <asp:Repeater ID="rptCart" runat="server" OnItemCommand="RepeaterCart_ItemCommand">
+                            <ItemTemplate>
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="row g-0 align-items-center">
+                                        <div class="col-md-4">
+                                            <img src='<%# Eval("ImageUrl") %>'
+                                                alt="Product Image"
+                                                class="img-fluid rounded-start"
+                                                style="height: 120px; object-fit: cover;" runat="server" />
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    <a href='<%# "/product/" + Eval("ProductId") %>'><%#  $"{Eval("ProductName")}" %></a>
+                                                </h5>
+                                                <p class="card-text">
+                                                    <strong>Price:</strong> $<%# Eval("Price", "{0:N2}") %><br />
+                                                    <strong>Discounted Price:</strong> $<%# Eval("DiscountedPrice", "{0:N2}") %>   (<%# Eval("DiscountPercentage") %>%)<br />
+                                                    <strong>Total Price:</strong> <%# Eval("Quantity") %> x $<%# Eval("DiscountedPrice", "{0:N2}") %> = 
+                                                    <span><b>$<%# Eval("TotalPrice", "{0:N2}") %></b></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
 
-                        <!-- Right Column -->
-                        <div class="col-md-6">
-                            <h5 class="mb-3">Cart Summary<span><hr /></span></h5>
+                        <div class=" mt-4">
+                            <div class="d-flex">
+                                <div class=" card shadow-sm w-100 p-4">
+                                    <div class="ms-auto">
 
-                            <div class="mb-3">
-                                <asp:Label ID="Label1" runat="server" Text="Postal code:" Font-Bold="true" Font-Size="Larger"></asp:Label>
-                                <asp:TextBox ID="TextBox1" CssClass="form-control" runat="server"></asp:TextBox>
-                            </div>
-                            <div class=" mt-4">
-                                <%--    <asp:Button ID="btnSubmit" CssClass="btn btn-warning me-2" runat="server" Text="Add Product" OnClick="btnSubmit_Click" />
-                     <asp:Button ID="btnAddProductImages" CssClass="btn btn-info me-2 " runat="server" Text="Add Product Images" OnClick="btnAddProductImages_Click" />
-                     <asp:Button ID="btnCancel" CssClass="btn btn-secondary" runat="server" Text="Cancel" OnClick="btnCancel_Click" />--%>
+                                        <asp:Label ID="lblTotalAmount" runat="server" CssClass="text-bold" Text="Sub Total (After Discount): $ 0.00" />
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
                     </div>
+                </div>
 
-
-                    <!-- Buttons -->
-
-                </form>
             </div>
 
         </section>
