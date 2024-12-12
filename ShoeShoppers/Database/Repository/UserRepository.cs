@@ -114,7 +114,7 @@ namespace ShoeShoppers.Database.Repository
         {
             string query = @"
                     UPDATE Users
-                    SET FirstName = @FirstName, LastName = @LastName, Email = @Email, Password = @Password, RoleId = @RoleId,
+                    SET FirstName = @FirstName, LastName = @LastName, 
                         MobileNumber = @MobileNumber, DateOfBirth = @DateOfBirth, Address = @Address, City = @City,
                         PostalCode = @PostalCode, Country = @Country, AccountImage = @AccountImage, UpdatedAt = GETDATE()
                     WHERE UserId = @UserId";
@@ -124,9 +124,9 @@ namespace ShoeShoppers.Database.Repository
                 cmd.Parameters.AddWithValue("@UserId", user.UserId);
                 cmd.Parameters.AddWithValue("@FirstName", user.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", user.LastName);
-                cmd.Parameters.AddWithValue("@Email", user.Email);
-                cmd.Parameters.AddWithValue("@Password", user.Password);
-                cmd.Parameters.AddWithValue("@RoleId", user.RoleId);
+           
+         
+              
                 cmd.Parameters.AddWithValue("@MobileNumber", user.MobileNumber ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@DateOfBirth", user.DateOfBirth ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@Address", user.Address ?? (object)DBNull.Value);

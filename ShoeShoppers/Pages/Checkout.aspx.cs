@@ -105,6 +105,7 @@ namespace ShoeShoppers.Pages
                 UserId = userId,
                 FirstName = txtFirstName.Text.Trim(),
                 LastName = txtLastName.Text.Trim(),
+                Email= Request.Cookies["UserLogin"]["Email"],
                 Address = txtShippingAddress.Text.Trim(),
                 Country = txtCountry.Text.Trim(),
                 City = txtCity.Text.Trim(),
@@ -161,6 +162,7 @@ namespace ShoeShoppers.Pages
 
                     }
                     _cartService.DeleteCartByUserId(userId);
+                    Response.Redirect("/my/invoice");
 
                 }
             }

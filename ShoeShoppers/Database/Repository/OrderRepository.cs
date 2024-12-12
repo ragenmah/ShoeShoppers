@@ -18,7 +18,8 @@ namespace ShoeShoppers.Database.Repository
 
         public int AddOrder(Order order)
         {
-            var query = "INSERT INTO Orders (OrderNumber, UserId, Status, CvvNo, PaymentId, OrderDate) VALUES (@OwnerName, @CardNo, @ExpiryDate, @CvvNo, @BillingAddress, @PaymentMethod);" +
+            var query = "INSERT INTO Orders (OrderNumber, UserId, Status,  PaymentId, OrderDate) " +
+                "VALUES (@OrderNumber, @UserId, @Status,  @PaymentId, GETDATE());" +
                 "SELECT CAST(SCOPE_IDENTITY() AS INT);";
 
             using (SqlCommand cmd = new SqlCommand(query, _connection))

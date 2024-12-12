@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Cart" Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="Checkout.aspx.cs" Inherits="ShoeShoppers.Pages.Checkout" %>
+﻿<%@ Page Title="Checkout" Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="Checkout.aspx.cs" Inherits="ShoeShoppers.Pages.Checkout" %>
 
 
 
