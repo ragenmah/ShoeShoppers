@@ -40,6 +40,9 @@
                         <asp:Label ID="lblProductName" runat="server" CssClass="product-title text-bold mb-2 pt-0" />
                         <div class="price-area my-4">
                             <asp:Label ID="lblPrice" runat="server" CssClass="new-price text-bold mb-1" />
+
+                             <div class="offer-badge"><%# Eval("DiscountPercentage", "{0:0.##}") %>% off</div>            
+
                             <%--<p class="text-secondary mb-1">(Additional tax may apply on checkout)</p>--%>
                         </div>
                         <div class="buttons d-flex my-5">

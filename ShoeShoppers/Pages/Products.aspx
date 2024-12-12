@@ -24,7 +24,7 @@
                             <span class="text-muted">$<%# Eval("Price") %></span>
                         </div>
                     </div>
-                </a>
+ <div class="offer-badge"><%# Eval("DiscountPercentage", "{0:0.##}") %>% off</div>                </a>
             </span>
         </div>
     </ItemTemplate>

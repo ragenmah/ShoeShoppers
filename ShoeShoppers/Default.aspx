@@ -49,7 +49,9 @@
                                         <div class="d-block d-md-flex justify-content-between">
                                             <span class="text-muted">$<%# Eval("Price") %></span>
                                         </div>
-                                    </div>
+                                    </div>             <div class="offer-badge"><%# Eval("DiscountPercentage", "{0:0.##}") %>% off</div>
+
+
                                 </a>
                             </span>
                         </div>
