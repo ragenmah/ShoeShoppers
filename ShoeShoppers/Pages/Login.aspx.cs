@@ -131,8 +131,6 @@ namespace ShoeShoppers.Pages
 
                 }
 
-                
-
                 Response.Cookies.Add(loginCookie);
 
                 if (userRole == "Admin")

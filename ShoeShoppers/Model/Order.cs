@@ -14,7 +14,7 @@ namespace ShoeShoppers.Model
         public int PaymentId { get; set; }
         public DateTime OrderDate { get; set; }
         public bool IsCancelled { get; set; }
-
+        public decimal TotalOrderPrice { get; set; }
         public virtual User User { get; set; }
         public virtual Payment Payment { get; set; }
     }

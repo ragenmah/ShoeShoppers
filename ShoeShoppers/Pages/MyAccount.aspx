@@ -24,7 +24,7 @@
                         </div>
                     </div>
 
-                    <span><a class="btn custom-btn w-100 me-2" href="/my/orders">My Orders</a></span><span>
+                    <span><a class="btn custom-btn w-100 me-2" href="/my-orders">My Orders</a></span><span>
                         <a class="btn custom-btn w-100 mt-2" href="/my-cart">My Cart</a></span>
                 </div>
                 <div class="pt-5 col-md-8 col-12">

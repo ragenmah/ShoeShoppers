@@ -195,6 +195,7 @@
     <Content Include="Pages\Admin\Products\AddProduct.aspx" />
     <Content Include="Pages\Admin\Products\ProductList.aspx" />
     <Content Include="Pages\Login.aspx" />
+    <Content Include="Pages\MyOrders.aspx" />
     <Content Include="Pages\ProductDetail.aspx" />
     <Content Include="Pages\Products.aspx" />
     <Content Include="Pages\Registration.aspx" />
@@ -404,6 +405,13 @@
     </Compile>
     <Compile Include="Pages\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MyOrders.aspx.cs">
+      <DependentUpon>MyOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\MyOrders.aspx.designer.cs">
+      <DependentUpon>MyOrders.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ProductDetail.aspx.cs">
       <DependentUpon>ProductDetail.aspx</DependentUpon>

@@ -55,12 +55,11 @@ namespace ShoeShoppers
             if (!string.IsNullOrEmpty(selectedValue))
             {
                 string role = UserHelper.GetRoleFromCookie();
-                if (role.ToLower() == "admin")
+                if (role.ToLower() == "admin" && ddlMyAccount.SelectedItem.ToString() == "My Account")
                 {
-                    if (ddlMyAccount.SelectedItem.ToString() == "My Account")
-                    { 
-                        Response.Redirect("/admin");
-                    }
+
+                    Response.Redirect("/admin");
+
                 }
                 else
                 {
@@ -69,7 +68,7 @@ namespace ShoeShoppers
 
 
             }
-           
+
         }
     }
 }
