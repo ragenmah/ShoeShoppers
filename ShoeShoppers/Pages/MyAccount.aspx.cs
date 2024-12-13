@@ -43,7 +43,7 @@ namespace ShoeShoppers.Pages
                 txtEmail.Text = user.Email;
                 txtMobileNumber.Text = user.MobileNumber;
                 if (user.DateOfBirth.HasValue)
-                    txtDateOfBirth.Text = user.DateOfBirth.Value.ToString("dd-MM-yyyy");
+                    txtDateOfBirth.Text = user.DateOfBirth.Value.ToString("yyyy-MM-dd");
                 txtAddress.Text = user.Address;
                 txtCity.Text = user.City;
                 txtPostalCode.Text = user.PostalCode;
@@ -91,6 +91,7 @@ namespace ShoeShoppers.Pages
                 LastName = txtLastName.Text.Trim(),
                 Email = txtEmail.Text.Trim(),
                 Address = txtAddress.Text.Trim(),
+                DateOfBirth = txtDateOfBirth.Text.IsNullOrWhiteSpace()? (DateTime?)null : Convert.ToDateTime(txtDateOfBirth.Text.Trim()),
                 Country = txtCountry.Text.Trim(),
                 City = txtCity.Text.Trim(),
                 PostalCode = txtPostalCode.Text.Trim(),
