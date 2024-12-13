@@ -99,7 +99,8 @@ namespace ShoeShoppers.Pages
             };
 
             _userService.UpdateUser(user);
-
+            Response.Redirect(Request.RawUrl);
+            PrepopulateUserDetail();
         }
 
     }
