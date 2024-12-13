@@ -96,16 +96,25 @@ namespace ShoeShoppers.Pages
 
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
-            var cart = new Cart
+            if (userId > 0)
             {
-                ProductId = product.ProductId,
-                Quantity = int.Parse(TxtCartQuantity.Text),
-                UserId = userId
-            };
-            _cartService.AddOrUpdateCart(cart);
-           
-            lblSuccessMessage.Text = "Item added to cart successfully!";
-            lblSuccessMessage.Visible = true;
+
+                var cart = new Cart
+                {
+                    ProductId = product.ProductId,
+                    Quantity = int.Parse(TxtCartQuantity.Text),
+                    UserId = userId
+                };
+                _cartService.AddOrUpdateCart(cart);
+
+                lblSuccessMessage.Text = "Item added to cart successfully!";
+                lblSuccessMessage.Visible = true;
+            }
+            else {
+                lblSuccessMessage.Text = "Please login first."; lblSuccessMessage.ForeColor = System.Drawing.Color.Red;
+                lblSuccessMessage.Visible = true;
+            }
+            
             //Response.Redirect("/my-cart");
          
             timerHideMessage.Enabled = true;
@@ -148,21 +157,33 @@ namespace ShoeShoppers.Pages
 
         protected void SubmitReview_Click(object sender, EventArgs e)
         {
-            int productId = int.Parse((string)RouteData.Values["ProductId"]);
-            
-            ProductReview productReview = new ProductReview {
-            Rating = int.Parse(txtRating.Text),
-            Comment = txtComment.Text,
-            UserId=userId,
-            ProductId=productId
-            };
-
-         int response=   _productReviewService.AddReview(productReview);
-            if (response == 1)
+            if (userId > 0)
             {
-                LoadProductReviews(productId);
+
+                int productId = int.Parse((string)RouteData.Values["ProductId"]);
+
+                ProductReview productReview = new ProductReview
+                {
+                    Rating = int.Parse(txtRating.Text),
+                    Comment = txtComment.Text,
+                    UserId = userId,
+                    ProductId = productId
+                };
+
+                int response = _productReviewService.AddReview(productReview);
+                if (response == 1)
+                {
+                    LoadProductReviews(productId);
+                }
             }
-           
+            else
+            {
+                lblFormMessage.Text = "Please login first.";
+                lblFormMessage.ForeColor = System.Drawing.Color.Red;
+                lblFormMessage.Visible = true;
+
+                timerHideMessage.Enabled = true;
+            }
         }
     }
 }

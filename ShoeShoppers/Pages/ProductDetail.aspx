@@ -94,7 +94,7 @@
                             <asp:TextBox ID="txtComment" runat="server" Text="test" CssClass="form-control" TextMode="MultiLine" EnableViewState="True" Required="True"></asp:TextBox>
                         </div>
                         <asp:Button ID="btnSubmitReview" runat="server" Text="Submit Review" CssClass="shadow btn custom-btn mt-4" OnClick="SubmitReview_Click" />
-                        <asp:Label ID="lblFormMessage" runat="server" ForeColor="Green" Visible="True" EnableViewState="True"></asp:Label>
+                        <p><asp:Label ID="lblFormMessage" runat="server" ForeColor="Green" Visible="True" EnableViewState="True"></asp:Label></p>
 
                         <%--<p class="text-danger mt-2">Error: Please login first.</p>--%>
                     </form>
