@@ -51,6 +51,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
+                                                <asp:BoundField DataField="OrderDate" HeaderText="Order Date" Visible="True" />
 
                         <asp:TemplateField HeaderText="Action">
                             <ItemTemplate>

@@ -61,7 +61,8 @@ namespace ShoeShoppers.Pages
             {
                 _orderService.CancelOrder(orderId);
                 Response.Redirect(Request.RawUrl);
-            }            else if (e.CommandName == "ReOrder")
+            }
+            else if (e.CommandName == "ReOrder")
             {
                 _orderService.ReOrder(orderId);
                 Response.Redirect(Request.RawUrl);
