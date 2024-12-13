@@ -104,5 +104,30 @@ namespace ShoeShoppers.Pages
 
             Response.Redirect(Request.RawUrl);
         }
+
+        protected void txtRating_TextChanged(object sender, EventArgs e)
+        {
+            int rating;
+            if (int.TryParse(txtRating.Text, out rating))
+            {
+                if (rating < 1 || rating > 5)
+                {
+                    
+                    txtRating.Text = "1";
+                    lblCommentMessage.Text = "Please enter a rating between 1 and 5.";
+                    lblCommentMessage.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    lblCommentMessage.Text = "";
+                }
+            }
+            else
+            {
+                txtRating.Text = "1";
+                lblCommentMessage.Text = "Invalid input. Please enter a numeric rating between 1 and 5.";
+                lblCommentMessage.ForeColor = System.Drawing.Color.Red;
+            }
+        }
     }
 }

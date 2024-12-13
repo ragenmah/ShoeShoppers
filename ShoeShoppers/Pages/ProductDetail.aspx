@@ -41,23 +41,23 @@
                         <div class="price-area my-4">
                             <asp:Label ID="lblPrice" runat="server" CssClass="new-price text-bold mb-1" />
 
-                             <div class="offer-badge"><%# Eval("DiscountPercentage", "{0:0.##}") %>% off</div>            
+                            <div class="offer-badge"><%# Eval("DiscountPercentage", "{0:0.##}") %>% off</div>
 
                             <%--<p class="text-secondary mb-1">(Additional tax may apply on checkout)</p>--%>
                         </div>
                         <div class="buttons d-flex my-5">
                             <div class="block">
-                                <button type="button" class="shadow btn custom-btn" style="max-width: 100px;" >Buy Now</button>
+                                <button type="button" class="shadow btn custom-btn" style="max-width: 100px;">Buy Now</button>
                             </div>
-                                <asp:Button class="shadow btn custom-btn" Font-Size="Large" ID="btnAddToCart" runat="server" Text="Add to cart"
-        Height="40px" OnClick="btnAddToCart_Click" />
+                            <asp:Button class="shadow btn custom-btn" Font-Size="Large" ID="btnAddToCart" runat="server" Text="Add to cart"
+                                Height="40px" OnClick="btnAddToCart_Click" />
                             <div class="block quantity">
-                                
-<asp:TextBox ID="TxtCartQuantity" runat="server" CssClass="form-control" TextMode="Number" MinLength="0" Placeholder="Enter Quantity" Text="1"></asp:TextBox>
+
+                                <asp:TextBox ID="TxtCartQuantity" runat="server" CssClass="form-control" TextMode="Number" MinLength="0" Placeholder="Enter Quantity" Text="1"></asp:TextBox>
                             </div>
                         </div>
                         <asp:Label ID="lblSuccessMessage" runat="server" ForeColor="Green" Visible="false"></asp:Label>
-<asp:Timer ID="timerHideMessage" runat="server" Interval="2000" OnTick="timerHideMessage_Tick" Enabled="false" />
+                        <asp:Timer ID="timerHideMessage" runat="server" Interval="2000" OnTick="timerHideMessage_Tick" Enabled="false" />
 
                     </div>
                     <div class="product-details my-4">
@@ -71,13 +71,31 @@
                 <div class="sn-main-content card-body">
                     <h2>Write a Review</h2>
                     <form class="">
-                        <label class="form-label">Rating</label><div>
-                            <span style="cursor: pointer;">
+                        <label class="form-label">Rating</label>
+                        <div id="rating-container" style="display: flex; gap: 5px;">
+                            <asp:TextBox ID="txtRating" runat="server" Text='1' TextMode="Number" Min="1"
+                                Max="5" AutoPostBack="True" CssClass="form-control" OnTextChanged="txtRating_TextChanged" />
+
+                            <span class="star" data-value="1" style="cursor: pointer; font-size: 24px;">&#9734;</span>
+                            <span class="star" data-value="2" style="cursor: pointer; font-size: 24px;">&#9734;</span>
+                            <span class="star" data-value="3" style="cursor: pointer; font-size: 24px;">&#9734;</span>
+                            <span class="star" data-value="4" style="cursor: pointer; font-size: 24px;">&#9734;</span>
+                            <span class="star" data-value="5" style="cursor: pointer; font-size: 24px;">&#9734;</span>
                         </div>
+                                               <asp:Label ID="lblCommentMessage" runat="server" ForeColor="Green" Visible="True" EnableViewState="True"></asp:Label>
+
+                        <input type="hidden" id="rating-value" name="Rating" />
+
                         <div>
-                            <label class="form-label">Comment</label><textarea name="comment" required="" class="form-control">test</textarea>
+                            <span style="cursor: pointer;" />
                         </div>
-                        <button type="submit" class="shadow btn custom-btn">Submit Review</button><p class="text-danger mt-2">Error: Please login first.</p>
+                        <div class="mt-3">
+                            <label class="form-label">Comment</label>
+                            <textarea name="comment" required="" class="form-control">test</textarea>
+                        </div>
+                        <button type="submit" class="shadow btn custom-btn mt-4">Submit Review</button>
+
+                        <p class="text-danger mt-2">Error: Please login first.</p>
                     </form>
                     <h2 class="mt-4">Reviews</h2>
                     <p>No reviews yet.</p>
@@ -105,10 +123,13 @@
                     img.style.transformOrigin = `${xPercent}% ${yPercent}%`;
                     img.style.transform = 'scale(1.5)';
                 } else {
-                    img.style.transform = 'scale(1)'; 
+                    img.style.transform = 'scale(1)';
                 }
             });
         });
+
+
+
     </script>
 
 </asp:Content>
