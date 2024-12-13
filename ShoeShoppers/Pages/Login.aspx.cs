@@ -141,7 +141,7 @@ namespace ShoeShoppers.Pages
                 }
                 else
                 {
-                    Response.Redirect("/");
+                    Response.Redirect("/my-account");
                 }
             }
             else
