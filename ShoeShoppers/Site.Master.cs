@@ -28,6 +28,11 @@ namespace ShoeShoppers
             if (!IsPostBack)
             {
                 CountCartItems();
+
+                if (userId > 0) {
+                    ddlMyAccount.Visible = true;
+                    btnShopNow.Visible = false;
+                }
             }
         }
 
@@ -35,6 +40,18 @@ namespace ShoeShoppers
         {
             List<Cart> cartItems = _cartService.GetAllCartItemsByUser(userId);
             cartCount.InnerText = cartItems.Count.ToString();
+        }
+
+        protected void ddlMyAccount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get the selected value from the dropdown
+            string selectedValue = ddlMyAccount.SelectedValue;
+
+            // Redirect to the selected page if a value is chosen
+            if (!string.IsNullOrEmpty(selectedValue))
+            {
+                Response.Redirect(selectedValue);
+            }
         }
     }
 }

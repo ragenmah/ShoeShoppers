@@ -12,7 +12,7 @@
                 <div class="col-md-3 mb-4">
                     <img src="/Assets/Images/owners/business-owner.jpg" alt="Owner" class="img-fluid rounded-rectangle" style="width: 256px; height: 256px;     object-fit: cover;">
                     <h4 class="mt-3">Mr. Jimmy</h4>
-                    <p>Owner of ShoeShoppers</p>
+                    <p>Owner of Simon Necktie</p>
                 </div>
 
                 <div class="col-md-3 mb-4">

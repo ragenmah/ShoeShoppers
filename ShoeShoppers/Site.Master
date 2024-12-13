@@ -15,7 +15,7 @@
 
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-       
+
 
 
     <style>
@@ -72,7 +72,6 @@
                 color: #ffc107;
                 text-decoration: none;
             }
-
     </style>
     <link rel="stylesheet" href="~/Content/css/main.css">
 </head>
@@ -121,14 +120,23 @@
                             <a class="nav-link" runat="server" href="~/Contact">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="btn custom-btn ms-2" href="/Login">Shop Now</a>
+                            <a class="btn custom-btn ms-2" href="/Login" id="btnShopNow" runat="server">Shop Now</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <asp:DropDownList ID="ddlMyAccount" runat="server" CssClass="btn custom-btn text-start" AutoPostBack="true" DataTextField="My Account" OnSelectedIndexChanged="ddlMyAccount_SelectedIndexChanged" Visible="false">
+                                <asp:ListItem Text="My Account" Value="/my-account" />
+                                <asp:ListItem Text="Logout" Value="/logout" />
+
+                            </asp:DropDownList>
+
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/my-cart">
-                               <img  src="/Assets/Icons/trolley.png" height="32" width="32"/> 
+                                <img src="/Assets/Icons/trolley.png" height="32" width="32" />
                                 <%--<i class="fas fa-shopping-cart"></i>--%>
                                 <span class="badge bg-danger" id="cartCount" runat="server">0</span>
-                               
+
                             </a>
                         </li>
                     </ul>
@@ -139,43 +147,44 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
 
-            
+
 
             <footer class="bg-dark text-white py-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 mb-3">
-                <h5>Payment Information</h5>
-                <p>We accept the following payment methods:</p>
-                <img src="/Assets/Icons/payment-cards.png"/>
-            </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <h5>Payment Information</h5>
+                            <p>We accept the following payment methods:</p>
+                            <img src="/Assets/Icons/payment-cards.png" />
+                        </div>
 
-            <div class="col-md-4 mb-3">
-                <h5>Quick Links</h5>
-                <ul class="list-unstyled">
-                    <li><a href="/" class="text-white">Home</a></li>
-                    <li><a href="/products" class="text-white">Products</a></li>
-                    <li><a href="/contact" class="text-white">Contact</a></li>
-                    <li><a href="/about" class="text-white">About Us</a></li>
-                    <li><a href="/faqs" class="text-white">FAQ</a></li>
-                </ul>
-            </div>
+                        <div class="col-md-4 mb-3">
+                            <h5>Quick Links</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="/" class="text-white">Home</a></li>
+                                <li><a href="/products" class="text-white">Products</a></li>
+                                <li><a href="/contact" class="text-white">Contact</a></li>
+                                <li><a href="/about" class="text-white">About Us</a></li>
+                                <li><a href="/faqs" class="text-white">FAQ</a></li>
+                            </ul>
+                        </div>
 
-            <div class="col-md-4 mb-3">
-                <h5>About Us</h5>
-                <p>Hand crafted leather shoes for men could be found in Simon Necktie. Unparalleled quality footwear with excellent craft are among their products. Our retail outlet is found in well known shopping malls, and we are going online for convenience.</p>
-            </div>
-        </div>
+                        <div class="col-md-4 mb-3">
+                            <h5>About Us</h5>
+                            <p>Hand crafted leather shoes for men could be found in Simon Necktie. Unparalleled quality footwear with excellent craft are among their products. Our retail outlet is found in well known shopping malls, and we are going online for convenience.</p>
+                        </div>
+                    </div>
 
-        <!-- Footer Bottom Section -->
-        <div class="row mt-4">
-            <div class="col-12 text-center">
-                <p>&copy; <%: DateTime.Now.Year %> Simon Necktie. All rights reserved.</p>
-                Developed by: Ragen Maharjan
-            </div>
-        </div>
-    </div>
-</footer>
+                    <!-- Footer Bottom Section -->
+                    <div class="row mt-4">
+                        <div class="col-12 text-center">
+                            <p>&copy; <%: DateTime.Now.Year %> Simon Necktie. All rights reserved.</p>
+                            Developed by: Ragen Maharjan
+           
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     </form>
     <asp:PlaceHolder runat="server">
