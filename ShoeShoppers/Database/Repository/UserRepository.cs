@@ -95,7 +95,7 @@ namespace ShoeShoppers.Database.Repository
                         Email = reader["Email"].ToString(),
                         RoleId = Convert.ToInt32(reader["RoleId"]),
                         MobileNumber = reader["MobileNumber"]?.ToString(),
-                        DateOfBirth = Convert.ToDateTime(reader["DateOfBirth"]),
+                        DateOfBirth = reader["DateOfBirth"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["DateOfBirth"]),
                         Address = reader["Address"]?.ToString(),
                         City = reader["City"]?.ToString(),
                         PostalCode = reader["PostalCode"]?.ToString(),

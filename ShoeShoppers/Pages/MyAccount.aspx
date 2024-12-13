@@ -15,12 +15,14 @@
                         <div class="me-3">
                             <asp:Label ID="lblUserIcon" runat="server" CssClass="rounded-circle bg-secondary d-flex justify-content-center align-items-center"
                                 Style="width: 100px; height: 100px; color: white; font-size: 40px;">
-                                <i class="fas fa-user"></i>
+                                <i class="fas fa-user" id="iconField" runat="server"></i>
+                                        <img src="path-to-your-image.jpg" alt="User" id="accountImageField" class="rounded-circle" Visible="false" runat="server" style="width: 100px; height: 100px; object-fit: cover;">
+
                             </asp:Label>
                         </div>
                         <div>
-                            <h5>ragen</h5>
-                            <p>ragenmah99@gmail.com</p>
+                            <h5 id="lblFullNameField" runat="server"> </h5>
+                            <p id="lblEmailField" runat="server"></p>
                         </div>
                     </div>
 
@@ -28,7 +30,7 @@
                         <a class="btn custom-btn w-100 mt-2" href="/my-cart">My Cart</a></span>
                 </div>
                 <div class="pt-5 col-md-8 col-12">
-                    <h3>Update Profile</h3>
+                    <h3>Update User Details</h3>
                   <asp:Panel ID="pnlUserForm" runat="server">
             
             <!-- First Name -->
@@ -56,14 +58,14 @@
             </div>--%>
 
             <!-- Role ID -->
-            <div class="form-group mb-3">
+            <%--<div class="form-group mb-3">
                 <asp:Label ID="lblRoleId" runat="server" AssociatedControlID="ddlRoleId"  ForeColor="Black">Role</asp:Label>
                 <asp:DropDownList ID="ddlRoleId" runat="server" CssClass="form-control">
                     <asp:ListItem Text="Select Role" Value="" />
                     <asp:ListItem Text="Admin" Value="1" />
                     <asp:ListItem Text="User" Value="2" />
                 </asp:DropDownList>
-            </div>
+            </div>--%>
 
             <!-- Mobile Number -->
             <div class="form-group mb-3">
@@ -109,7 +111,7 @@
 
             <!-- Submit Button -->
             <div class="form-group mb-3">
-                <asp:Button ID="btnSubmit" runat="server" CssClass="btn btn-primary" Text="Submit" />
+                <asp:Button ID="btnSubmit" runat="server" CssClass="btn custom-btn" Text="Update details" OnClick="UpdateDetailsBtn_Click" />
             </div>
         </asp:Panel>
                 </div>
