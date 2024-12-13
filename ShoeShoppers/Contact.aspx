@@ -44,8 +44,8 @@
         </div>
 
                     <div>
-                        <asp:Button class="btn custom-btn mt-3" Font-Size="Large" ID="Button1" runat="server" Text="Send Message"
-                            Height="40px" />
+                        <asp:Button class="btn custom-btn mt-3" Font-Size="Large" ID="btnSendMessage" runat="server"  Text="Send Message"
+                            Height="40px" OnClick="SendMessageBtn_Click" />
                     </div>
                     </form>
                 </div>

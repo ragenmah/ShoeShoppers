@@ -266,6 +266,7 @@
     <Compile Include="Database\Helpers\UserHelper.cs" />
     <Compile Include="Database\Repository\CartRepository.cs" />
     <Compile Include="Database\Repository\CategoryRepository.cs" />
+    <Compile Include="Database\Repository\ContactUsRepository.cs" />
     <Compile Include="Database\Repository\OrderItemRepository.cs" />
     <Compile Include="Database\Repository\OrderRepository.cs" />
     <Compile Include="Database\Repository\PaymentRepository.cs" />
@@ -282,6 +283,7 @@
     </Compile>
     <Compile Include="Model\Cart.cs" />
     <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\ContactUs.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\OrderItem.cs" />
     <Compile Include="Model\Payment.cs" />
@@ -437,6 +439,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CartService.cs" />
     <Compile Include="Services\CategoryService.cs" />
+    <Compile Include="Services\ContactUsService.cs" />
     <Compile Include="Services\OrderItemsService.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\PaymentService.cs" />
