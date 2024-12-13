@@ -107,6 +107,8 @@
             <div class="form-group mb-3">
                 <asp:Label ID="lblAccountImage" runat="server" AssociatedControlID="fileAccountImage"  ForeColor="Black">Account Image</asp:Label>
                 <asp:FileUpload ID="fileAccountImage" runat="server" CssClass="form-control" />
+                                    <asp:HiddenField ID="hfOldImageLink" runat="server" />
+
             </div>
 
             <!-- Submit Button -->

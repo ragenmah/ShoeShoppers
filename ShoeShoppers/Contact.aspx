@@ -39,10 +39,10 @@
                             <span style="margin-left: 5px;">Keep me logged in</span>
 
                         </asp:label>
-        <div>
-            <asp:Button class="btn custom-btn" Font-Size="Large" ID="Button1" runat="server" Text="Send Message"
-                Height="40px" />
-        </div>
+                    <div>
+                        <asp:Button class="btn custom-btn" Font-Size="Large" ID="Button1" runat="server" Text="Send Message"
+                            Height="40px" />
+                    </div>
                     </form>
                 </div>
             </div>

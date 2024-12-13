@@ -18,7 +18,7 @@ namespace ShoeShoppers.Pages
         private readonly UserService _userService;
 
         private readonly int userId;
-
+        User userDetail;
         public MyAccount()
         {
 
@@ -35,27 +35,28 @@ namespace ShoeShoppers.Pages
         }
         private void PrepopulateUserDetail()
         {
-            User user = _userService.GetUserById(userId);
-            if (user != null)
+            userDetail = _userService.GetUserById(userId);
+            if (userDetail != null)
             {
-                txtFirstName.Text = user.FirstName;
-                txtLastName.Text = user.LastName;
-                txtEmail.Text = user.Email;
-                txtMobileNumber.Text = user.MobileNumber;
-                if (user.DateOfBirth.HasValue)
-                    txtDateOfBirth.Text = user.DateOfBirth.Value.ToString("yyyy-MM-dd");
-                txtAddress.Text = user.Address;
-                txtCity.Text = user.City;
-                txtPostalCode.Text = user.PostalCode;
-                txtCountry.Text = user.Country;
+                txtFirstName.Text = userDetail.FirstName;
+                txtLastName.Text = userDetail.LastName;
+                txtEmail.Text = userDetail.Email;
+                txtMobileNumber.Text = userDetail.MobileNumber;
+                if (userDetail.DateOfBirth.HasValue)
+                    txtDateOfBirth.Text = userDetail.DateOfBirth.Value.ToString("yyyy-MM-dd");
+                txtAddress.Text = userDetail.Address;
+                txtCity.Text = userDetail.City;
+                txtPostalCode.Text = userDetail.PostalCode;
+                txtCountry.Text = userDetail.Country;
 
-                lblFullNameField.InnerText = $"{user.FirstName} {user.LastName}";
-                lblEmailField.InnerText = user.Email;
+                lblFullNameField.InnerText = $"{userDetail.FirstName} {userDetail.LastName}";
+                lblEmailField.InnerText = userDetail.Email;
 
-                if (!user.AccountImage.IsNullOrWhiteSpace()) {
+                if (!userDetail.AccountImage.IsNullOrWhiteSpace()) {
                     iconField.Visible = false;
-                    accountImageField.Src = user.AccountImage;
+                    accountImageField.Src = userDetail.AccountImage;
                     accountImageField.Visible = true;
+                    hfOldImageLink.Value= userDetail.AccountImage;
                 }
                 else
                 {
@@ -83,8 +84,11 @@ namespace ShoeShoppers.Pages
                 imagePath = "~/Uploads/Users/" + fileName;
                 fileAccountImage.SaveAs(folderPath + fileName);
             }
+            else  {
+                imagePath = hfOldImageLink.Value;
+            }
 
-            User user = new User
+                User user = new User
             {
                 UserId = userId,
                 FirstName = txtFirstName.Text.Trim(),
