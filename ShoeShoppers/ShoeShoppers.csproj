@@ -189,6 +189,7 @@
     <Content Include="Pages\Admin\Products\ProductImageList.aspx" />
     <Content Include="Pages\Checkout.aspx" />
     <Content Include="Pages\Invoice.aspx" />
+    <Content Include="Pages\MyAccount.aspx" />
     <Content Include="Pages\MyCart.aspx" />
     <Content Include="Pages\Logout.aspx" />
     <Content Include="Pages\Admin\Products\AddProduct.aspx" />
@@ -361,6 +362,13 @@
     </Compile>
     <Compile Include="Pages\Invoice.aspx.designer.cs">
       <DependentUpon>Invoice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MyAccount.aspx.cs">
+      <DependentUpon>MyAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\MyAccount.aspx.designer.cs">
+      <DependentUpon>MyAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\MyCart.aspx.cs">
       <DependentUpon>MyCart.aspx</DependentUpon>

@@ -30,7 +30,8 @@ namespace ShoeShoppers
                 CountCartItems();
                 string email = UserHelper.GetEmailFromCookie();
 
-                if (userId > 0) {
+                if (userId > 0)
+                {
                     ddlMyAccount.Items.Insert(0, new ListItem(email, ""));
 
                     ddlMyAccount.Visible = true;
@@ -53,8 +54,22 @@ namespace ShoeShoppers
             // Redirect to the selected page if a value is chosen
             if (!string.IsNullOrEmpty(selectedValue))
             {
-                Response.Redirect(selectedValue);
+                string role = UserHelper.GetRoleFromCookie();
+                if (role.ToLower() == "admin")
+                {
+                    if (ddlMyAccount.SelectedItem.ToString() == "My Account")
+                    { 
+                        Response.Redirect("/admin");
+                    }
+                }
+                else
+                {
+                    Response.Redirect(selectedValue);
+                }
+
+
             }
+           
         }
     }
 }

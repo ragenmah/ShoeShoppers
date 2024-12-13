@@ -13,15 +13,10 @@ namespace ShoeShoppers.Database.Helpers
             if (loginCookie != null)
             {
                 string userId = loginCookie["UserId"];
-                if (userId!=null)
+                if (userId != null)
                 {
-                    
-
                     return int.Parse(userId);
-
-
                 }
-
             }
 
             return 0;
@@ -35,13 +30,23 @@ namespace ShoeShoppers.Database.Helpers
                 string userEmail = loginCookie["Email"];
                 if (userEmail != null)
                 {
-
-
                     return userEmail;
-
-
                 }
+            }
 
+            return "";
+        }
+
+        public static string GetRoleFromCookie()
+        {
+            HttpCookie loginCookie = HttpContext.Current.Request.Cookies["UserLogin"];
+            if (loginCookie != null)
+            {
+                string userEmail = loginCookie["Role"];
+                if (userEmail != null)
+                {
+                    return userEmail;
+                }
             }
 
             return "";
