@@ -1,4 +1,5 @@
 ﻿using ShoeShoppers.Model;
+using ShoeShoppers.Pages;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -24,6 +25,45 @@ namespace ShoeShoppers.Database.Repository
 
             using (SqlCommand cmd = new SqlCommand(query, _connection))
             {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        products.Add(new Product
+                        {
+                            ProductId = Convert.ToInt32(reader["ProductId"]),
+                            ProductName = reader["ProductName"].ToString(),
+                            ProductDescription = reader["ProductDescription"].ToString(),
+                            Price = Convert.ToDecimal(reader["Price"]),
+                            DiscountPercentage = Convert.ToDecimal(reader["DiscountPercentage"]),
+                            DiscountedPrice = Convert.ToDecimal(reader["DiscountedPrice"]),
+                            StockQuantity = Convert.ToInt32(reader["StockQuantity"]),
+                            Size = reader["Size"].ToString(),
+                            Color = reader["Color"].ToString(),
+                            CategoryId = Convert.ToInt32(reader["CategoryId"]),
+                            CategoryName =reader["CategoryName"].ToString(),
+
+                            ImageUrl = reader["ImageUrl"].ToString(),
+                            CreatedAt = Convert.ToDateTime(reader["CreatedAt"]),
+                            UpdatedAt = Convert.ToDateTime(reader["UpdatedAt"]),
+                            IsActive = Convert.ToBoolean(reader["IsActive"])
+                        });
+                    }
+                }
+            }
+
+            return products;
+        } 
+        public List<Product> GetAllProductsByCategory(string categoryId)
+        {
+            var products = new List<Product>();
+            string query = "SELECT p.*, c.CategoryName FROM Products p " +
+                "INNER JOIN Categories c ON p.CategoryId = c.CategoryId WHERE p.CategoryId = @CategoryId ;";
+
+            using (SqlCommand cmd = new SqlCommand(query, _connection))
+            {
+                cmd.Parameters.AddWithValue("@CategoryId", categoryId);
+
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())

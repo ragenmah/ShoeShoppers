@@ -4,7 +4,13 @@
     <div class="m-5">
        <section id="products" class="container">
 
-    <h2 class=" mb-4">Our Products</h2>
+    <h2 class=" mb-4 d-flex justify-content-between">Our Products
+
+        <div class="mb-3">
+   
+    <asp:DropDownList ID="ddlCategory" CssClass="form-select" runat="server"  AutoPostBack="true" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged"></asp:DropDownList>
+</div>
+    </h2>
 
 
     <div class=" row">

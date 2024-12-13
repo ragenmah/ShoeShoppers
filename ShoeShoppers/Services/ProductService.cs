@@ -20,6 +20,9 @@ namespace ShoeShoppers.Services
 
         // Fetch all products
         public List<Product> GetAllProducts() => _repository.GetAllProducts();
+           
+        // Fetch all products
+        public List<Product> GetAllProductsByCategory(string categoryId) => _repository.GetAllProductsByCategory(categoryId);
 
         // Fetch a product by its ID
         public Product GetProductById(int id)

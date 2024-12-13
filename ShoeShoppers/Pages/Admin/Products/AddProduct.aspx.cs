@@ -72,7 +72,6 @@ namespace ShoeShoppers.Pages.Admin.Products
 
         private void LoadCategories()
         {
-            // Example: Bind categories to dropdown (assume CategoryService exists)
             var categories =  _categoryBLL.GetAllCategories();
             ddlCategory.DataSource = categories;
             ddlCategory.DataTextField = "CategoryName";
