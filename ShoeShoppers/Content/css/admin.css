@@ -24,10 +24,11 @@ body, html {
 /* Sidebar Styles */
 .sidebar {
     width: 250px;
-    background-color: var(--secondary-color);
-    color: white;
+    background-color: var(--text-color);
+    color: black;
     padding: 20px;
     box-sizing: border-box;
+    border-top-right-radius: 30px;
 }
 
     .sidebar h2 {
@@ -59,13 +60,13 @@ body, html {
     }
 
         .nav-links a:hover {
-            background-color: #555;
+            background-color: var(--secondary-color);
         }
 
 /* Main Content Styles */
 .main-content {
     flex-grow: 1;
-    background-color: #f5f5f5;
+/*    background-color: var(--background-color);*/
     padding: 20px;
     box-sizing: border-box;
     overflow-y: auto;

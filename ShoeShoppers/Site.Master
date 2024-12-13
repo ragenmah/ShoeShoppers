@@ -125,12 +125,14 @@
 
                         <li class="nav-item">
                             <asp:DropDownList ID="ddlMyAccount" runat="server" CssClass="btn custom-btn text-start" AutoPostBack="true" DataTextField="My Account" OnSelectedIndexChanged="ddlMyAccount_SelectedIndexChanged" Visible="false">
+
                                 <asp:ListItem Text="My Account" Value="/my-account" />
                                 <asp:ListItem Text="Logout" Value="/logout" />
 
                             </asp:DropDownList>
 
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="/my-cart">
                                 <img src="/Assets/Icons/trolley.png" height="32" width="32" />

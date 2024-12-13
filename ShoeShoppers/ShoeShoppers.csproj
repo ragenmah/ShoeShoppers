@@ -185,6 +185,7 @@
     <Content Include="Global.asax" />
     <Content Include="Pages\Admin\Categories\CategoryList.aspx" />
     <Content Include="Pages\Admin\Dashboard.aspx" />
+    <Content Include="Pages\Admin\Orders\Orders.aspx" />
     <Content Include="Pages\Admin\Products\ProductImageList.aspx" />
     <Content Include="Pages\Checkout.aspx" />
     <Content Include="Pages\Invoice.aspx" />
@@ -332,6 +333,13 @@
     </Compile>
     <Compile Include="Pages\Admin\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\Orders\Orders.aspx.cs">
+      <DependentUpon>Orders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\Orders\Orders.aspx.designer.cs">
+      <DependentUpon>Orders.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Admin\Products\ProductImageList.aspx.cs">
       <DependentUpon>ProductImageList.aspx</DependentUpon>

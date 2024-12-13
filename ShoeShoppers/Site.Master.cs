@@ -28,8 +28,11 @@ namespace ShoeShoppers
             if (!IsPostBack)
             {
                 CountCartItems();
+                string email = UserHelper.GetEmailFromCookie();
 
                 if (userId > 0) {
+                    ddlMyAccount.Items.Insert(0, new ListItem(email, ""));
+
                     ddlMyAccount.Visible = true;
                     btnShopNow.Visible = false;
                 }

@@ -26,5 +26,25 @@ namespace ShoeShoppers.Database.Helpers
 
             return 0;
         }
+
+        public static string GetEmailFromCookie()
+        {
+            HttpCookie loginCookie = HttpContext.Current.Request.Cookies["UserLogin"];
+            if (loginCookie != null)
+            {
+                string userEmail = loginCookie["Email"];
+                if (userEmail != null)
+                {
+
+
+                    return userEmail;
+
+
+                }
+
+            }
+
+            return "";
+        }
     }
 }
