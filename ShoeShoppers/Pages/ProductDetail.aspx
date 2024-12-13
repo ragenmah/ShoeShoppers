@@ -82,7 +82,7 @@
                             <span class="star" data-value="4" style="cursor: pointer; font-size: 24px;">&#9734;</span>
                             <span class="star" data-value="5" style="cursor: pointer; font-size: 24px;">&#9734;</span>
                         </div>
-                                               <asp:Label ID="lblCommentMessage" runat="server" ForeColor="Green" Visible="True" EnableViewState="True"></asp:Label>
+                        <asp:Label ID="lblCommentMessage" runat="server" ForeColor="Green" Visible="True" EnableViewState="True"></asp:Label>
 
                         <input type="hidden" id="rating-value" name="Rating" />
 
@@ -91,14 +91,41 @@
                         </div>
                         <div class="mt-3">
                             <label class="form-label">Comment</label>
-                            <textarea name="comment" required="" class="form-control">test</textarea>
+                            <asp:TextBox ID="txtComment" runat="server" Text="test" CssClass="form-control" TextMode="MultiLine" EnableViewState="True" Required="True"></asp:TextBox>
                         </div>
-                        <button type="submit" class="shadow btn custom-btn mt-4">Submit Review</button>
+                        <asp:Button ID="btnSubmitReview" runat="server" Text="Submit Review" CssClass="shadow btn custom-btn mt-4" OnClick="SubmitReview_Click" />
+                        <asp:Label ID="lblFormMessage" runat="server" ForeColor="Green" Visible="True" EnableViewState="True"></asp:Label>
 
-                        <p class="text-danger mt-2">Error: Please login first.</p>
+                        <%--<p class="text-danger mt-2">Error: Please login first.</p>--%>
                     </form>
                     <h2 class="mt-4">Reviews</h2>
-                    <p>No reviews yet.</p>
+                    <p id="lblNoReview" visible="false" runat="server">No reviews yet.</p>
+                    <asp:Repeater ID="rptReviews" runat="server">
+                        <ItemTemplate>
+                            <div class="card mb-3">
+
+                                <div class="card-body">
+                                    <div class="review">
+                                        <h4><strong><%# Eval("User.Firstname") %> <%# Eval("User.Lastname") %></strong></h4>
+                                        <h6>
+                                            <i><%# Eval("CreatedAt") %></i>
+                                        </h6>
+                                        <div class="rating mb-2">
+                                            <strong>Rating:</strong> <%# Eval("Rating") %> <span class="star" data-value="5" style="cursor: pointer; font-size: 24px;">&#9734;</span>
+                                        </div>
+                                        <div class="comment">
+                                            <strong>Comment:</strong> <%# Eval("Comment") %>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="card-footer">
+                                    <%# Eval("ResponseContent") != null && !string.IsNullOrEmpty(Eval("ResponseContent").ToString()) ? Eval("ResponseContent") : "<i>No response yet.</i>" %>
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
                 </div>
             </div>
         </section>

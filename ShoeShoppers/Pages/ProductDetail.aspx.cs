@@ -18,6 +18,7 @@ namespace ShoeShoppers.Pages
         private readonly ProductService _productService;
         private ProductImageService _productImageService;
         private readonly CartService _cartService ;
+        private readonly ProductReviewService _productReviewService;
 
         private readonly int userId;
 
@@ -27,6 +28,7 @@ namespace ShoeShoppers.Pages
             _productService = new ProductService(new ProductRepository());
             _productImageService = new ProductImageService();
             _cartService = new CartService(new CartRepository());
+            _productReviewService = new ProductReviewService(new ProductReviewRepository());
 
             userId = UserHelper.GetUserIdFromCookie();
         }
@@ -39,8 +41,10 @@ namespace ShoeShoppers.Pages
             if (productId>0)
             {
                 LoadProductDetails(productId);
-                    LoadProductImages(productId);
-            }
+                LoadProductImages(productId);
+                    LoadProductReviews(productId);
+
+                }
             }
         }
 
@@ -62,6 +66,8 @@ namespace ShoeShoppers.Pages
             }
         }
 
+
+
         private void LoadProductImages(int productId)
         {
             var images = _productImageService.GetProductImages(productId.ToString());
@@ -76,6 +82,16 @@ namespace ShoeShoppers.Pages
 
             }
             rptProductImages.DataBind();
+        }
+
+        private void LoadProductReviews(int productId)
+        {
+           var productReviews = _productReviewService.GetAllReviewsByProduct(productId);
+            if (!(productReviews.Count >0)) {
+                lblNoReview.Visible = true;
+            }
+            rptReviews.DataSource = productReviews;
+            rptReviews.DataBind();
         }
 
         protected void btnAddToCart_Click(object sender, EventArgs e)
@@ -128,6 +144,25 @@ namespace ShoeShoppers.Pages
                 lblCommentMessage.Text = "Invalid input. Please enter a numeric rating between 1 and 5.";
                 lblCommentMessage.ForeColor = System.Drawing.Color.Red;
             }
+        }
+
+        protected void SubmitReview_Click(object sender, EventArgs e)
+        {
+            int productId = int.Parse((string)RouteData.Values["ProductId"]);
+            
+            ProductReview productReview = new ProductReview {
+            Rating = int.Parse(txtRating.Text),
+            Comment = txtComment.Text,
+            UserId=userId,
+            ProductId=productId
+            };
+
+         int response=   _productReviewService.AddReview(productReview);
+            if (response == 1)
+            {
+                LoadProductReviews(productId);
+            }
+           
         }
     }
 }
