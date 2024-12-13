@@ -20,27 +20,31 @@
                             Fill out the form to reach us 
                         </div>
 
-                        <div>
-                            <asp:Label ID="Label2" runat="server" Text="Email:" Font-Bold="true" Font-Size="Larger"></asp:Label>
-                            <asp:TextBox ID="TextBox1" runat="server" TextMode="Email" Height="35px" Width="100%"></asp:TextBox>
-                        </div>
-                        <div>
-                            <div style="display: flex; align-items: center; justify-content: space-between">
-                                <asp:Label ID="Label3" runat="server" Text="Password: " Font-Bold="true" Font-Size="Larger"></asp:Label>
-                                <label style="display: flex; align-items: center;">
-                                    <input type="checkbox" id="showPassword" onclick="document.getElementById('TextBox2').type=this.checked? 'text': 'password'" />
-                                    <span style="margin-left: 5px;">Show Password</span>
-                                </label>
-                            </div>
-                            <asp:TextBox ID="TextBox2" runat="server" TextMode="Password" Width="100%" Height="35px"></asp:TextBox>
-                        </div>
-                        <asp:label ID="Label4" style="display: flex; align-items: center;">
-                            <input class="checkbox" type="checkbox" />
-                            <span style="margin-left: 5px;">Keep me logged in</span>
+                          <div class="form-group mt-3">
+            <asp:Label ID="lblFullName" runat="server" AssociatedControlID="txtFullName" ForeColor="Black">Full Name</asp:Label>
+            <asp:TextBox ID="txtFullName" runat="server" CssClass="form-control" placeholder="Enter your full name" required="true"></asp:TextBox>
+        </div>
 
-                        </asp:label>
+      
+        <div class="form-group mt-3">
+            <asp:Label ID="lblEmail" runat="server" AssociatedControlID="txtEmail" ForeColor="Black">Email</asp:Label>
+            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Enter your email" type="email" required="true"></asp:TextBox>
+        </div>
+
+       
+        <div class="form-group mt-3">
+            <asp:Label ID="lblPhoneNumber" runat="server" AssociatedControlID="txtPhoneNumber" ForeColor="Black">Phone Number</asp:Label>
+            <asp:TextBox ID="txtPhoneNumber" runat="server" CssClass="form-control" placeholder="Enter your phone number" required="true"></asp:TextBox>
+        </div>
+
+        <!-- Message -->
+        <div class="form-group mt-3">
+            <asp:Label ID="lblMessage" runat="server" AssociatedControlID="txtMessage" ForeColor="Black">Message</asp:Label>
+            <asp:TextBox ID="txtMessage" runat="server" CssClass="form-control" placeholder="Write your message" TextMode="MultiLine" Rows="5" required="true"></asp:TextBox>
+        </div>
+
                     <div>
-                        <asp:Button class="btn custom-btn" Font-Size="Large" ID="Button1" runat="server" Text="Send Message"
+                        <asp:Button class="btn custom-btn mt-3" Font-Size="Large" ID="Button1" runat="server" Text="Send Message"
                             Height="40px" />
                     </div>
                     </form>
