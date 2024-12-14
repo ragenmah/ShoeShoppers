@@ -1,4 +1,8 @@
-﻿using System;
+﻿using ShoeShoppers.Database.Helpers;
+using ShoeShoppers.Database.Repository;
+using ShoeShoppers.Model;
+using ShoeShoppers.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,8 +13,61 @@ namespace ShoeShoppers
 {
     public partial class SiteMaster : MasterPage
     {
+        private readonly CartService _cartService;
+        private readonly int userId;
+
+        public SiteMaster()
+        {
+
+            _cartService = new CartService(new CartRepository());
+
+            userId = UserHelper.GetUserIdFromCookie();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                CountCartItems();
+                string email = UserHelper.GetEmailFromCookie();
+
+                if (userId > 0)
+                {
+                    ddlMyAccount.Items.Insert(0, new ListItem(email, ""));
+
+                    ddlMyAccount.Visible = true;
+                    btnShopNow.Visible = false;
+                }
+            }
+        }
+
+        private void CountCartItems()
+        {
+            List<Cart> cartItems = _cartService.GetAllCartItemsByUser(userId);
+            cartCount.InnerText = cartItems.Count.ToString();
+        }
+
+        protected void ddlMyAccount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get the selected value from the dropdown
+            string selectedValue = ddlMyAccount.SelectedValue;
+
+            // Redirect to the selected page if a value is chosen
+            if (!string.IsNullOrEmpty(selectedValue))
+            {
+                string role = UserHelper.GetRoleFromCookie();
+                if (role.ToLower() == "admin" && ddlMyAccount.SelectedItem.ToString() == "My Account")
+                {
+
+                    Response.Redirect("/admin");
+
+                }
+                else
+                {
+                    Response.Redirect(selectedValue);
+                }
+
+
+            }
 
         }
     }

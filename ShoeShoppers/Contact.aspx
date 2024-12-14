@@ -1,49 +1,56 @@
 ﻿<%@ Page Title="Contact" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="ShoeShoppers.Contact" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-   <div class="m-5">
-    <section id="contacts" class="container">
+    <div class="m-5">
+        <section id="contacts" class="container">
 
-  <div class="row">
-      <div class="col-md-5">
-            <h2 class=" mb-4">ShoeShoppers.</h2>
+            <div class="row">
+                <div class="col-md-5">
+                    <h2 class=" mb-4">Simon Necktie.</h2>
+                    <img src="Assets/Icons/shopping-bag.png" />
+                    <h3>Opening Hours</h3>
+                    <p>We are open every day!</p>
+                </div>
+                <div class="col-md-7">
+                    <form id="form1" class="form">
+                        <div>
+                            <asp:Label ID="" Text="Contact Form" Font-Size="XX-Large" Font-Bold="true" ForeColor="#9900CC"></asp:Label>
+                        </div>
+                        <div class="url-link">
+                            Fill out the form to reach us 
+                        </div>
 
-<p>Use this area to provide additional information.</p>
-      </div>
-      <div class="col-md-7">
-
-    <form id="form1"  class="form">
-        <div>
-            <asp:Label ID=""  Text="Contact Form" Font-Size="XX-Large" Font-Bold="true" ForeColor="#9900CC"></asp:Label>
+                          <div class="form-group mt-3">
+            <asp:Label ID="lblFullName" runat="server" AssociatedControlID="txtFullName" ForeColor="Black">Full Name</asp:Label>
+            <asp:TextBox ID="txtFullName" runat="server" CssClass="form-control" placeholder="Enter your full name" required="true"></asp:TextBox>
         </div>
-        <div class="url-link">
-          Fill the form to  Contact us 
+
+      
+        <div class="form-group mt-3">
+            <asp:Label ID="lblEmail" runat="server" AssociatedControlID="txtEmail" ForeColor="Black">Email</asp:Label>
+            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Enter your email" type="email" required="true"></asp:TextBox>
         </div>
 
-        <%--<div>
-            <asp:Label ID="Label2" runat="server" Text="Email:" Font-Bold="true" Font-Size="Larger"></asp:Label>
-            <asp:TextBox ID="TextBox1" runat="server" TextMode="Email" Height="35px" Width="100%"></asp:TextBox>
+       
+        <div class="form-group mt-3">
+            <asp:Label ID="lblPhoneNumber" runat="server" AssociatedControlID="txtPhoneNumber" ForeColor="Black">Phone Number</asp:Label>
+            <asp:TextBox ID="txtPhoneNumber" runat="server" CssClass="form-control" placeholder="Enter your phone number" required="true"></asp:TextBox>
         </div>
-        <div>
-            <div style="display: flex; align-items: center; justify-content:space-between">
-                <asp:Label ID="Label3" runat="server" Text="Password: " Font-Bold="true" Font-Size="Larger"></asp:Label>
-                <label style="display: flex; align-items: center;">
-                    <input type="checkbox" id="showPassword" onclick="document.getElementById('TextBox2').type=this.checked? 'text': 'password'" />
-                    <span style="margin-left: 5px;">Show Password</span>
-                </label>
+
+        <!-- Message -->
+        <div class="form-group mt-3">
+            <asp:Label ID="lblMessage" runat="server" AssociatedControlID="txtMessage" ForeColor="Black">Message</asp:Label>
+            <asp:TextBox ID="txtMessage" runat="server" CssClass="form-control" placeholder="Write your message" TextMode="MultiLine" Rows="5" required="true"></asp:TextBox>
+        </div>
+
+                    <div>
+                        <asp:Button class="btn custom-btn mt-3" Font-Size="Large" ID="btnSendMessage" runat="server"  Text="Send Message"
+                            Height="40px" OnClick="SendMessageBtn_Click" />
+                    </div>
+                    </form>
+                </div>
             </div>
-            <asp:TextBox ID="TextBox2" runat="server" TextMode="Password" Width="100%" Height="35px"></asp:TextBox>
-        </div>--%>
-       <%-- <input class="checkbox" type="checkbox" />
-        Keep me logged in
-        <div>
-            <asp:Button class="btn-common btn-login" Font-Size="Large" ID="Button1" runat="server" Text="Login"
-                Height="40px" Width="90px" />
-        </div>--%>
-    </form>
-</div>
-      </div>
-    </section>
-</div>
-   
+        </section>
+    </div>
+
 </asp:Content>

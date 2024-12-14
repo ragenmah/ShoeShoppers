@@ -11,18 +11,7 @@ namespace ShoeShoppers.Pages.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.Cookies["email"] != null)
-            {
-                // Retrieve the cookie value
-                string email = Request.Cookies["email"].Value;
-
-                // Display the username in a label or another control
-                lblWelcome.Text = "Welcome, " + email;
-            }
-            else
-            {
-                lblWelcome.Text = "No user data found in cookie.";
-            }
+           
         }
     }
 }

@@ -44,12 +44,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.Net-Next.4.0.3\lib\net472\BCrypt.Net-Next.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -117,8 +133,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitignore" />
     <Content Include="About.aspx" />
-    <Content Include="assets\logo.png" />
+    <Content Include="Assets\Icons\add-product.png" />
+    <Content Include="Assets\Icons\add-user-new.png" />
+    <Content Include="Assets\Icons\add-user.png" />
+    <Content Include="Assets\Icons\delete.png" />
+    <Content Include="Assets\Icons\edit.png" />
+    <Content Include="Assets\Icons\shopping-bag.png" />
+    <Content Include="Assets\Icons\trolley.png" />
+    <Content Include="Assets\Images\1.png" />
+    <Content Include="Assets\Images\10.png" />
+    <Content Include="Assets\Images\2.png" />
+    <Content Include="Assets\Images\3.png" />
+    <Content Include="Assets\Images\4.png" />
+    <Content Include="Assets\Images\5.png" />
+    <Content Include="Assets\Images\6.png" />
+    <Content Include="Assets\Images\7.png" />
+    <Content Include="Assets\Images\8.png" />
+    <Content Include="Assets\Images\9.png" />
+    <Content Include="Assets\Images\leather-boot.jpg" />
+    <Content Include="Assets\Images\owners\business-owner.jpg" />
+    <Content Include="Assets\Images\owners\designer.jpg" />
+    <Content Include="Assets\Images\owners\operator.jpg" />
+    <Content Include="Assets\logo.png" />
+    <Content Include="Assets\Icons\payment-cards.png" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -139,11 +178,24 @@
     <Content Include="Content\css\admin.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="App_Data\NeckTie.sql" />
     <Content Include="Default.aspx" />
+    <Content Include="Faqs.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Pages\Admin\Categories\CategoryList.aspx" />
     <Content Include="Pages\Admin\Dashboard.aspx" />
+    <Content Include="Pages\Admin\Orders\Orders.aspx" />
+    <Content Include="Pages\Admin\Products\ProductImageList.aspx" />
+    <Content Include="Pages\Checkout.aspx" />
+    <Content Include="Pages\Invoice.aspx" />
+    <Content Include="Pages\MyAccount.aspx" />
+    <Content Include="Pages\MyCart.aspx" />
+    <Content Include="Pages\Logout.aspx" />
+    <Content Include="Pages\Admin\Products\AddProduct.aspx" />
+    <Content Include="Pages\Admin\Products\ProductList.aspx" />
     <Content Include="Pages\Login.aspx" />
+    <Content Include="Pages\MyOrders.aspx" />
     <Content Include="Pages\ProductDetail.aspx" />
     <Content Include="Pages\Products.aspx" />
     <Content Include="Pages\Registration.aspx" />
@@ -211,6 +263,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\DatabaseConnection.cs" />
+    <Compile Include="Database\Helpers\UserHelper.cs" />
+    <Compile Include="Database\Repository\CartRepository.cs" />
+    <Compile Include="Database\Repository\CategoryRepository.cs" />
+    <Compile Include="Database\Repository\ContactUsRepository.cs" />
+    <Compile Include="Database\Repository\OrderItemRepository.cs" />
+    <Compile Include="Database\Repository\OrderRepository.cs" />
+    <Compile Include="Database\Repository\PaymentRepository.cs" />
+    <Compile Include="Database\Repository\ProductImageRepository.cs" />
+    <Compile Include="Database\Repository\ProductRepository.cs" />
+    <Compile Include="Database\Repository\ProductReviewRepository.cs" />
+    <Compile Include="Database\Repository\UserRepository.cs" />
+    <Compile Include="Faqs.aspx.cs">
+      <DependentUpon>Faqs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Faqs.aspx.designer.cs">
+      <DependentUpon>Faqs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Cart.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\ContactUs.cs" />
+    <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\OrderItem.cs" />
+    <Compile Include="Model\Payment.cs" />
+    <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\ProductImage.cs" />
+    <Compile Include="Model\ProductReview.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Pages\Admin\Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -244,6 +324,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Admin\Categories\CategoryList.aspx.cs">
+      <DependentUpon>CategoryList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\Categories\CategoryList.aspx.designer.cs">
+      <DependentUpon>CategoryList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Admin\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -251,12 +338,82 @@
     <Compile Include="Pages\Admin\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Admin\Orders\Orders.aspx.cs">
+      <DependentUpon>Orders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\Orders\Orders.aspx.designer.cs">
+      <DependentUpon>Orders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\Products\ProductImageList.aspx.cs">
+      <DependentUpon>ProductImageList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\Products\ProductImageList.aspx.designer.cs">
+      <DependentUpon>ProductImageList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Checkout.aspx.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Checkout.aspx.designer.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Invoice.aspx.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Invoice.aspx.designer.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MyAccount.aspx.cs">
+      <DependentUpon>MyAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\MyAccount.aspx.designer.cs">
+      <DependentUpon>MyAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MyCart.aspx.cs">
+      <DependentUpon>MyCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\MyCart.aspx.designer.cs">
+      <DependentUpon>MyCart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\Products\AddProduct.aspx.cs">
+      <DependentUpon>AddProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\Products\AddProduct.aspx.designer.cs">
+      <DependentUpon>AddProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\Products\ProductList.aspx.cs">
+      <DependentUpon>ProductList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\Products\ProductList.aspx.designer.cs">
+      <DependentUpon>ProductList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MyOrders.aspx.cs">
+      <DependentUpon>MyOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\MyOrders.aspx.designer.cs">
+      <DependentUpon>MyOrders.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ProductDetail.aspx.cs">
       <DependentUpon>ProductDetail.aspx</DependentUpon>
@@ -280,6 +437,16 @@
       <DependentUpon>Registration.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CartService.cs" />
+    <Compile Include="Services\CategoryService.cs" />
+    <Compile Include="Services\ContactUsService.cs" />
+    <Compile Include="Services\OrderItemsService.cs" />
+    <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\PaymentService.cs" />
+    <Compile Include="Services\ProductImageService.cs" />
+    <Compile Include="Services\ProductReviewService.cs" />
+    <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\UserService.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -304,7 +471,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
-    <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

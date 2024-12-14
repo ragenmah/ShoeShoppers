@@ -1,33 +1,42 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="ShoeShoppers.Pages.Admin.Admin" %>
 
 <!DOCTYPE html>
-
 <html>
-    <head runat="server">
-        <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
-        <link rel="stylesheet" href="~/Content/css/admin.css" />
-    </head>
-    <body>
-        <form id="form1" runat="server">
-            <div class="dashboard-container">
-                <div class="sidebar">
-                        <%--<asp:Label ID="lblWelcome" runat="server" Text="Welcome!"></asp:Label>--%>
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Simon Necktie</title>
 
-                    <asp:Label id="lblWelcome" runat="server" Text="">Welcome, <%Response.Write(Session["email"]); %></asp:Label>
-                    <h2>Admin Dashboard</h2>
-                    <ul class="nav-links">
-                        <li><a href="Dashboard.aspx">Home</a></li>
-                        <li><a href="ManageProducts.aspx">Manage Products</a></li>
-                        <li><a href="ViewOrders.aspx">View Orders</a></li>
-                        <li><a href="GenerateReports.aspx">Generate Reports</a></li>
-                        <li><a href="Settings.aspx">Settings</a></li>
-                        <li><a href="Logout.aspx">Logout</a></li>
-                    </ul>
-                </div>
-                <div class="main-content">
-                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
-                </div>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/css/admin.css" />
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="dashboard-container">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <ul class="nav-links">
+                    <h2><a href="/admin">Simon Necktie</a></h2>
+                    <li><a href="/admin">Dashboard</a></li>
+                    <li><a href="/category-list">Categories</a></li>
+                    <li><a href="/product-list">Products</a></li>
+                    <li><a href="ViewOrders.aspx">View Orders</a></li>
+                    <li><a href="GenerateReports.aspx">Generate Reports</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
             </div>
-        </form>
-    </body>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <asp:ContentPlaceHolder ID="AdminDashboardContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </form>
+
+    <!-- Bootstrap JS -->
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+</body>
 </html>
