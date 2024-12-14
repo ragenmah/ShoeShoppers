@@ -1,10 +1,10 @@
-CREATE DATABASE SimonNeckieDB
+CREATE DATABASE SimonNecktieDB
 
-USE SimonNeckieDB;
+USE SimonNecktieDB;
 
 
 
-CREATE TABLE Categories
+CREATE TABLE   Categories
 (
 	CategoryId INT PRIMARY KEY IDENTITY(1,1),
 	CategoryName VARCHAR(100) NOT NULL,
@@ -31,15 +31,10 @@ CREATE TABLE Products (
     IsActive BIT DEFAULT 1                     -- Status of the product (1 for active, 0 for inactive)
 	
     -- Define Foreign Key Constraint
-	CONSTRAINT FK_Category FOREIGN KEY (CategoryId) REFERENCES Categories(CategoryId) ON DELETE CASCADE
+	CONSTRAINT FK_Category FOREIGN KEY (CategoryId) REFERENCES Categories(CategoryId) ON DELETE SET NULL
+
 );
 
-ALTER TABLE Products
-DROP CONSTRAINT FK_Category;
-
--- Add the new foreign key constraint with ON DELETE SET NULL
-ALTER TABLE Products
-ADD CONSTRAINT FK_Category FOREIGN KEY (CategoryId) REFERENCES Categories(CategoryId) ON DELETE SET NULL;
 
 CREATE TABLE ProductImages
 ( 
@@ -194,3 +189,17 @@ CREATE TABLE CustomerEnquiries
     RepliedBy NVARCHAR(100) NULL,                 -- Optional: Who replied (admin/agent)
     ResponseContent VARCHAR(MAX) NULL             -- Optional: Content of the admin's response to the enquiry
 );
+
+
+select
+    'data source=' + @@servername +
+    ';initial catalog=' + db_name() +
+    case type_desc
+        when 'WINDOWS_LOGIN' 
+            then ';trusted_connection=true'
+        else
+            ';user id=' + suser_name() + ';password=<<YourPassword>>'
+    end
+    as ConnectionString
+from sys.server_principals
+where name = suser_name()
