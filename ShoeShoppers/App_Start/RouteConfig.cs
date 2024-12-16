@@ -51,7 +51,9 @@ namespace ShoeShoppers
 
             //Manage Orders
             routes.MapPageRoute("MyOrders", "my-orders", "~/Pages/MyOrders.aspx");
-
+           
+            //Manage Orders By Admin
+            routes.MapPageRoute("UserOrders", "orders", "~/Pages/Admin/Orders/Orders.aspx");
 
             //My Account
             routes.MapPageRoute("MyAccount", "my-account", "~/Pages/MyAccount.aspx");

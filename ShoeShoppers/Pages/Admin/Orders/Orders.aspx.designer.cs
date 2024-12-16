@@ -24,6 +24,15 @@ namespace ShoeShoppers.Pages.Admin.Orders
         protected global::System.Web.UI.WebControls.Label lblWelcome;
 
         /// <summary>
+        /// emptyOrderDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl emptyOrderDiv;
+
+        /// <summary>
         /// gvOrders control.
         /// </summary>
         /// <remarks>

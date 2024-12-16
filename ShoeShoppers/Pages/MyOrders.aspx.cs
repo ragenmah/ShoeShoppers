@@ -60,13 +60,18 @@ namespace ShoeShoppers.Pages
             else if (e.CommandName == "CancelOrder")
             {
                 _orderService.CancelOrder(orderId);
-                Response.Redirect(Request.RawUrl);
+               
             }
             else if (e.CommandName == "ReOrder")
             {
                 _orderService.ReOrder(orderId);
-                Response.Redirect(Request.RawUrl);
+               
             }
+            else if (e.CommandName == "CompleteOrder") {
+                _orderService.UpdateShippingStatus( orderId, "Completed"); 
+            }
+
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

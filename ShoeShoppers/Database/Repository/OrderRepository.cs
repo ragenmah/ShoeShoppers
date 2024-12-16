@@ -39,7 +39,16 @@ namespace ShoeShoppers.Database.Repository
 
         public List<Order> GetAllOrders()
         {
-            var query = "SELECT * FROM Orders";
+            var query = "SELECT O.OrderId, O.OrderNumber, O.Status AS OrderStatus, O.OrderDate, O.IsCancelled, O.Status, " +
+                "U.UserId, U.FirstName, U.LastName, U.Email, U.MobileNumber, U.Address AS UserAddress, " +
+                "U.City AS UserCity, U.PostalCode AS UserPostalCode, U.Country AS UserCountry, " +
+                "P.PaymentId, P.OwnerName AS PaymentOwner, " +
+                "P.CardNo AS PaymentCardNumber, P.ExpiryDate AS PaymentExpiryDate, P.CvvNo AS PaymentCvv," +
+                " P.BillingAddress AS PaymentBillingAddress, P.PaymentMethod " + 
+                "FROM Orders O JOIN Users U ON O.UserId = U.UserId " +
+                "JOIN Payment P ON O.PaymentId = P.PaymentId " +
+                "LEFT JOIN OrderItems OI ON O.OrderId = OI.OrderId  GROUP BY O.OrderId, O.OrderNumber, O.Status, O.OrderDate, O.IsCancelled, U.UserId, U.FirstName, U.LastName, U.Email, U.MobileNumber, U.Address, U.City, U.PostalCode, U.Country, P.PaymentId, P.OwnerName, P.CardNo, P.ExpiryDate, P.CvvNo, P.BillingAddress, P.PaymentMethod;";
+
             List<Order> orders = new List<Order>();
 
             using (SqlCommand cmd = new SqlCommand(query, _connection))
@@ -55,7 +64,30 @@ namespace ShoeShoppers.Database.Repository
                         Status = reader["Status"].ToString(),
                         PaymentId = (int)reader["PaymentId"],
                         OrderDate = (DateTime)reader["OrderDate"],
-                        IsCancelled = (bool)reader["IsCancelled"]
+                        IsCancelled = (bool)reader["IsCancelled"],
+
+                        User = new User
+                        {
+                            UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
+                            FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                            LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                            Email = reader.GetString(reader.GetOrdinal("Email")),
+                            MobileNumber = reader.GetString(reader.GetOrdinal("MobileNumber")),
+                            Address = reader.GetString(reader.GetOrdinal("UserAddress")),
+                            City = reader.GetString(reader.GetOrdinal("UserCity")),
+                            PostalCode = reader.GetString(reader.GetOrdinal("UserPostalCode")),
+                            Country = reader.GetString(reader.GetOrdinal("UserCountry"))
+                        },
+                        Payment = new Payment
+                        {
+                            PaymentId = reader.GetInt32(reader.GetOrdinal("PaymentId")),
+                            OwnerName = reader.GetString(reader.GetOrdinal("PaymentOwner")),
+                            CardNo = reader.GetString(reader.GetOrdinal("PaymentCardNumber")),
+                            ExpiryDate = reader.GetString(reader.GetOrdinal("PaymentExpiryDate")),
+                            CvvNo = reader.GetInt32(reader.GetOrdinal("PaymentCvv")),
+                            BillingAddress = reader.GetString(reader.GetOrdinal("PaymentBillingAddress")),
+                            PaymentMethod = reader.GetString(reader.GetOrdinal("PaymentMethod"))
+                        }
                     });
                 }
             }
@@ -177,22 +209,37 @@ namespace ShoeShoppers.Database.Repository
 
         public void UpdateOrders(Payment payment)
         {
-            var query = "UPDATE Payment SET OwnerName = @OwnerName, CardNo = @CardNo, ExpiryDate = @ExpiryDate, CvvNo = @CvvNo, BillingAddress = @BillingAddress, PaymentMethod = @PaymentMethod WHERE PaymentId = @PaymentId";
+            //(OrderNumber, UserId, Status, PaymentId, OrderDate)
+            //var query = "UPDATE Orders SET Status = @Status, CardNo = @CardNo, ExpiryDate = @ExpiryDate, CvvNo = @CvvNo, BillingAddress = @BillingAddress, PaymentMethod = @PaymentMethod WHERE PaymentId = @PaymentId";
+
+
+            //using (SqlCommand cmd = new SqlCommand(query, _connection))
+            //{
+            //    cmd.Parameters.AddWithValue("@PaymentId", payment.PaymentId);
+            //    cmd.Parameters.AddWithValue("@OwnerName", payment.OwnerName);
+            //    cmd.Parameters.AddWithValue("@CardNo", payment.CardNo);
+            //    cmd.Parameters.AddWithValue("@ExpiryDate", payment.ExpiryDate);
+            //    cmd.Parameters.AddWithValue("@CvvNo", payment.CvvNo);
+            //    cmd.Parameters.AddWithValue("@BillingAddress", payment.BillingAddress);
+            //    cmd.Parameters.AddWithValue("@PaymentMethod", payment.PaymentMethod);
+            //    cmd.ExecuteNonQuery();
+            //}
+        }
+
+        public void UpdateShippingStatus(int orderId, string newStatus)
+        {
+            var query = "UPDATE Orders SET Status = @Status WHERE OrderId = @OrderId";
 
 
             using (SqlCommand cmd = new SqlCommand(query, _connection))
             {
-                cmd.Parameters.AddWithValue("@PaymentId", payment.PaymentId);
-                cmd.Parameters.AddWithValue("@OwnerName", payment.OwnerName);
-                cmd.Parameters.AddWithValue("@CardNo", payment.CardNo);
-                cmd.Parameters.AddWithValue("@ExpiryDate", payment.ExpiryDate);
-                cmd.Parameters.AddWithValue("@CvvNo", payment.CvvNo);
-                cmd.Parameters.AddWithValue("@BillingAddress", payment.BillingAddress);
-                cmd.Parameters.AddWithValue("@PaymentMethod", payment.PaymentMethod);
+                cmd.Parameters.AddWithValue("@OrderId", orderId);
+                cmd.Parameters.AddWithValue("@Status", newStatus);
+              
                 cmd.ExecuteNonQuery();
             }
         }
-
+        
         public void DeleteOrder(int orderId)
         {
             var query = "DELETE FROM Orders WHERE OrderId = @OrderId";
@@ -205,22 +252,24 @@ namespace ShoeShoppers.Database.Repository
         }
         public void CancelOrder(int orderId)
         {
-            var query = "UPDATE Orders SET IsCancelled=@IsCancelled WHERE OrderId = @OrderId";
+            var query = "UPDATE Orders SET Status = @Status, IsCancelled=@IsCancelled WHERE OrderId = @OrderId";
 
             using (SqlCommand cmd = new SqlCommand(query, _connection))
             {
                 cmd.Parameters.AddWithValue("@OrderId", orderId);
+                cmd.Parameters.AddWithValue("@Status", "Cancelled");
                 cmd.Parameters.AddWithValue("@IsCancelled", true);
                 cmd.ExecuteNonQuery();
             }
         }
         public void ReOrder(int orderId)
         {
-            var query = "UPDATE Orders SET IsCancelled=@IsCancelled WHERE OrderId = @OrderId";
+            var query = "UPDATE Orders SET  Status = @Status, IsCancelled=@IsCancelled WHERE OrderId = @OrderId";
 
             using (SqlCommand cmd = new SqlCommand(query, _connection))
             {
-                cmd.Parameters.AddWithValue("@OrderId", orderId);
+                cmd.Parameters.AddWithValue("@OrderId", orderId); 
+                cmd.Parameters.AddWithValue("@Status", "Pending");
                 cmd.Parameters.AddWithValue("@IsCancelled", false);
                 cmd.ExecuteNonQuery();
             }
