@@ -51,11 +51,8 @@
                                         </div>
                                     </div>
                                     <asp:PlaceHolder ID="phOfferBadge" runat="server" Visible='<%# Convert.ToDouble(Eval("DiscountPercentage")) > 0 %>'>
-                                        <div class="offer-badge"><%# Eval("DiscountPercentage", "{0:0.##}") %>% off</div>
-
-                                    </asp:PlaceHolder>
-
-
+                                        <div class="offer-badge"><%# Eval("DiscountPercentage", "{0:0.##}") %>% off</div> 
+                                    </asp:PlaceHolder> 
                                 </a>
                             </span>
                         </div>

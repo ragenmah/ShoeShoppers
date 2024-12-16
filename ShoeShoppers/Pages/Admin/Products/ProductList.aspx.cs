@@ -51,7 +51,16 @@ namespace ShoeShoppers.Pages.Admin.Products
         {
             try
             {
-                if (e.CommandName == "ImageClick")
+                if (e.CommandName == "ReviewsClick")
+                {
+                   
+                    int rowIndex = Convert.ToInt32(e.CommandArgument);
+ 
+                    int productId = Convert.ToInt32(gvProducts.DataKeys[rowIndex].Value);
+                     
+                    Response.Redirect($"/product-reviews/{productId}");
+                }
+                else if (e.CommandName == "ImageClick")
                 {
                    
                     int rowIndex = Convert.ToInt32(e.CommandArgument);

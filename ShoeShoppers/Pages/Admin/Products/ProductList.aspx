@@ -29,7 +29,8 @@
                     <ItemTemplate>
                         <asp:Button ID="btnEdit" runat="server" CommandName="Edit" CommandArgument="<%# Container.DataItemIndex %>" Text="Edit" />
                         <asp:Button ID="btnDelete" runat="server" CommandName="Delete" CommandArgument="<%# Container.DataItemIndex %>" Text="Delete" />
-                                                <asp:Button ID="btnImage" runat="server" CommandName="ImageClick" CommandArgument="<%# Container.DataItemIndex %>"  Text="Images" />
+                        <asp:Button ID="btnImage" runat="server" CommandName="ImageClick" CommandArgument="<%# Container.DataItemIndex %>" Text="Images" />
+                        <asp:Button ID="btnReviews" runat="server" CommandName="ReviewsClick" CommandArgument="<%# Container.DataItemIndex %>" Text="Reviews" />
 
                         <%--<asp:ImageButton ID="btnImage" runat="server"
                             ImageUrl='~/Assets/Icons/add-product.png'

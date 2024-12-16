@@ -106,14 +106,13 @@ namespace ShoeShoppers.Database.Repository
 
         public void UpdateReview(ProductReview review)
         {
-            string query = "UPDATE ProductReviews SET Rating = @Rating, Comment = @Comment, IsReplied = @IsReplied, RepliedAt = @RepliedAt, RepliedBy = @RepliedBy, ResponseContent = @ResponseContent WHERE ReviewId = @ReviewId";
+            string query = "UPDATE ProductReviews SET  IsReplied = @IsReplied, RepliedAt = @RepliedAt, RepliedBy = @RepliedBy, ResponseContent = @ResponseContent WHERE ReviewId = @ReviewId";
 
             using (SqlCommand cmd = new SqlCommand(query, _connection))
             {
-                cmd.Parameters.AddWithValue("@Rating", review.Rating);
-                cmd.Parameters.AddWithValue("@Comment", review.Comment);
+         
                 cmd.Parameters.AddWithValue("@IsReplied", review.IsReplied);
-                cmd.Parameters.AddWithValue("@RepliedAt", review.RepliedAt);
+                cmd.Parameters.AddWithValue("@RepliedAt", DateTime.Now);
                 cmd.Parameters.AddWithValue("@RepliedBy", review.RepliedBy);
                 cmd.Parameters.AddWithValue("@ResponseContent", review.ResponseContent);
                 cmd.Parameters.AddWithValue("@ReviewId", review.ReviewId);

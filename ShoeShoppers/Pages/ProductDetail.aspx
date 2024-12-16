@@ -94,7 +94,9 @@
                             <asp:TextBox ID="txtComment" runat="server" Text="test" CssClass="form-control" TextMode="MultiLine" EnableViewState="True" Required="True"></asp:TextBox>
                         </div>
                         <asp:Button ID="btnSubmitReview" runat="server" Text="Submit Review" CssClass="shadow btn custom-btn mt-4" OnClick="SubmitReview_Click" />
-                        <p><asp:Label ID="lblFormMessage" runat="server" ForeColor="Green" Visible="True" EnableViewState="True"></asp:Label></p>
+                        <p>
+                            <asp:Label ID="lblFormMessage" runat="server" ForeColor="Green" Visible="True" EnableViewState="True"></asp:Label>
+                        </p>
 
                         <%--<p class="text-danger mt-2">Error: Please login first.</p>--%>
                     </form>
@@ -120,9 +122,12 @@
                                 </div>
 
 
-                                <div class="card-footer">
-                                    <%# Eval("ResponseContent") != null && !string.IsNullOrEmpty(Eval("ResponseContent").ToString()) ? Eval("ResponseContent") : "<i>No response yet.</i>" %>
-                                </div>
+                                <%# !string.IsNullOrEmpty(Eval("ResponseContent")?.ToString()) ? $@"
+                                <div class='card-footer px-5'>
+                                    <h4><strong>Admin</strong></h4>
+                                     <div><i>{Eval("RepliedAt")}</i></div>
+                                    {Eval("ResponseContent")} 
+                                </div>" : "" %>
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>

@@ -16,49 +16,52 @@
                             <asp:Label ID="lblUserIcon" runat="server" CssClass="rounded-circle bg-secondary d-flex justify-content-center align-items-center"
                                 Style="width: 100px; height: 100px; color: white; font-size: 40px;">
                                 <i class="fas fa-user" id="iconField" runat="server"></i>
-                                        <img src="path-to-your-image.jpg" alt="User" id="accountImageField" class="rounded-circle" Visible="false" runat="server" style="width: 100px; height: 100px; object-fit: cover;">
-
+                                <img src="path-to-your-image.jpg" alt="User" id="accountImageField" class="rounded-circle" visible="false" runat="server" style="width: 100px; height: 100px; object-fit: cover;">
                             </asp:Label>
                         </div>
                         <div>
-                            <h5 id="lblFullNameField" runat="server"> </h5>
+                            <h5 id="lblFullNameField" runat="server"></h5>
                             <p id="lblEmailField" runat="server"></p>
                         </div>
                     </div>
-
-                    <span><a class="btn custom-btn w-100 me-2" href="/my-orders">My Orders</a></span><span>
+                    
+                    <span><a class="btn custom-btn w-100 me-2" href="/my-orders">My Orders</a></span>
+                    <span>
                         <a class="btn custom-btn w-100 mt-2" href="/my-cart">My Cart</a></span>
+
+                       <span>     <a class="btn custom-btn w-100 mt-2" href="/my-cart">My Wishlist</a></span>
+
                 </div>
                 <div class="pt-5 col-md-8 col-12">
                     <h3>Update User Details</h3>
-                  <asp:Panel ID="pnlUserForm" runat="server">
-            
-            <!-- First Name -->
-            <div class="form-group mb-3">
-                <asp:Label ID="lblFirstName" runat="server" AssociatedControlID="txtFirstName" ForeColor="Black">First Name</asp:Label>
-                <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control" Placeholder="Enter first name"></asp:TextBox>
-            </div>
+                    <asp:Panel ID="pnlUserForm" runat="server">
 
-            <!-- Last Name -->
-            <div class="form-group mb-3">
-                <asp:Label ID="lblLastName" runat="server" AssociatedControlID="txtLastName"  ForeColor="Black">Last Name</asp:Label>
-                <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" Placeholder="Enter last name"></asp:TextBox>
-            </div>
+                        <!-- First Name -->
+                        <div class="form-group mb-3">
+                            <asp:Label ID="lblFirstName" runat="server" AssociatedControlID="txtFirstName" ForeColor="Black">First Name</asp:Label>
+                            <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control" Placeholder="Enter first name"></asp:TextBox>
+                        </div>
 
-            <!-- Email -->
-            <div class="form-group mb-3">
-                <asp:Label ID="lblEmail" runat="server" AssociatedControlID="txtEmail"  ForeColor="Black">Email</asp:Label>
-                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" Placeholder="Enter email" Enabled="false"></asp:TextBox>
-            </div>
+                        <!-- Last Name -->
+                        <div class="form-group mb-3">
+                            <asp:Label ID="lblLastName" runat="server" AssociatedControlID="txtLastName" ForeColor="Black">Last Name</asp:Label>
+                            <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" Placeholder="Enter last name"></asp:TextBox>
+                        </div>
 
-            <!-- Password -->
-            <%--<div class="form-group mb-3">
+                        <!-- Email -->
+                        <div class="form-group mb-3">
+                            <asp:Label ID="lblEmail" runat="server" AssociatedControlID="txtEmail" ForeColor="Black">Email</asp:Label>
+                            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" Placeholder="Enter email" Enabled="false"></asp:TextBox>
+                        </div>
+
+                        <!-- Password -->
+                        <%--<div class="form-group mb-3">
                 <asp:Label ID="lblPassword" runat="server" AssociatedControlID="txtPassword"  ForeColor="Black">Password</asp:Label>
                 <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" Placeholder="Enter password"></asp:TextBox>
             </div>--%>
 
-            <!-- Role ID -->
-            <%--<div class="form-group mb-3">
+                        <!-- Role ID -->
+                        <%--<div class="form-group mb-3">
                 <asp:Label ID="lblRoleId" runat="server" AssociatedControlID="ddlRoleId"  ForeColor="Black">Role</asp:Label>
                 <asp:DropDownList ID="ddlRoleId" runat="server" CssClass="form-control">
                     <asp:ListItem Text="Select Role" Value="" />
@@ -67,57 +70,57 @@
                 </asp:DropDownList>
             </div>--%>
 
-            <!-- Mobile Number -->
-            <div class="form-group mb-3">
-                <asp:Label ID="lblMobileNumber" runat="server" AssociatedControlID="txtMobileNumber"  ForeColor="Black">Mobile Number</asp:Label>
-                <asp:TextBox ID="txtMobileNumber" runat="server" CssClass="form-control" Placeholder="Enter mobile number"></asp:TextBox>
-            </div>
+                        <!-- Mobile Number -->
+                        <div class="form-group mb-3">
+                            <asp:Label ID="lblMobileNumber" runat="server" AssociatedControlID="txtMobileNumber" ForeColor="Black">Mobile Number</asp:Label>
+                            <asp:TextBox ID="txtMobileNumber" runat="server" CssClass="form-control" Placeholder="Enter mobile number"></asp:TextBox>
+                        </div>
 
-            <!-- Date of Birth -->
-            <div class="form-group mb-3">
-                <asp:Label ID="lblDateOfBirth" runat="server" AssociatedControlID="txtDateOfBirth"  ForeColor="Black">Date of Birth</asp:Label>
-                <asp:TextBox ID="txtDateOfBirth" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
-            </div>
+                        <!-- Date of Birth -->
+                        <div class="form-group mb-3">
+                            <asp:Label ID="lblDateOfBirth" runat="server" AssociatedControlID="txtDateOfBirth" ForeColor="Black">Date of Birth</asp:Label>
+                            <asp:TextBox ID="txtDateOfBirth" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                        </div>
 
-            <!-- Address -->
-            <div class="form-group mb-3">
-                <asp:Label ID="lblAddress" runat="server" AssociatedControlID="txtAddress"  ForeColor="Black">Address</asp:Label>
-                <asp:TextBox ID="txtAddress" runat="server" CssClass="form-control" TextMode="MultiLine" Placeholder="Enter address"></asp:TextBox>
-            </div>
+                        <!-- Address -->
+                        <div class="form-group mb-3">
+                            <asp:Label ID="lblAddress" runat="server" AssociatedControlID="txtAddress" ForeColor="Black">Address</asp:Label>
+                            <asp:TextBox ID="txtAddress" runat="server" CssClass="form-control" TextMode="MultiLine" Placeholder="Enter address"></asp:TextBox>
+                        </div>
 
-            <!-- City -->
-            <div class="form-group mb-3">
-                <asp:Label ID="lblCity" runat="server" AssociatedControlID="txtCity"  ForeColor="Black">City</asp:Label>
-                <asp:TextBox ID="txtCity" runat="server" CssClass="form-control" Placeholder="Enter city"></asp:TextBox>
-            </div>
+                        <!-- City -->
+                        <div class="form-group mb-3">
+                            <asp:Label ID="lblCity" runat="server" AssociatedControlID="txtCity" ForeColor="Black">City</asp:Label>
+                            <asp:TextBox ID="txtCity" runat="server" CssClass="form-control" Placeholder="Enter city"></asp:TextBox>
+                        </div>
 
-            <!-- Postal Code -->
-            <div class="form-group mb-3">
-                <asp:Label ID="lblPostalCode" runat="server" AssociatedControlID="txtPostalCode"  ForeColor="Black">Postal Code</asp:Label>
-                <asp:TextBox ID="txtPostalCode" runat="server" CssClass="form-control" Placeholder="Enter postal code"></asp:TextBox>
-            </div>
+                        <!-- Postal Code -->
+                        <div class="form-group mb-3">
+                            <asp:Label ID="lblPostalCode" runat="server" AssociatedControlID="txtPostalCode" ForeColor="Black">Postal Code</asp:Label>
+                            <asp:TextBox ID="txtPostalCode" runat="server" CssClass="form-control" Placeholder="Enter postal code"></asp:TextBox>
+                        </div>
 
-            <!-- Country -->
-            <div class="form-group mb-3">
-                <asp:Label ID="lblCountry" runat="server" AssociatedControlID="txtCountry"  ForeColor="Black">Country</asp:Label>
-                <asp:TextBox ID="txtCountry" runat="server" CssClass="form-control" Placeholder="Enter country"></asp:TextBox>
-            </div>
+                        <!-- Country -->
+                        <div class="form-group mb-3">
+                            <asp:Label ID="lblCountry" runat="server" AssociatedControlID="txtCountry" ForeColor="Black">Country</asp:Label>
+                            <asp:TextBox ID="txtCountry" runat="server" CssClass="form-control" Placeholder="Enter country"></asp:TextBox>
+                        </div>
 
-            <!-- Account Image -->
-            <div class="form-group mb-3">
-                <asp:Label ID="lblAccountImage" runat="server" AssociatedControlID="fileAccountImage"  ForeColor="Black">Account Image</asp:Label>
-                <asp:FileUpload ID="fileAccountImage" runat="server" CssClass="form-control" />
-                 <asp:HiddenField ID="hfOldImageLink" runat="server" />
+                        <!-- Account Image -->
+                        <div class="form-group mb-3">
+                            <asp:Label ID="lblAccountImage" runat="server" AssociatedControlID="fileAccountImage" ForeColor="Black">Account Image</asp:Label>
+                            <asp:FileUpload ID="fileAccountImage" runat="server" CssClass="form-control" />
+                            <asp:HiddenField ID="hfOldImageLink" runat="server" />
 
-            </div>
+                        </div>
 
-            <!-- Submit Button -->
-            <div class="form-group mb-3">
-                <asp:Button ID="btnSubmit" runat="server" CssClass="btn custom-btn" Text="Update details" OnClick="UpdateDetailsBtn_Click" />
-            </div>
-        </asp:Panel>
+                        <!-- Submit Button -->
+                        <div class="form-group mb-3">
+                            <asp:Button ID="btnSubmit" runat="server" CssClass="btn custom-btn" Text="Update details" OnClick="UpdateDetailsBtn_Click" />
+                        </div>
+                    </asp:Panel>
                 </div>
-            </div> 
+            </div>
         </section>
 
     </div>

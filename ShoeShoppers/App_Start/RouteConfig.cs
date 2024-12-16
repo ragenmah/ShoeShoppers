@@ -34,11 +34,12 @@ namespace ShoeShoppers
 
             //Admin Routes
             routes.MapPageRoute("AdminDashboard", "admin", "~/Pages/admin/Dashboard.aspx");
+            //Manage Products 
             routes.MapPageRoute("ProductList", "product-list", "~/Pages/Admin/Products/ProductList.aspx");
             routes.MapPageRoute("AddProduct", "add-product", "~/Pages/Admin/Products/AddProduct.aspx");
             routes.MapPageRoute("EditProduct", "edit-product/{ProductId}", "~/Pages/Admin/Products/AddProduct.aspx");
-
             routes.MapPageRoute("ProductImageList", "add-product-images/{ProductId}", "~/Pages/Admin/Products/ProductImageList.aspx");
+            routes.MapPageRoute("ProductReviews", "product-reviews/{ProductId}", "~/Pages/Admin/Products/ProductReviews.aspx");
 
             // Manage Categories
             routes.MapPageRoute("CategoryList", "category-list", "~/Pages/Admin/Categories/CategoryList.aspx");
@@ -54,6 +55,8 @@ namespace ShoeShoppers
            
             //Manage Orders By Admin
             routes.MapPageRoute("UserOrders", "orders", "~/Pages/Admin/Orders/Orders.aspx");
+
+          
 
             //My Account
             routes.MapPageRoute("MyAccount", "my-account", "~/Pages/MyAccount.aspx");
