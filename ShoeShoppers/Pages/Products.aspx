@@ -30,7 +30,16 @@
                             <span class="text-muted">$<%# Eval("Price") %></span>
                         </div>
                     </div>
- <div class="offer-badge"><%# Eval("DiscountPercentage", "{0:0.##}") %>% off</div>                </a>
+ <div class="offer-badge"><%# Eval("DiscountPercentage", "{0:0.##}") %>% off</div>                
+ <div class="wishlist-badge">
+    <i class="fa fa-heart"></i>
+
+ </div>                
+
+               
+
+
+                </a>
             </span>
         </div>
     </ItemTemplate>
