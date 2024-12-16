@@ -95,10 +95,8 @@ CREATE TABLE ProductReviews
 	ProductId INT FOREIGN KEY  REFERENCES Products(ProductId) ON DELETE CASCADE NOT NULL, 
 	UserId INT FOREIGN KEY  REFERENCES Users(UserId) ON DELETE CASCADE NOT NULL, 
 	CreatedAt DATETIME DEFAULT GETDATE(),
-	IsReplied BIT DEFAULT 0,  -- 0 = not replied, 1 = replied
-    RepliedAt DATETIME NULL,  -- When the review was replied to
-    RepliedBy NVARCHAR(100) NULL,  -- Who replied to the review (admin/agent)
-	ResponseContent VARCHAR(MAX) NULL          -- Optional field for the response content (reply from admin)
+	ReplyId INT NULL FOREIGN KEY REFERENCES Replies(ReplyId)
+
 
 );
 
@@ -129,9 +127,7 @@ CREATE TABLE ContactUs
 	PhoneNumber NVARCHAR(15),
 	Message VARCHAR(MAX),
 	CreatedAt DATETIME DEFAULT GETDATE(),
-	IsReplied BIT DEFAULT 0,  -- 0 = not replied, 1 = replied
-    RepliedAt DATETIME NULL,  -- When the review was replied to
-    RepliedBy NVARCHAR(100) NULL  -- Who replied to the review (admin/agent)
+	ReplyId INT NULL FOREIGN KEY REFERENCES Replies(ReplyId)
 );
 
 CREATE TABLE PaymentMethods
@@ -194,3 +190,31 @@ CREATE TABLE CustomerEnquiries
     RepliedBy NVARCHAR(100) NULL,                 -- Optional: Who replied (admin/agent)
     ResponseContent VARCHAR(MAX) NULL             -- Optional: Content of the admin's response to the enquiry
 );
+
+
+
+CREATE TABLE Replies
+(
+    ReplyId INT IDENTITY(1,1) PRIMARY KEY,
+    ResponseContent VARCHAR(MAX) NOT NULL,  -- The reply message
+    RepliedAt DATETIME DEFAULT GETDATE(),   -- Timestamp of reply
+    RepliedBy NVARCHAR(100) NOT NULL        -- The admin/agent who replied
+);
+
+ALTER TABLE ContactUs
+DROP COLUMN RepliedAt;
+ALTER TABLE ContactUs
+ DROP COLUMN RepliedBy;
+
+
+ALTER TABLE ContactUs
+ADD ReplyId INT NULL FOREIGN KEY REFERENCES Replies(ReplyId);
+
+
+  ALTER TABLE ProductReviews
+DROP COLUMN ResponseContent;
+ALTER TABLE ProductReviews DROP COLUMN RepliedAt;
+ALTER TABLE ProductReviews DROP COLUMN RepliedBy;
+
+ALTER TABLE ProductReviews
+ADD ReplyId INT NULL FOREIGN KEY REFERENCES Replies(ReplyId);

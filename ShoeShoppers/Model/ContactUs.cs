@@ -14,7 +14,7 @@ namespace ShoeShoppers.Model
         public string Message { get; set; }
         public DateTime CreatedAt { get; set; }
         public bool IsReplied { get; set; }
-        public DateTime? RepliedAt { get; set; }
-        public string RepliedBy { get; set; }
+        public int? ReplyId { get; set; }
+        public Reply Reply { get; set; }
     }
 }

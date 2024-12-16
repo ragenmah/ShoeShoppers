@@ -1,5 +1,6 @@
 ﻿using ShoeShoppers.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace ShoeShoppers.Database.Repository
         public List<ProductReview> GetAllReviews()
         {
             var reviews = new List<ProductReview>();
-            string query = "SELECT * FROM ProductReviews;";
+            string query = "SELECT pr.*, r.ReplyId, r.ResponseContent, r.RepliedAt, r.RepliedBy FROM ProductReviews pr LEFT JOIN Replies r ON pr.ReplyId = r.ReplyId;";
 
             using (SqlCommand cmd = new SqlCommand(query, _connection))
             {
@@ -38,9 +39,12 @@ namespace ShoeShoppers.Database.Repository
                             UserId = (int)reader["UserId"],
                             CreatedAt = (DateTime)reader["CreatedAt"],
                             IsReplied = (bool)reader["IsReplied"],
-                            RepliedAt = reader["RepliedAt"] as DateTime?,
-                            RepliedBy = reader["RepliedBy"]?.ToString(),
-                            ResponseContent = reader["ResponseContent"]?.ToString()
+                           Reply=new Reply
+                           {
+                               RepliedAt = reader["RepliedAt"] as DateTime?,
+                               RepliedBy = reader["RepliedBy"]?.ToString(),
+                               ResponseContent = reader["ResponseContent"]?.ToString()
+                           }
                         });
                     }
                 }
@@ -51,8 +55,8 @@ namespace ShoeShoppers.Database.Repository
         public List<ProductReview> GetAllReviewsByProduct(int productId)
         {
             var reviews = new List<ProductReview>();
-            string query = "SELECT pr.ReviewId, pr.Rating, pr.Comment, pr.ProductId, pr.CreatedAt, pr.IsReplied, pr.RepliedAt, pr.RepliedBy, pr.ResponseContent, u.FirstName, u.LastName, u.Email" +
-                " FROM ProductReviews pr INNER JOIN Users u ON pr.UserId = u.UserId WHERE pr.ProductId = @ProductId;";
+            string query = "SELECT pr.ReviewId, pr.Rating, pr.Comment, pr.ProductId, pr.CreatedAt, pr.IsReplied, pr.RepliedAt, pr.RepliedBy, pr.ResponseContent, u.FirstName, u.LastName, u.Email,r.ReplyId, r.ResponseContent, r.RepliedAt, r.RepliedBy" +
+                " FROM ProductReviews pr INNER JOIN Users u ON pr.UserId = u.UserId WHERE pr.ProductId = @ProductId LEFT JOIN Replies r ON pr.ReplyId = r.ReplyId;";
 
             using (SqlCommand cmd = new SqlCommand(query, _connection))
             {
@@ -70,9 +74,12 @@ namespace ShoeShoppers.Database.Repository
                             ProductId = (int)reader["ProductId"],
                             CreatedAt = (DateTime)reader["CreatedAt"],
                             IsReplied = (bool)reader["IsReplied"],
-                            RepliedAt = reader["RepliedAt"] as DateTime?,
-                            RepliedBy = reader["RepliedBy"]?.ToString(),
-                            ResponseContent = reader["ResponseContent"]?.ToString(),
+                            Reply = new Reply
+                            {
+                                RepliedAt = reader["RepliedAt"] as DateTime?,
+                                RepliedBy = reader["RepliedBy"]?.ToString(),
+                                ResponseContent = reader["ResponseContent"]?.ToString()
+                            },
                             User = new User
                             {
                                 FirstName = reader["FirstName"]?.ToString(),
@@ -88,20 +95,45 @@ namespace ShoeShoppers.Database.Repository
         }
 
 
+        public int AddReply(string replyContent, string repliedBy) {
+            string insertReplyQuery = @"
+                    INSERT INTO Replies (ResponseContent, RepliedBy)
+                    VALUES (@ResponseContent, @RepliedBy);
+                    SELECT SCOPE_IDENTITY();";
+            using (SqlCommand cmd = new SqlCommand(insertReplyQuery, _connection))
+            {
+                cmd.Parameters.AddWithValue("@ResponseContent", replyContent);
+                cmd.Parameters.AddWithValue("@RepliedBy", repliedBy);
+                cmd.ExecuteNonQuery();
+                int replyId = Convert.ToInt32(cmd.ExecuteScalar());
+
+                return replyId;
+            }
+
+        }
+
         public int AddReview(ProductReview review)
         {
-            string query = "INSERT INTO ProductReviews (Rating, Comment, ProductId, UserId) VALUES (@Rating, @Comment, @ProductId, @UserId);";
+            string query = "INSERT INTO ProductReviews (Rating, Comment, ProductId, UserId,ReplyId ) VALUES (@Rating, @Comment, @ProductId, @UserId, @ReplyId);";
 
-            using (SqlCommand cmd = new SqlCommand(query, _connection))
+            int replyId = AddReply(review.Reply.ResponseContent, review.Reply.RepliedBy);
+
+            if (replyId > 0)
             {
-                cmd.Parameters.AddWithValue("@Rating", review.Rating);
-                cmd.Parameters.AddWithValue("@Comment", review.Comment);
-                cmd.Parameters.AddWithValue("@ProductId", review.ProductId);
-                cmd.Parameters.AddWithValue("@UserId", review.UserId);
-                cmd.ExecuteNonQuery();
+                using (SqlCommand cmd = new SqlCommand(query, _connection))
+                {
+                    cmd.Parameters.AddWithValue("@Rating", review.Rating);
+                    cmd.Parameters.AddWithValue("@Comment", review.Comment);
+                    cmd.Parameters.AddWithValue("@ProductId", review.ProductId);
+                    cmd.Parameters.AddWithValue("@UserId", review.UserId);
+                    cmd.Parameters.AddWithValue("@ReplyId", replyId);
+                    cmd.ExecuteNonQuery();
 
+                }
                 return 1;
             }
+            return 0;
+
         }
 
         public void UpdateReview(ProductReview review)

@@ -41,6 +41,9 @@ namespace ShoeShoppers
             routes.MapPageRoute("ProductImageList", "add-product-images/{ProductId}", "~/Pages/Admin/Products/ProductImageList.aspx");
             routes.MapPageRoute("ProductReviews", "product-reviews/{ProductId}", "~/Pages/Admin/Products/ProductReviews.aspx");
 
+            //Manage Contact US
+            routes.MapPageRoute("Contacts", "contacts", "~/Pages/Admin/Contacts/Contacts.aspx");
+
             // Manage Categories
             routes.MapPageRoute("CategoryList", "category-list", "~/Pages/Admin/Categories/CategoryList.aspx");
 

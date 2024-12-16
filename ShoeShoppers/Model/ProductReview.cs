@@ -14,11 +14,9 @@ namespace ShoeShoppers.Model
         public int UserId { get; set; }
         public DateTime CreatedAt { get; set; }
         public bool IsReplied { get; set; }
-        public DateTime? RepliedAt { get; set; }
-        public string RepliedBy { get; set; }
-        public string ResponseContent { get; set; }
 
+        public int? ReplyId { get; set; }
         public virtual User User { get; set; }
-
+        public Reply Reply { get; set; }
     }
 }

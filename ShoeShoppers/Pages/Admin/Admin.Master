@@ -25,7 +25,7 @@
                     <li><a href="/category-list">Categories</a></li>
                     <li><a href="/product-list">Products</a></li>
                     <li><a href="/orders">Orders</a></li>
-                    <li><a href="GenerateReports.aspx">Generate Reports</a></li>
+                    <li><a href="/contacts">Contacts</a></li>
                     <li><a href="/logout">Logout</a></li>
                 </ul>
             </div>
