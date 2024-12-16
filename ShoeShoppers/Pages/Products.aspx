@@ -30,8 +30,12 @@
                             <span class="text-muted">$<%# Eval("Price") %></span>
                         </div>
                     </div>
- <div class="offer-badge"><%# Eval("DiscountPercentage", "{0:0.##}") %>% off</div>                
- <div class="wishlist-badge">
+
+<asp:PlaceHolder ID="phOfferBadge" runat="server" Visible='<%# Convert.ToDouble(Eval("DiscountPercentage")) > 0 %>'>
+    <div class="offer-badge"><%# Eval("DiscountPercentage", "{0:0.##}") %>% off</div>
+
+</asp:PlaceHolder> 
+                    <div class="wishlist-badge">
     <i class="fa fa-heart"></i>
 
  </div>                
