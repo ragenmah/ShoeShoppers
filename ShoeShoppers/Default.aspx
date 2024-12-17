@@ -12,20 +12,20 @@
     <div class="m-5">
         <section id="categories" class="container mt-5 my-5">
             <h2 class=" mb-4">Categories</h2>
-             
-                
-             <div class="categories-container">
-    <asp:Repeater ID="rptCategories" runat="server">
-        <ItemTemplate>
-            <div class="category-card">
-                <asp:Image ID="imgCategory" runat="server" ImageUrl='<%# Eval("CategoryImageUrl") %>' 
-                    CssClass="category-image" AlternateText='<%# Eval("CategoryName") %>' />
-                <h3 class="category-title"><%# Eval("CategoryName") %></h3>
+
+
+            <div class="categories-container">
+                <asp:Repeater ID="rptCategories" runat="server">
+                    <ItemTemplate>
+                        <div class="category-card">
+                            <asp:Image ID="imgCategory" runat="server" ImageUrl='<%# Eval("CategoryImageUrl") %>'
+                                CssClass="category-image" AlternateText='<%# Eval("CategoryName") %>' />
+                            <h3 class="category-title"><%# Eval("CategoryName") %></h3>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
             </div>
-        </ItemTemplate>
-    </asp:Repeater>
-</div>
-                
+
         </section>
 
         <section id="products" class="container my-5">
@@ -49,7 +49,11 @@
                                         <div class="d-block d-md-flex justify-content-between">
                                             <span class="text-muted">$<%# Eval("Price") %></span>
                                         </div>
-                                    </div>             <div class="offer-badge"><%# Eval("DiscountPercentage", "{0:0.##}") %>% off</div>
+                                    </div>
+                                    <asp:PlaceHolder ID="phOfferBadge" runat="server" Visible='<%# Convert.ToDouble(Eval("DiscountPercentage")) > 0 %>'>
+                                        <div class="offer-badge"><%# Eval("DiscountPercentage", "{0:0.##}") %>% off</div>
+
+                                    </asp:PlaceHolder>
 
 
                                 </a>
@@ -57,7 +61,7 @@
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
-                
+
 
             </div>
 

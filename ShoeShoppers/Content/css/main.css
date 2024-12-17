@@ -127,6 +127,16 @@ input[type="password"] {
     border-bottom-right-radius: 10px;
 }
 
+.wishlist-badge {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 5px 10px;
+    background: var(--product-border-color);
+    color: var(--white-color);
+    border-bottom-left-radius: 10px;
+}
+
 
 .product-card .card-title {
     font-size: 16px;    

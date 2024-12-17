@@ -1,5 +1,6 @@
 ﻿using ShoeShoppers.Database.Repository;
 using ShoeShoppers.Model;
+using ShoeShoppers.Pages.Admin.Orders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,11 @@ namespace ShoeShoppers.Services
             return _repository.GetAllOrderByUserId( userId);
         }
 
+        public void UpdateShippingStatus(int orderId, string newStatus)
+        {
+            _repository.UpdateShippingStatus( orderId,  newStatus);
+        }  
+        
         public void DeleteOrder(int orderId)
         {
             _repository.DeleteOrder(orderId);

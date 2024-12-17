@@ -51,7 +51,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                                                <asp:BoundField DataField="OrderDate" HeaderText="Order Date" Visible="True" />
+                        <asp:BoundField DataField="OrderDate" HeaderText="Order Date" Visible="True" />
 
                         <asp:TemplateField HeaderText="Action">
                             <ItemTemplate>
@@ -73,6 +73,15 @@
                                     CssClass="btn btn-primary"
                                     CommandName="ReOrder"
                                     CommandArgument="<%# Container.DataItemIndex %>" Visible='<%# (bool)Eval("IsCancelled") %>' />
+
+                                <asp:Button
+                                    ID="Button1"
+                                    runat="server"
+                                    Text="Complete Order"
+                                    CssClass="btn btn-info"
+                                    CommandName="CompleteOrder"
+                                    CommandArgument="<%# Container.DataItemIndex %>"
+                                    Visible='<%# Eval("Status").ToString() == "Shipped" %>' />
 
                                 <asp:Button
                                     ID="btnView"
