@@ -201,6 +201,7 @@
     <Content Include="Pages\ProductDetail.aspx" />
     <Content Include="Pages\Products.aspx" />
     <Content Include="Pages\Registration.aspx" />
+    <Content Include="ReadMe.html" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />

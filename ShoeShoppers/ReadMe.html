@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadMe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            /* background-color: #FBFBFB; */
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        h1, h2 {
+            color: #ff5100;
+            text-decoration: underline;
+        }
+
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .right-nav {
+            width: 250px;
+            height: 60vh;
+            background: #fff;
+            border-left: 1px solid #333;
+            /* border-radius: 8px; */
+            padding: 20px;
+            margin: 50px;
+            position: fixed;
+            top: 0;
+            right: 0;
+            overflow-y: auto;
+        }
+
+            .right-nav ul {
+                list-style: none;
+                padding: 0;
+            }
+
+                .right-nav ul li {
+                    margin: 10px 0;
+                }
+
+                    .right-nav ul li a {
+                        text-decoration: none;
+                        color: #333;
+                        padding: 10px;
+                        display: block;
+                        border-radius: 5px;
+                        transition: background-color 0.3s ease;
+                    }
+
+                        .right-nav ul li a:hover {
+                            color: #ff5100;
+                            font-weight: bolder;
+                        }
+
+        .code {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="introduction">Introduction</h1>
+        <p>This document provides important information to set up and configure the website for the Simon Necktie project.</p>
+
+        <h2 id="hardware-requirement">Hardware Requirements</h2>
+        <ul>
+            <li>Processor: Intel Core i3 or equivalent</li>
+            <li>RAM: 4GB or more</li>
+            <li>Hard Drive: 10GB free space</li>
+            <li>Display: 1024x768 resolution or higher</li>
+        </ul>
+
+        <h2 id="software-requirement">Software Requirements</h2>
+        <ul>
+            <li>Operating System: Windows 10 or later</li>
+            <li>Development Environment: Visual Studio 2019 or later</li>
+            <li>Database: SQL Server Express</li>
+            <li>Web Server: IIS Express</li>
+            <li>Browser: Latest version of Chrome, Firefox, Edge, or Safari</li>
+        </ul>
+
+        <h2 id="credentials">Admin Login Credentials</h2>
+        <ul>
+            <li>Username: <strong>admin</strong></li>
+            <li>Password: <strong>admin123</strong></li>
+        </ul>
+
+        <h2>Member Login Credentials</h2>
+        <ul>
+            <li>Username: <strong>member1</strong></li>
+            <li>Password: <strong>member123</strong></li>
+        </ul>
+
+        <h2>Setup Instructions</h2>
+        <ol>
+            <li>Ensure you have Visual Studio and MS SQL Server Express installed on your system.</li>
+            <li>Open the project in Visual Studio.</li>
+            <li>In the <strong>App_Data</strong> folder, you will find the database file (<em>ShoeShoppers.mdf</em>).</li>
+            <li>Ensure the database connection string in the <strong>web.config</strong> file is correctly configured:</li>
+            <div class="code">
+                <code>
+                    <pre>
+           
+&lt;connectionStrings&gt;
+    &lt;add name="ShoeShoppersConnectionString"
+    connectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ShoeShoppers.mdf;Integrated Security=True"
+    providerName="System.Data.SqlClient" /&gt;
+&lt;/connectionStrings&gt;
+        </pre>
+                </code>
+            </div>
+            <li>Build and run the project using Visual Studio. The default page will load in your browser.</li>
+        </ol>
+
+        <h2>Features Overview</h2>
+        <ul>
+            <li>Member Registration</li>
+            <li>Admin Dashboard for managing products, orders, and feedback</li>
+            <li>Product Catalog with dynamic database integration</li>
+            <li>Shopping Cart and Checkout system</li>
+            <li>Feedback Form</li>
+            <li>Secure member and admin-only pages</li>
+        </ul>
+
+        <h2>Testing the Application</h2>
+        <p>The application has been tested on the following browsers:</p>
+        <ul>
+            <li>Google Chrome</li>
+            <li>Mozilla Firefox</li>
+            <li>Microsoft Edge</li>
+        </ul>
+        <p>The website is responsive and compatible with modern standards.</p>
+
+        <h2>Contact Information</h2>
+        <p>If you encounter any issues or need further assistance, please contact:</p>
+        <ul>
+            <li>Name: [Your Name]</li>
+            <li>Email: [Your Email]</li>
+        </ul>
+    </div>
+    <div class="right-nav">
+        <h3>Simon Necktie</h3>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#hardware-requirement">Hardware Requirement</a></li>
+            <li><a href="#software-requirement">Software Requirement</a></li>
+            <li><a href="#credentials">Credentials</a></li>
+            <li><a href="cart.html">Shopping Cart</a></li>
+            <li><a href="feedback.html">Customer Feedback</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="admin.html">Admin Panel</a></li>
+        </ul>
+    </div>
+</body>
+</html>
