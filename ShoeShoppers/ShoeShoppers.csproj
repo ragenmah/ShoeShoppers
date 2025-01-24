@@ -490,6 +490,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
+    <Folder Include="Pages\Admin\Users\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

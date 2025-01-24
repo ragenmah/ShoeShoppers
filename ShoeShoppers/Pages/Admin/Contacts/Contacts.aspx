@@ -3,7 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminDashboardContentPlaceHolder" runat="server">
     <div class="container-fluid mt-4">
-         <h1>Croducts</h1>
+         <h1>Contacts</h1>
   <asp:Label ID="Label1" runat="server" Text="">List of contacts</asp:Label>
 
 

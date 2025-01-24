@@ -49,11 +49,29 @@ namespace ShoeShoppers.Pages.Admin.Orders
             int rowIndex = Convert.ToInt32(e.CommandArgument);
 
             int orderId = Convert.ToInt32(gvOrders.DataKeys[rowIndex].Value);
+            
+            GridViewRow row = gvOrders.Rows[rowIndex];
+            var dataItem = gvOrders.DataKeys[rowIndex].Values["UserId"];
+
 
             if (e.CommandName == "ViewOrder")
             {
+                //string userId = hiddenUserId.Value;
+                var dataKey = gvOrders.DataKeys[rowIndex];
+
+                if (dataKey != null && dataKey.Values["UserId"] != null)
+                {
+                    string userId = dataKey.Values["UserId"].ToString();
+                   
+                    Response.Redirect($"/my/invoice/{orderId}/{userId}"); 
+                }
+                else
+                {
+                    Response.Write("UserId not found.");
+                }
+
                 //GetOrderDetailsById( orderId);
-                Response.Redirect($"/my/invoice/{orderId}");
+           
             }
             else if (e.CommandName == "CancelOrder")
             {

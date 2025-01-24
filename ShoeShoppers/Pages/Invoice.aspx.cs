@@ -16,7 +16,7 @@ namespace ShoeShoppers.Pages
         private readonly OrderService _orderService  ;
         private readonly OrderItemsService _orderItemService;
 
-        private readonly int userId;
+        private  int userId;
 
         decimal totalOrderAmount = 0;
 
@@ -27,13 +27,19 @@ namespace ShoeShoppers.Pages
             _orderService = new OrderService(new OrderRepository());
             _orderItemService = new OrderItemsService(new OrderItemRepository());
 
-            userId = UserHelper.GetUserIdFromCookie();
+           
         }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 int orderId = int.Parse((string)RouteData.Values["OrderId"]);
+                if (RouteData.Values["UserId"] != null)
+                {
+                    userId = int.Parse(RouteData.Values["UserId"]?.ToString());
+
+                }
+                else { userId = UserHelper.GetUserIdFromCookie(); }
 
                 LoadOrderDetails(orderId);
             }

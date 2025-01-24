@@ -58,8 +58,8 @@ namespace ShoeShoppers.Pages.Admin.Contacts
                     if (!string.IsNullOrEmpty(replyContent))
                     {
                         
-                        SaveContactReply(contactUsId, replyContent);
-                        _contactUsService.UpdateContactUs
+                        //SaveContactReply(contactUsId, replyContent);
+                        //_contactUsService.UpdateContactUs
 
 
                         LoadContactUs();

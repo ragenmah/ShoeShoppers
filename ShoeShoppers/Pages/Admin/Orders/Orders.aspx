@@ -11,7 +11,7 @@
      <p> Orders are empty.</p>
 
  </div>
-        <asp:GridView ID="gvOrders" runat="server" DataKeyNames="OrderId"
+        <asp:GridView ID="gvOrders" runat="server" DataKeyNames=" OrderId, UserId"
     AutoGenerateColumns="False"
     OnRowCommand="GridViewOrder_RowCommand"
     CssClass="table table-bordered table-striped table-hover my-5">
@@ -51,6 +51,7 @@
             </ItemTemplate>
         </asp:TemplateField>
 
+        <asp:BoundField DataField="UserId" HeaderText="User ID" SortExpression="UserId" />
 
         <asp:TemplateField HeaderText="Ordered By">
             <ItemTemplate>
@@ -63,6 +64,7 @@
         <ItemTemplate>
             <%# Eval("Status") %>
         </ItemTemplate>
+                 
     </asp:TemplateField>
         <asp:TemplateField HeaderText="Action">
             <ItemTemplate>
