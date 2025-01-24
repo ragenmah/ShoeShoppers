@@ -25,20 +25,24 @@ namespace ShoeShoppers.Pages
             {
                 LoadProducts();
                 LoadCategories();
-                if (RouteData.Values["CategoryName"] != null) {
-                    string categoryName = RouteData.Values["CategoryName"].ToString();
-
-                    ListItem selectedItem = ddlCategory.Items.FindByText(categoryName);
-                    if (selectedItem != null)
-                    {
-                        ddlCategory.ClearSelection();
-                        selectedItem.Selected = true;
-                        populateProducts(selectedItem.Value);
-                    }
-                }
+                prepopulateProducts();
             }
         }
 
+        private void prepopulateProducts() {
+            if (RouteData.Values["CategoryName"] != null)
+            {
+                string categoryName = RouteData.Values["CategoryName"].ToString();
+
+                ListItem selectedItem = ddlCategory.Items.FindByText(categoryName);
+                if (selectedItem != null)
+                {
+                    ddlCategory.ClearSelection();
+                    selectedItem.Selected = true;
+                    populateProducts(selectedItem.Value);
+                }
+            }
+        }
         private void LoadCategories()
         {
             var categories = _categoryService.GetAllCategories();

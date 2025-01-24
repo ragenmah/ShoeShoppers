@@ -19,7 +19,7 @@ namespace ShoeShoppers.Database.Repository
         public List<ContactUs> GetContactUsList()
         {
             List<ContactUs> contactList = new List<ContactUs>();
-            string query = "SELECT * FROM ContactUs";
+            string query = "SELECT c.*, r.ReplyId,    r.ResponseContent ,       r.RepliedAt,  r.RepliedBy FROM ContactUs c LEFT JOIN         Replies r ON c.ReplyId = r.ReplyId";
 
             using (SqlCommand cmd = new SqlCommand(query, _connection))
             {
@@ -41,7 +41,7 @@ namespace ShoeShoppers.Database.Repository
                                 RepliedAt = reader["RepliedAt"] as DateTime?,
                                 RepliedBy = reader["RepliedBy"].ToString()
                             }
-                          
+
                         });
                     }
                 }
@@ -49,7 +49,7 @@ namespace ShoeShoppers.Database.Repository
 
             return contactList;
         }
-        
+
         public void AddContactUs(ContactUs contact)
         {
             string query = "INSERT INTO ContactUs (FullName, Email, PhoneNumber, Message, CreatedAt, IsReplied) " +
@@ -57,7 +57,7 @@ namespace ShoeShoppers.Database.Repository
 
             using (SqlCommand cmd = new SqlCommand(query, _connection))
             {
-                
+
                 cmd.Parameters.AddWithValue("@FullName", contact.FullName);
                 cmd.Parameters.AddWithValue("@Email", contact.Email);
                 cmd.Parameters.AddWithValue("@PhoneNumber", contact.PhoneNumber);
@@ -101,6 +101,6 @@ namespace ShoeShoppers.Database.Repository
         }
 
 
-       
+
     }
 }

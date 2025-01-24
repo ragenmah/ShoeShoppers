@@ -46,10 +46,9 @@ namespace ShoeShoppers.Pages.Admin.Contacts
         {
             if (e.CommandName == "ReplyContact")
             {
-                // Get the ContactUsId from the CommandArgument
+                
                 int contactUsId = Convert.ToInt32(e.CommandArgument);
 
-                // Find the TextBox within the Repeater item
                 TextBox txtReply = (TextBox)e.Item.FindControl("txtReply");
 
                 if (txtReply != null)
@@ -58,10 +57,11 @@ namespace ShoeShoppers.Pages.Admin.Contacts
 
                     if (!string.IsNullOrEmpty(replyContent))
                     {
-                        // Save the reply to the database
-                        //SaveContactReply(contactUsId, replyContent);
+                        
+                        SaveContactReply(contactUsId, replyContent);
+                        _contactUsService.UpdateContactUs
 
-                        // Reload the data to reflect changes
+
                         LoadContactUs();
                     }
                 }

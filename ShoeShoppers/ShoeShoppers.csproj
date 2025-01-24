@@ -276,6 +276,7 @@
     <Compile Include="Database\Repository\ProductImageRepository.cs" />
     <Compile Include="Database\Repository\ProductRepository.cs" />
     <Compile Include="Database\Repository\ProductReviewRepository.cs" />
+    <Compile Include="Database\Repository\ReplyRepository.cs" />
     <Compile Include="Database\Repository\UserRepository.cs" />
     <Compile Include="Faqs.aspx.cs">
       <DependentUpon>Faqs.aspx</DependentUpon>
