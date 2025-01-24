@@ -122,11 +122,11 @@
                                 </div>
 
 
-                                <%# !string.IsNullOrEmpty(Eval("ResponseContent")?.ToString()) ? $@"
+                                <%# !string.IsNullOrEmpty(Eval("Reply.ResponseContent")?.ToString()) ? $@"
                                 <div class='card-footer px-5'>
                                     <h4><strong>Admin</strong></h4>
-                                     <div><i>{Eval("RepliedAt")}</i></div>
-                                    {Eval("ResponseContent")} 
+                                     <div><i>{Eval("Reply.RepliedAt")}</i></div>
+                                    {Eval("Reply.ResponseContent")} 
                                 </div>" : "" %>
                             </div>
                         </ItemTemplate>

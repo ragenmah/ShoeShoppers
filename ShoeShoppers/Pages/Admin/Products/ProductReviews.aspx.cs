@@ -75,8 +75,11 @@ namespace ShoeShoppers.Pages.Admin.Products
             ProductReview productReview = new ProductReview
             {
                 ReviewId = reviewId,
-                ResponseContent = replyContent,
-                RepliedBy = userId.ToString(),
+             Reply=   new Reply
+             {
+                 ResponseContent = replyContent,
+                 RepliedBy = userId.ToString(),
+             },
                 IsReplied = true
             };
 

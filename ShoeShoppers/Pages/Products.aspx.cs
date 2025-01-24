@@ -25,6 +25,17 @@ namespace ShoeShoppers.Pages
             {
                 LoadProducts();
                 LoadCategories();
+                if (RouteData.Values["CategoryName"] != null) {
+                    string categoryName = RouteData.Values["CategoryName"].ToString();
+
+                    ListItem selectedItem = ddlCategory.Items.FindByText(categoryName);
+                    if (selectedItem != null)
+                    {
+                        ddlCategory.ClearSelection();
+                        selectedItem.Selected = true;
+                        populateProducts(selectedItem.Value);
+                    }
+                }
             }
         }
 
@@ -46,19 +57,24 @@ namespace ShoeShoppers.Pages
             rptProducts.DataBind();
         }
 
-        protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string selectedValue = ddlCategory.SelectedValue;
+        private void populateProducts(String categoryName) {
+            
 
-            if (string.IsNullOrEmpty(selectedValue))
+            if (string.IsNullOrEmpty(categoryName))
             {
                 LoadProducts();
             }
             else
             {
-                rptProducts.DataSource = _productService.GetAllProductsByCategory(selectedValue);
+                rptProducts.DataSource = _productService.GetAllProductsByCategory(categoryName);
                 rptProducts.DataBind();
             }
+        }
+
+        protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedValue = ddlCategory.SelectedValue;
+            populateProducts(selectedValue);
 
         }
     }

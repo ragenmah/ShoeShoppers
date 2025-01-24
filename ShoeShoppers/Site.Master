@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - ShoeShoppers</title>
+    <title><%: Page.Title %> - Simon Necktie</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -16,71 +16,13 @@
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
-
-
-    <style>
-        /* Hero Section Styling */
-        .hero {
-            position: relative;
-            height: 100vh;
-            background: url('/Assets/Images/leather-boot.jpg') center/cover no-repeat;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-            .hero h1 {
-                font-size: 3rem;
-                font-weight: bold;
-            }
-
-            .hero p {
-                font-size: 1.2rem;
-                margin: 15px 0;
-            }
-
-            .hero .btn-primary {
-                padding: 10px 20px;
-                font-size: 1.1rem;
-            }
-
-        #cart-icon {
-            position: relative;
-        }
-
-        #cart-count {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            font-size: 0.8rem;
-        }
-        /* Service Highlights */
-        .card img {
-            height: 200px;
-            object-fit: cover;
-        }
-        /* Footer Styling */
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 20px 0;
-        }
-
-            footer a {
-                color: #ffc107;
-                text-decoration: none;
-            }
-    </style>
     <link rel="stylesheet" href="~/Content/css/main.css">
 </head>
 <body>
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
-                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
-                <%--Framework Scripts--%>
+              
                 <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Name="jquery" />
                 <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
@@ -92,7 +34,7 @@
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
-                <%--Site Scripts--%>
+               
             </Scripts>
         </asp:ScriptManager>
 
@@ -118,6 +60,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" runat="server" href="~/Contact">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" runat="server" href="~/faqs">FAQ</a>
                         </li>
                         <li class="nav-item">
                             <a class="btn custom-btn ms-2" href="/Login" id="btnShopNow" runat="server">Shop Now</a>
@@ -158,6 +103,7 @@
                             <h5>Payment Information</h5>
                             <p>We accept the following payment methods:</p>
                             <img src="/Assets/Icons/payment-cards.png" />
+
                         </div>
 
                         <div class="col-md-4 mb-3">
@@ -174,14 +120,16 @@
                         <div class="col-md-4 mb-3">
                             <h5>About Us</h5>
                             <p>Hand crafted leather shoes for men could be found in Simon Necktie. Unparalleled quality footwear with excellent craft are among their products. Our retail outlet is found in well known shopping malls, and we are going online for convenience.</p>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2729.8426677199036!2d101.69885861865299!3d3.05419775500799!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4abb795025d9%3A0x1c37182a714ba968!2sAsia%20Pacific%20University%20of%20Technology%20%26%20Innovation%20(APU)!5e0!3m2!1sne!2snp!4v1737690944247!5m2!1sne!2snp" height="200" style="border: 0;" allowfullscreen="true" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
 
                     <!-- Footer Bottom Section -->
                     <div class="row mt-4">
                         <div class="col-12 text-center">
+
                             <p>&copy; <%: DateTime.Now.Year %> Simon Necktie. All rights reserved.</p>
-                            Developed by: Ragen Maharjan
+                            Developed by: <a href="https://ragen.com.np/"> Ragen Maharjan</a>
            
                         </div>
                     </div>

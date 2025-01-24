@@ -1,7 +1,7 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ShoeShoppers._Default" %>
+﻿<%@ Page Title="Home" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ShoeShoppers._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <section class="hero">
+    <section class="container hero">
         <div>
             <h1>Welcome to Simon Necktie.</h1>
             <p>Discover the best products tailored for you.</p>
@@ -17,11 +17,15 @@
             <div class="categories-container">
                 <asp:Repeater ID="rptCategories" runat="server">
                     <ItemTemplate>
+
                         <div class="category-card">
-                            <asp:Image ID="imgCategory" runat="server" ImageUrl='<%# Eval("CategoryImageUrl") %>'
-                                CssClass="category-image" AlternateText='<%# Eval("CategoryName") %>' />
-                            <h3 class="category-title"><%# Eval("CategoryName") %></h3>
+                            <a href="/products/category/<%# Eval("CategoryName") %>">
+                                <asp:Image ID="imgCategory" runat="server" ImageUrl='<%# Eval("CategoryImageUrl") %>'
+                                    CssClass="category-image" AlternateText='<%# Eval("CategoryName") %>' />
+                                <h3 class="category-title"><%# Eval("CategoryName") %></h3>
+                            </a>
                         </div>
+
                     </ItemTemplate>
                 </asp:Repeater>
             </div>
@@ -29,8 +33,12 @@
         </section>
 
         <section id="products" class="container my-5">
-            <h2 class=" mb-4">Our Products</h2>
-
+            <div class="col">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2 class="mb-4">Our Products</h2>
+                    <a href="/products" class="text-black">View all</a>
+                </div>
+            </div>
 
 
 
@@ -51,8 +59,12 @@
                                         </div>
                                     </div>
                                     <asp:PlaceHolder ID="phOfferBadge" runat="server" Visible='<%# Convert.ToDouble(Eval("DiscountPercentage")) > 0 %>'>
-                                        <div class="offer-badge"><%# Eval("DiscountPercentage", "{0:0.##}") %>% off</div> 
-                                    </asp:PlaceHolder> 
+                                        <div class="offer-badge"><%# Eval("DiscountPercentage", "{0:0.##}") %>% off</div>
+                                    </asp:PlaceHolder>
+                                    <div class="wishlist-badge">
+                                        <i class="fa fa-heart"></i>
+
+                                    </div>
                                 </a>
                             </span>
                         </div>
@@ -80,7 +92,7 @@
                 </div>
             </div>
         </section>--%>
-        <section id="faq" class="container my-5">
+        <%-- <section id="faq" class="container my-5">
             <h2 class="mb-4">FAQ (Frequently Asked Questions)</h2>
             <div class="accordion" id="faqAccordion">
                 <div class="accordion-item">
@@ -140,7 +152,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section>--%>
     </div>
 
 </asp:Content>

@@ -55,9 +55,31 @@ namespace ShoeShoppers.Database.Repository
         public List<ProductReview> GetAllReviewsByProduct(int productId)
         {
             var reviews = new List<ProductReview>();
-            string query = "SELECT pr.ReviewId, pr.Rating, pr.Comment, pr.ProductId, pr.CreatedAt, pr.IsReplied, pr.RepliedAt, pr.RepliedBy, pr.ResponseContent, u.FirstName, u.LastName, u.Email,r.ReplyId, r.ResponseContent, r.RepliedAt, r.RepliedBy" +
-                " FROM ProductReviews pr INNER JOIN Users u ON pr.UserId = u.UserId WHERE pr.ProductId = @ProductId LEFT JOIN Replies r ON pr.ReplyId = r.ReplyId;";
-
+            string query = @"
+    SELECT 
+        pr.ReviewId, 
+        pr.Rating, 
+        pr.Comment, 
+        pr.ProductId, 
+        pr.CreatedAt, 
+        pr.IsReplied, 
+      
+        u.FirstName, 
+        u.LastName, 
+        u.Email, 
+        r.ReplyId, 
+        r.ResponseContent , 
+        r.RepliedAt, 
+        r.RepliedBy
+    FROM 
+        ProductReviews pr
+    INNER JOIN 
+        Users u ON pr.UserId = u.UserId
+    LEFT JOIN 
+        Replies r ON pr.ReplyId = r.ReplyId
+    WHERE 
+        pr.ProductId = @ProductId;
+";
             using (SqlCommand cmd = new SqlCommand(query, _connection))
             {
                 cmd.Parameters.AddWithValue("@ProductId", productId);
@@ -145,8 +167,8 @@ namespace ShoeShoppers.Database.Repository
          
                 cmd.Parameters.AddWithValue("@IsReplied", review.IsReplied);
                 cmd.Parameters.AddWithValue("@RepliedAt", DateTime.Now);
-                cmd.Parameters.AddWithValue("@RepliedBy", review.RepliedBy);
-                cmd.Parameters.AddWithValue("@ResponseContent", review.ResponseContent);
+                cmd.Parameters.AddWithValue("@RepliedBy", review.Reply.RepliedBy);
+                cmd.Parameters.AddWithValue("@ResponseContent", review.Reply.ResponseContent);
                 cmd.Parameters.AddWithValue("@ReviewId", review.ReviewId);
                 cmd.ExecuteNonQuery();
             }

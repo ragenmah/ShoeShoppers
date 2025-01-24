@@ -36,8 +36,12 @@ namespace ShoeShoppers.Database.Repository
                             Message = reader["Message"].ToString(),
                             CreatedAt = Convert.ToDateTime(reader["CreatedAt"]),
                             IsReplied = Convert.ToBoolean(reader["IsReplied"]),
-                            RepliedAt = reader["RepliedAt"] as DateTime?,
-                            RepliedBy = reader["RepliedBy"].ToString()
+                            Reply = new Reply
+                            {
+                                RepliedAt = reader["RepliedAt"] as DateTime?,
+                                RepliedBy = reader["RepliedBy"].ToString()
+                            }
+                          
                         });
                     }
                 }
@@ -77,8 +81,8 @@ namespace ShoeShoppers.Database.Repository
                 cmd.Parameters.AddWithValue("@PhoneNumber", contact.PhoneNumber);
                 cmd.Parameters.AddWithValue("@Message", contact.Message);
                 cmd.Parameters.AddWithValue("@IsReplied", contact.IsReplied);
-                cmd.Parameters.AddWithValue("@RepliedAt", contact.RepliedAt ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@RepliedBy", contact.RepliedBy ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@RepliedAt", contact.Reply.RepliedAt ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@RepliedBy", contact.Reply.RepliedBy ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@ContactUsId", contact.ContactUsId);
 
                 cmd.ExecuteNonQuery();

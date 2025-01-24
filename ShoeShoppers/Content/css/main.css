@@ -15,6 +15,49 @@
     font-family: Arial, sans-serif;
 }
 
+/* Hero Section Styling */
+.hero {
+    position: relative;
+    height: 50vh;
+    background: url('/Assets/Images/leather-boot.jpg') center/cover no-repeat;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: start;
+}
+
+    .hero h1 {
+        font-size: 3rem;
+        font-weight: bold;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        margin: 15px 0;
+    }
+
+    .hero .btn-primary {
+        padding: 10px 20px;
+        font-size: 1.1rem;
+    }
+
+#cart-icon {
+    position: relative;
+}
+
+#cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 0.8rem;
+}
+/* Service Highlights */
+.card img {
+    height: 200px;
+    object-fit: cover;
+}
+
 .form-container {
     display: flex;
     justify-content: center;
