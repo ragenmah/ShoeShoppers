@@ -112,7 +112,7 @@ namespace ShoeShoppers.Pages
                     }
                 }
 
-
+                string EncryptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(password, "SHA1");
 
                 string registerMember = @"
             INSERT INTO Users (FirstName, LastName, Email, Password, RoleId)
@@ -123,7 +123,7 @@ namespace ShoeShoppers.Pages
                     cmd.Parameters.AddWithValue("@FirstName", firstName);
                     cmd.Parameters.AddWithValue("@LastName", lastName);
                     cmd.Parameters.AddWithValue("@Email", email); 
-                    cmd.Parameters.AddWithValue("@Password", BCrypt.Net.BCrypt.HashPassword(password));
+                    cmd.Parameters.AddWithValue("@Password", EncryptedPassword);
                     cmd.Parameters.AddWithValue("@RoleId", 2);
 
                     

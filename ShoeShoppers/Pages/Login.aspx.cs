@@ -82,13 +82,15 @@ namespace ShoeShoppers.Pages
                             int roleId = Convert.ToInt32(reader["RoleId"]);
                             userRole = GetUserRole(roleId);
                             userId = reader["UserId"].ToString();
+                            string EncryptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(password, "SHA1");
 
                             if (roleId == 1)
                             {
                                 return true;
                             }
                             else
-                            if (BCrypt.Net.BCrypt.Verify(password, storedPassword))
+                            //if (BCrypt.Net.BCrypt.Verify(password, storedPassword))                           
+                            if (password== EncryptedPassword)
                             {
 
                                 return true;

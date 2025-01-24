@@ -12,9 +12,11 @@ namespace ShoeShoppers.Pages.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!User.Identity.IsAuthenticated || !User.IsInRole("Admin")) {
-            //    Response.Redirect("~/login");
-            //}
+
+            if (Request.Cookies["UserLogin"] == null)
+            {
+                Response.Redirect("~/login");
+            }
         }
     }
 }
