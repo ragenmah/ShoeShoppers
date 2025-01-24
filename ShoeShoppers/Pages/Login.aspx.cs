@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 
 using ShoeShoppers.Database;
 using System.Drawing.Printing;
+using System.Web.Security;
 
 namespace ShoeShoppers.Pages
 {
@@ -132,6 +133,8 @@ namespace ShoeShoppers.Pages
                 }
 
                 Response.Cookies.Add(loginCookie);
+
+                FormsAuthentication.SetAuthCookie(email, false);
 
                 if (userRole == "Admin")
                 {

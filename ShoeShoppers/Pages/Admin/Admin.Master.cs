@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShoeShoppers.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,9 @@ namespace ShoeShoppers.Pages.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            //if (!User.Identity.IsAuthenticated || !User.IsInRole("Admin")) {
+            //    Response.Redirect("~/login");
+            //}
         }
     }
 }
